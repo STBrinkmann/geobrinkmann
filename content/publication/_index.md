@@ -4,5 +4,5 @@ banner:
   image: ""
 cms_exclude: true
 title: Publications
-view: citation
+view: article-grid
 ---

@@ -1,0 +1,8506 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="white">
+  
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.3.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Sebastian T. Brinkmann" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/themes/cyan.min.css" />
+  
+
+  
+  
+    
+    <link href="/dist/wc.min.40d365a5c94bd94585e708f7c92e5782e00a8d8eefc348f5d2f21a80bb7783c8.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
+
+  <link rel="canonical" href="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Hugo Academic CV Theme" />
+  <meta property="og:url" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
+  <meta property="og:title" content="BART - A Bayesian machine learning workflow for complex spatial data | Hugo Academic CV Theme" />
+  <meta property="og:description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-04-20T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-04-20T15:54:53&#43;02:00">
+  
+
+  
+
+
+
+  
+
+
+  <title>BART - A Bayesian machine learning workflow for complex spatial data | Hugo Academic CV Theme</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link type="text/css" rel="stylesheet" href="/dist/lib/katex/katex.min.505d5f829022bb7b4f24dfee0aa1141cd7bba67afe411d1240335f820960b5c3.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr&#43;QR0SQDNfgglgtcM=" />
+  
+  
+  <script defer src="/dist/lib/katex/katex.min.dc84b296ec3e884de093158f760fd9d45b6c7abe58b5381557f4e138f46a58ae.js" integrity="sha256-3ISyluw&#43;iE3gkxWPdg/Z1Ftser5YtTgVV/ThOPRqWK4="></script>
+  
+  
+  
+  
+  <script defer src="/js/katex-renderer.6579ec9683211cfb952064aedf3a3baea5eeb17a061775b32b70917474637c80.js" integrity="sha256-ZXnsloMhHPuVIGSu3zo7rqXusXoGF3WzK3CRdHRjfIA="></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/js/hugo-blox-en.min.js"
+    integrity=""
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+        
+        
+        
+          <header id="site-header" class="header">
+  <nav class="navbar px-3 flex justify-left">
+    <div class="order-0 h-100">
+      
+      <a class="navbar-brand" href="/" title="Hugo Academic CV Theme">
+            
+            
+              
+              <img
+                fetchpriority="high"
+                decoding="async"
+                class=""
+                width="36"
+                height="36"
+                src="/media/icon_hu1615250596747404985.webp"
+                alt="Hugo Academic CV Theme" />
+            
+          
+        
+        GeoBrinkmann
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Open Menu</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Close Menu</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-left
+      ">
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/"
+        >Home</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/post/"
+        >Posts</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/publication/"
+        >Papers</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/experience/"
+        >Experience</a
+        >
+      </li>
+      
+      
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+
+      
+      
+      
+
+      
+      
+      <div class="px-3 text-black hover:text-primary-700 dark:text-white dark:hover:text-primary-300
+            [&.active]:font-bold [&.active]:text-black/90 dark:[&.active]:text-white">
+        <button class="theme-toggle mt-1" accesskey="t" title="appearance">
+          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class="dark:hidden">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class=" dark:block [&:not(dark)]:hidden">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+      
+
+      
+      
+
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+
+        
+      
+    </div>
+    <div class="page-body  my-10">
+      
+
+
+
+
+
+<div class="mx-auto flex max-w-screen-xl">
+  
+
+
+
+<aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] lg:hidden xl:block">
+  
+  <div class="px-4 pt-4 lg:hidden">
+    
+    
+  </div>
+  <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
+    <ul class="flex flex-col gap-1 lg:hidden">
+      
+      
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/"
+    
+  >Publications
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/digidem_2024/"
+    
+  >Räumliche Erreichbarkeit von Gedächtnisambulanzen – Eine geographische Analyse im Rahmen von digiDEM Bayern
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/brinkmann_2022/"
+    
+  >Modelling eye-level visibility of urban green space: Optimising city-wide point-based viewshed computations through prototyping
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/walker_2022/"
+    
+  >Neighborhood Greenspace and Socioeconomic Risk are Associated with Diabetes Risk at the Sub-neighborhood Scale: Results from the Prospective Urban and Rural Epidemiology (PURE) Study
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/scarpone2020/"
+    
+  >A multimethod approach for county-scale geospatial analysis of emerging infectious diseases. A cross-sectional case study of COVID-19 incidence in Germany
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/experience/"
+    
+  >Experience
+    </a></li>
+        <li class="open"><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/"
+    
+  >Blog
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visibility-sensitivity-analysis/"
+    
+  >Visibility - Sensitivity Analysis
+    </a>
+              
+            </li><li class="flex flex-col open"><a
+    class="hb-sidebar-custom-link
+      sidebar-active-item bg-primary-100 font-semibold text-primary-800 dark:bg-primary-300 dark:text-primary-900"
+    href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/"
+    
+  >BART - A Bayesian machine learning workflow for complex spatial data
+    </a>
+  
+    <ul class="hb-sidebar-mobile-toc"><li>
+              <a
+                href="#data-download-and-pre-processing"
+                class="hb-docs-link"
+              >Data download and pre-processing</a>
+            </li>
+          <li>
+              <a
+                href="#first-bart-model"
+                class="hb-docs-link"
+              >First BART model</a>
+            </li>
+          <li>
+              <a
+                href="#variable-selection"
+                class="hb-docs-link"
+              >Variable Selection</a>
+            </li>
+          <li>
+              <a
+                href="#second-bart-model"
+                class="hb-docs-link"
+              >Second BART model</a>
+            </li>
+          <li>
+              <a
+                href="#spatial-autocorrelation"
+                class="hb-docs-link"
+              >Spatial autocorrelation</a>
+            </li>
+          <li>
+              <a
+                href="#partial-dependence-plots"
+                class="hb-docs-link"
+              >Partial Dependence Plots</a>
+            </li>
+          <li>
+              <a
+                href="#conclusion"
+                class="hb-docs-link"
+              >Conclusion</a>
+            </li>
+          <li>
+              <a
+                href="#references"
+                class="hb-docs-link"
+              >References</a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visible-greenness-exposure/"
+    
+  >Visible Greenness Exposure
+    </a>
+              
+            </li></ul>
+      </div></li>
+    </ul>
+
+    <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
+
+</aside>
+  
+
+<nav class="hb-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#data-download-and-pre-processing">Data download and pre-processing</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#first-bart-model">First BART model</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#variable-selection">Variable Selection</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#second-bart-model">Second BART model</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#spatial-autocorrelation">Spatial autocorrelation</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#partial-dependence-plots">Partial Dependence Plots</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#conclusion">Conclusion</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#references">References</a>
+      </li></ul>
+
+  
+  
+    
+    
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </nav>
+
+
+  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+    <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
+
+      
+
+      <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">BART - A Bayesian machine learning workflow for complex spatial data</h1>
+
+      <div class="mt-4 mb-16">
+      <div class="text-gray-500 dark:text-gray-300 text-sm flex items-center flex-wrap gap-y-2"><span class="mr-1">Apr 20, 2021</span>
+        
+
+        
+        <span class="mx-1">·</span>
+        <span class="mx-1">
+          23 min read
+        </span>
+        
+        </div>
+
+        <div class="mt-3">
+          
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+      
+      
+      
+
+      
+      
+
+      <div class="prose prose-slate lg:prose-xl dark:prose-invert">
+        <script src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js"></script>
+<link href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css" rel="stylesheet" />
+<script src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js"></script>
+<link href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css" rel="stylesheet" />
+<style>
+body {
+text-align: justify}
+</style>
+<p>In our <a href="https://geobrinkmann.com/publication/scarpone2020/" target="_blank" rel="noopener">recent publication from 2020</a>, we analyzed COVID-19 incidence and socioeconomic, infrastructural, and built environment characteristics using a multimethod approach. Germany has 401 counties, which vary greatly in size. Counties in Southern Germany are generally smaller and have higher population densities. The figure below shows the natural log-transformed, age-adjusted COVID-19 incidence rates as of April 1, 2020, highlighting spatial differences between the northeast and the south-southwest.
+<img src="Incidence_rates_map.svg" style="width:60.0%" /></p>
+<p>After conducting a thorough spatial exploratory analysis, we applied a <em>Bayesian Additive Regression Trees</em> (BART; (Chipman, George, and McCulloch 2010)) model to identify socioeconomic and built environment covariates associated with COVID-19 incidence. BART is an ensemble-of-trees method, similar to random forests (Breiman 2001) and stochastic gradient boosting (Friedman 2002). <em>Tree-based regression models</em> are flexible enough to capture interactions and non-linearities. Summation-of-trees models (such as BART or random forests) can capture even more complex relationships than single-tree models. However, BART differs from these common algorithms because it uses an underlying <em>Bayesian probability</em> model rather than a purely algorithmic approach (Kapelner and Bleich 2016). One key advantage of the Bayesian framework is that it computes posterior distributions to approximate the model parameters. These priors help prevent any single regression tree from dominating the ensemble, thus lowering the risk of overfitting (Kapelner and Bleich 2016; Scarpone et al. 2020).</p>
+<p>For our analysis, we used the R package <code>bartMachine</code> (Kapelner and Bleich 2016). One caveat is that <code>bartMachine</code> does not support <em>tibble</em> objects as input features, but aside from that it is intuitive and simple to use.<br>
+In this post, I will illustrate how we used the same data from our COVID-19 paper to analyze age-adjusted incidence rates in German counties using BART. Even though the BART model has strong predictive capabilities, we will <em>not</em> use it to forecast new COVID-19 cases. Instead, we will use it as an exploratory tool to understand which factors influence the spread of COVID-19 and how they interact with incidence rates.</p>
+<p>I want to emphasize that we are only examining data from a single date, April 1, 2020, covering the first wave of the pandemic in Germany. A friend of mine is currently investigating which factors contributed to the second and third waves. Although some variables remain important across different time points, others gain or lose relevance, and in some cases the direction of their effects appears reversed.</p>
+<p>In sum, BART is used here as an exploratory tool, and we will generate <em>Partial Dependence Plots (PDPs)</em> to visualize and interpret the marginal effects of key predictors.</p>
+<p>If you are interested in more detail about pre-modeling exploratory data analysis or data engineering, please see the <a href="https://geobrinkmann.com/publication/scarpone2020/" target="_blank" rel="noopener">paper</a> or <a href="https://geobrinkmann.com/#contact" target="_blank" rel="noopener">contact me</a>.</p>
+<h2 id="data-download-and-pre-processing">Data download and pre-processing</h2>
+<p>First, we need to load the packages and set the memory size and number of cores for <code>bartMachine</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Set to use 45 GB memory - adjust this to your resources</span>
+</span></span><span class="line"><span class="cl"><span class="nf">options</span><span class="p">(</span><span class="n">java.parameters</span> <span class="o">=</span> <span class="s">&#34;-Xmx45g&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Load packages</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">bartMachine</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Set to run on 20 threads - adjust this to your resources</span>
+</span></span><span class="line"><span class="cl"><span class="nf">set_bart_machine_num_cores</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## bartMachine now using 20 cores.
+</code></pre>
+<p><em>Tip:</em> Double-check that the correct amount of RAM is being allocated after loading <code>bartMachine.</code> If the message shows a different number, try manually typing out the <code>java.parameters</code> string instead of copy-pasting.</p>
+<p>Next, we download the data and normalize the church density variable (<code>Rch_den</code>).e.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Function for linear stretching. New range: 0-1</span>
+</span></span><span class="line"><span class="cl"><span class="n">range0_1</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){(</span><span class="n">x</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="nf">min</span><span class="p">(</span><span class="n">x</span><span class="p">))}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Download data</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">&lt;-</span> <span class="nf">read.csv</span><span class="p">(</span><span class="s">&#34;https://github.com/CHEST-Lab/BART_Covid-19/raw/master/Data/GermanyTraining.csv&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">Rch_den</span> <span class="o">=</span> <span class="nf">range0_1</span><span class="p">(</span><span class="n">Rch_den</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">NUTS2_Fact</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">NUTS2_Fact</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">         <span class="n">BL_ID</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">BL</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">         <span class="n">S_109</span> <span class="o">=</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">S_109</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Select variables: Lat/ Long, BL, NUTS2, socioeconomic, build environment and age adjusted case rate</span>
+</span></span><span class="line"><span class="cl"><span class="n">data</span> <span class="o">&lt;-</span> <span class="n">data</span><span class="nf">[c</span><span class="p">(</span><span class="m">374</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">38</span><span class="p">,</span> <span class="m">28</span><span class="p">,</span> <span class="m">65</span><span class="o">:</span><span class="m">372</span><span class="p">)</span><span class="n">]</span>
+</span></span></code></pre></div><table style="width:90%; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" class=" lightable-classic lightable-striped">
+<thead>
+<tr>
+<th style="text-align:right;font-weight: bold;">
+AdjRate
+</th>
+<th style="text-align:right;font-weight: bold;">
+X
+</th>
+<th style="text-align:right;font-weight: bold;">
+Y
+</th>
+<th style="text-align:left;font-weight: bold;">
+NUTS2_Fact
+</th>
+<th style="text-align:left;font-weight: bold;">
+BL_ID
+</th>
+<th style="text-align:right;font-weight: bold;">
+EWZ
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_001
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_002
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_003
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_004
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_005
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_006
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_007
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_008
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_009
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_010
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_011
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_012
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_013
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_014
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_015
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_016
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_017
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_018
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_019
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_020
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_021
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_022
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_023
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_024
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_025
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_026
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_027
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_028
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_029
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_030
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_031
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_032
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_033
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_034
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_035
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_036
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_037
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_038
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_039
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_040
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_041
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_042
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_043
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_044
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_045
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_046
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_047
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_048
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_049
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_050
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_051
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_052
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_053
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_054
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_055
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_056
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_057
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_058
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_059
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_060
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_061
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_062
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_063
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_064
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_065
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_066
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_067
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_068
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_069
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_070
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_071
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_072
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_073
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_074
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_075
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_076
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_077
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_078
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_079
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_080
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_081
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_082
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_083
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_084
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_085
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_086
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_087
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_088
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_089
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_090
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_091
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_092
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_093
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_094
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_095
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_096
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_097
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_098
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_099
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_100
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_101
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_102
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_103
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_104
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_105
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_106
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_107
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_108
+</th>
+<th style="text-align:left;font-weight: bold;">
+S_109
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_110
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_111
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_112
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_113
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_114
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_115
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_116
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_117
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_118
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_119
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_120
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_121
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_122
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_123
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_124
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_125
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_126
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_127
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_128
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_129
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_130
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_131
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_132
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_133
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_134
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_135
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_136
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_137
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_138
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_139
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_140
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_141
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_142
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_143
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_144
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_145
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_146
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_147
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_148
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_149
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_150
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_151
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_152
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_153
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_154
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_155
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_156
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_157
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_158
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_159
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_160
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_161
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_162
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_163
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_164
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_165
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_166
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_167
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_168
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_169
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_170
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_171
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_172
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_173
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_174
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_175
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_176
+</th>
+<th style="text-align:right;font-weight: bold;">
+M_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+T_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+P_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+T_km2_1
+</th>
+<th style="text-align:right;font-weight: bold;">
+All_R_2
+</th>
+<th style="text-align:right;font-weight: bold;">
+M_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+T_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+P_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+S_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+T_pop_1
+</th>
+<th style="text-align:right;font-weight: bold;">
+All_R_p
+</th>
+<th style="text-align:right;font-weight: bold;">
+tot_R
+</th>
+<th style="text-align:right;font-weight: bold;">
+lib_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+uni_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+sch_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+cll_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+kid_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+ply_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+the_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+ngh_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+cin_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+pub_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+bar_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+std_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+sc_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+hsp_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+doc_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+mll_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+dc_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+con_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+sup_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+pst_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+th_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+cc_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+nh_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+ac_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+phr_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+rst_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+ff_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+caf_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+fc_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+bir_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+bak_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+chm_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+dot_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+har_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+prk_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rch_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rmu_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rth_km2
+</th>
+<th style="text-align:right;font-weight: bold;">
+All_P_2
+</th>
+<th style="text-align:right;font-weight: bold;">
+lib_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+uni_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+sch_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+coll_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+kid_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+play_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+thea_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+nigh_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+cin_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+pub_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+bar_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+stad_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+sc_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+hosp_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+doc_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+mall_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+dc_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+con_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+sup_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+post_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+th_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+cc_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+nh_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+ac_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+phar_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+rest_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+ff_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+cafe_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+fc_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+bier_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+bake_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+chem_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+doit_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+hair_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+park_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rch_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rmu_pop
+</th>
+<th style="text-align:right;font-weight: bold;">
+Roth_pp
+</th>
+<th style="text-align:right;font-weight: bold;">
+All_P_p
+</th>
+<th style="text-align:right;font-weight: bold;">
+tot_P
+</th>
+<th style="text-align:right;font-weight: bold;">
+lib_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+uni_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+sch_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+coll_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+kid_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+play_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+thea_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+nigh_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+cin_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+pub_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+bar_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+stad_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+sc_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+hosp_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+doc_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+mall_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+dc_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+con_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+sup_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+post_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+th_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+cc_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+nh_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+ac_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+phar_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+rest_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+ff_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+cafe_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+fc_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+bier_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+bake_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+chem_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+doit_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+hair_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+park_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rch_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+Rmu_den
+</th>
+<th style="text-align:right;font-weight: bold;">
+Roth_dn
+</th>
+<th style="text-align:right;font-weight: bold;">
+All_P_d
+</th>
+<th style="text-align:right;font-weight: bold;">
+Pop_Den
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+27.37
+</td>
+<td style="text-align:right;">
+9.44
+</td>
+<td style="text-align:right;">
+54.78
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+Schleswig-Holstein
+</td>
+<td style="text-align:right;">
+89504
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+76.0
+</td>
+<td style="text-align:right;">
+19.3
+</td>
+<td style="text-align:right;">
+7.9
+</td>
+<td style="text-align:right;">
+12.5
+</td>
+<td style="text-align:right;">
+43.8
+</td>
+<td style="text-align:right;">
+14.5
+</td>
+<td style="text-align:right;">
+60.3
+</td>
+<td style="text-align:right;">
+8.1
+</td>
+<td style="text-align:right;">
+31.8
+</td>
+<td style="text-align:right;">
+94.8
+</td>
+<td style="text-align:right;">
+24.1
+</td>
+<td style="text-align:right;">
+-10.9
+</td>
+<td style="text-align:right;">
+72.1
+</td>
+<td style="text-align:right;">
+27.7
+</td>
+<td style="text-align:right;">
+44.1
+</td>
+<td style="text-align:right;">
+51.8
+</td>
+<td style="text-align:right;">
+18.8
+</td>
+<td style="text-align:right;">
+48.6
+</td>
+<td style="text-align:right;">
+22.8
+</td>
+<td style="text-align:right;">
+39.9
+</td>
+<td style="text-align:right;">
+17.2
+</td>
+<td style="text-align:right;">
+32.9
+</td>
+<td style="text-align:right;">
+85.0
+</td>
+<td style="text-align:right;">
+74.5
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+9.8
+</td>
+<td style="text-align:right;">
+11.9
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+23.8
+</td>
+<td style="text-align:right;">
+19.6
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+20.2
+</td>
+<td style="text-align:right;">
+10.6
+</td>
+<td style="text-align:right;">
+8.2
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+42.2
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+19.0
+</td>
+<td style="text-align:right;">
+30.2
+</td>
+<td style="text-align:right;">
+14.3
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+11.7
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+78.80
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:right;">
+70.3
+</td>
+<td style="text-align:right;">
+48.2
+</td>
+<td style="text-align:right;">
+34.0
+</td>
+<td style="text-align:right;">
+92.1
+</td>
+<td style="text-align:right;">
+109.0
+</td>
+<td style="text-align:right;">
+44.7
+</td>
+<td style="text-align:right;">
+13.2
+</td>
+<td style="text-align:right;">
+91.2
+</td>
+<td style="text-align:right;">
+9.8
+</td>
+<td style="text-align:right;">
+29.5
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+15.7
+</td>
+<td style="text-align:right;">
+14.0
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+1527
+</td>
+<td style="text-align:right;">
+2333
+</td>
+<td style="text-align:right;">
+1278.6
+</td>
+<td style="text-align:right;">
+2986
+</td>
+<td style="text-align:right;">
+16.0
+</td>
+<td style="text-align:right;">
+17.6
+</td>
+<td style="text-align:right;">
+24258
+</td>
+<td style="text-align:right;">
+11.3
+</td>
+<td style="text-align:right;">
+3375
+</td>
+<td style="text-align:right;">
+2992
+</td>
+<td style="text-align:right;">
+3373
+</td>
+<td style="text-align:right;">
+2965.5
+</td>
+<td style="text-align:right;">
+3.8
+</td>
+<td style="text-align:right;">
+52.6
+</td>
+<td style="text-align:right;">
+24.4
+</td>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+40.9
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+14.9
+</td>
+<td style="text-align:right;">
+4568.9
+</td>
+<td style="text-align:right;">
+444.4
+</td>
+<td style="text-align:right;">
+50.4
+</td>
+<td style="text-align:right;">
+15.6
+</td>
+<td style="text-align:right;">
+27.1
+</td>
+<td style="text-align:right;">
+-2.4
+</td>
+<td style="text-align:right;">
+9.47
+</td>
+<td style="text-align:right;">
+369.1
+</td>
+<td style="text-align:right;">
+29.6
+</td>
+<td style="text-align:right;">
+30.1
+</td>
+<td style="text-align:right;">
+100.3
+</td>
+<td style="text-align:right;">
+55.7
+</td>
+<td style="text-align:right;">
+123.9
+</td>
+<td style="text-align:right;">
+35.2
+</td>
+<td style="text-align:right;">
+15.8
+</td>
+<td style="text-align:right;">
+92.5
+</td>
+<td style="text-align:right;">
+45.2
+</td>
+<td style="text-align:right;">
+69.1
+</td>
+<td style="text-align:right;">
+7.0
+</td>
+<td style="text-align:right;">
+371.4
+</td>
+<td style="text-align:right;">
+1282.4
+</td>
+<td style="text-align:right;">
+1.3
+</td>
+<td style="text-align:right;">
+767.3
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+156
+</td>
+<td style="text-align:right;">
+2309
+</td>
+<td style="text-align:right;">
+13725
+</td>
+<td style="text-align:right;">
+16.2
+</td>
+<td style="text-align:right;">
+23.5
+</td>
+<td style="text-align:right;">
+19.6
+</td>
+<td style="text-align:right;">
+26.5
+</td>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+19.1
+</td>
+<td style="text-align:right;">
+7.41
+</td>
+<td style="text-align:right;">
+25.6
+</td>
+<td style="text-align:right;">
+134.5
+</td>
+<td style="text-align:right;">
+6.24
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+98
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+543
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+602
+</td>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:right;">
+180
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+478
+</td>
+<td style="text-align:right;">
+52.4
+</td>
+<td style="text-align:right;">
+34.2
+</td>
+<td style="text-align:right;">
+27.7
+</td>
+<td style="text-align:right;">
+14.0
+</td>
+<td style="text-align:right;">
+7.7
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:right;">
+1.5
+</td>
+<td style="text-align:right;">
+19.8
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:right;">
+40.1
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+131.7
+</td>
+<td style="text-align:right;">
+30.9
+</td>
+<td style="text-align:right;">
+6.23
+</td>
+<td style="text-align:right;">
+42.5
+</td>
+<td style="text-align:right;">
+62.0
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+25.3
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+67.8
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:right;">
+35.2
+</td>
+<td style="text-align:right;">
+92.5
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+42826.6
+</td>
+<td style="text-align:right;">
+4.1
+</td>
+<td style="text-align:right;">
+51.8
+</td>
+<td style="text-align:right;">
+24.8
+</td>
+<td style="text-align:right;">
+97.0
+</td>
+<td style="text-align:right;">
+34.8
+</td>
+<td style="text-align:right;">
+48.8
+</td>
+<td style="text-align:right;">
+16.4
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+2.45
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+33.81
+</td>
+<td style="text-align:right;">
+24.40
+</td>
+<td style="text-align:right;">
+24.01
+</td>
+<td style="text-align:right;">
+52.45
+</td>
+<td style="text-align:right;">
+134.66
+</td>
+<td style="text-align:right;">
+120.52
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+1.67
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.91
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+0.41
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.37
+</td>
+<td style="text-align:right;">
+1.71
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.02
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+12.46
+</td>
+<td style="text-align:right;">
+4.47
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+4.47
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+16.76
+</td>
+<td style="text-align:right;">
+91.62
+</td>
+<td style="text-align:right;">
+5.59
+</td>
+<td style="text-align:right;">
+6.70
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+<td style="text-align:right;">
+50.28
+</td>
+<td style="text-align:right;">
+4.47
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.47
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+50.28
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+<td style="text-align:right;">
+16.76
+</td>
+<td style="text-align:right;">
+22.35
+</td>
+<td style="text-align:right;">
+11.17
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+6.70
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+20.11
+</td>
+<td style="text-align:right;">
+93.85
+</td>
+<td style="text-align:right;">
+68.15
+</td>
+<td style="text-align:right;">
+46.93
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+55.86
+</td>
+<td style="text-align:right;">
+12.29
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+<td style="text-align:right;">
+69.27
+</td>
+<td style="text-align:right;">
+1.12
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+<td style="text-align:right;">
+2.23
+</td>
+<td style="text-align:right;">
+3.35
+</td>
+<td style="text-align:right;">
+684.89
+</td>
+<td style="text-align:right;">
+613
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+4566
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49.54
+</td>
+<td style="text-align:right;">
+10.13
+</td>
+<td style="text-align:right;">
+54.32
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+Schleswig-Holstein
+</td>
+<td style="text-align:right;">
+247548
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+72.0
+</td>
+<td style="text-align:right;">
+22.6
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+33.1
+</td>
+<td style="text-align:right;">
+14.9
+</td>
+<td style="text-align:right;">
+63.2
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+<td style="text-align:right;">
+37.8
+</td>
+<td style="text-align:right;">
+310.5
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+136.2
+</td>
+<td style="text-align:right;">
+67.3
+</td>
+<td style="text-align:right;">
+32.4
+</td>
+<td style="text-align:right;">
+38.9
+</td>
+<td style="text-align:right;">
+51.5
+</td>
+<td style="text-align:right;">
+19.2
+</td>
+<td style="text-align:right;">
+48.9
+</td>
+<td style="text-align:right;">
+21.3
+</td>
+<td style="text-align:right;">
+39.3
+</td>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+32.6
+</td>
+<td style="text-align:right;">
+79.2
+</td>
+<td style="text-align:right;">
+67.7
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+9.4
+</td>
+<td style="text-align:right;">
+11.0
+</td>
+<td style="text-align:right;">
+10.2
+</td>
+<td style="text-align:right;">
+26.5
+</td>
+<td style="text-align:right;">
+19.1
+</td>
+<td style="text-align:right;">
+8.8
+</td>
+<td style="text-align:right;">
+18.5
+</td>
+<td style="text-align:right;">
+9.7
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:right;">
+41.5
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+2.3
+</td>
+<td style="text-align:right;">
+17.8
+</td>
+<td style="text-align:right;">
+26.7
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+10.1
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+<td style="text-align:right;">
+80.05
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+73.5
+</td>
+<td style="text-align:right;">
+31.1
+</td>
+<td style="text-align:right;">
+41.7
+</td>
+<td style="text-align:right;">
+90.4
+</td>
+<td style="text-align:right;">
+140.6
+</td>
+<td style="text-align:right;">
+31.4
+</td>
+<td style="text-align:right;">
+13.4
+</td>
+<td style="text-align:right;">
+127.9
+</td>
+<td style="text-align:right;">
+9.4
+</td>
+<td style="text-align:right;">
+30.3
+</td>
+<td style="text-align:right;">
+5.1
+</td>
+<td style="text-align:right;">
+7.3
+</td>
+<td style="text-align:right;">
+13.9
+</td>
+<td style="text-align:right;">
+20.5
+</td>
+<td style="text-align:right;">
+4.56
+</td>
+<td style="text-align:right;">
+1564
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:right;">
+1293.2
+</td>
+<td style="text-align:right;">
+3304
+</td>
+<td style="text-align:right;">
+12.1
+</td>
+<td style="text-align:right;">
+14.5
+</td>
+<td style="text-align:right;">
+35
+</td>
+<td style="text-align:right;">
+18.2
+</td>
+<td style="text-align:right;">
+4015
+</td>
+<td style="text-align:right;">
+3296
+</td>
+<td style="text-align:right;">
+3693
+</td>
+<td style="text-align:right;">
+3844.7
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+54.4
+</td>
+<td style="text-align:right;">
+28.7
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+27.7
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+886.5
+</td>
+<td style="text-align:right;">
+383.0
+</td>
+<td style="text-align:right;">
+51.7
+</td>
+<td style="text-align:right;">
+17.1
+</td>
+<td style="text-align:right;">
+31.5
+</td>
+<td style="text-align:right;">
+7.3
+</td>
+<td style="text-align:right;">
+9.84
+</td>
+<td style="text-align:right;">
+295.2
+</td>
+<td style="text-align:right;">
+30.1
+</td>
+<td style="text-align:right;">
+26.0
+</td>
+<td style="text-align:right;">
+74.6
+</td>
+<td style="text-align:right;">
+67.8
+</td>
+<td style="text-align:right;">
+88.6
+</td>
+<td style="text-align:right;">
+34.9
+</td>
+<td style="text-align:right;">
+30.2
+</td>
+<td style="text-align:right;">
+91.0
+</td>
+<td style="text-align:right;">
+67.0
+</td>
+<td style="text-align:right;">
+39.6
+</td>
+<td style="text-align:right;">
+7.3
+</td>
+<td style="text-align:right;">
+399.2
+</td>
+<td style="text-align:right;">
+2269.4
+</td>
+<td style="text-align:right;">
+74.5
+</td>
+<td style="text-align:right;">
+755.3
+</td>
+<td style="text-align:right;">
+53.4
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+209
+</td>
+<td style="text-align:right;">
+3112
+</td>
+<td style="text-align:right;">
+22801
+</td>
+<td style="text-align:right;">
+16.9
+</td>
+<td style="text-align:right;">
+17.7
+</td>
+<td style="text-align:right;">
+17.4
+</td>
+<td style="text-align:right;">
+26.2
+</td>
+<td style="text-align:right;">
+9.8
+</td>
+<td style="text-align:right;">
+12.9
+</td>
+<td style="text-align:right;">
+5.25
+</td>
+<td style="text-align:right;">
+30.2
+</td>
+<td style="text-align:right;">
+146.1
+</td>
+<td style="text-align:right;">
+7.31
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+<td style="text-align:right;">
+6.6
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+64
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+460
+</td>
+<td style="text-align:right;">
+92
+</td>
+<td style="text-align:right;">
+415
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+590
+</td>
+<td style="text-align:right;">
+89
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+436
+</td>
+<td style="text-align:right;">
+49.1
+</td>
+<td style="text-align:right;">
+30.3
+</td>
+<td style="text-align:right;">
+27.1
+</td>
+<td style="text-align:right;">
+13.1
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:right;">
+1.3
+</td>
+<td style="text-align:right;">
+0.9
+</td>
+<td style="text-align:right;">
+17.9
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:right;">
+120.2
+</td>
+<td style="text-align:right;">
+30.6
+</td>
+<td style="text-align:right;">
+6.96
+</td>
+<td style="text-align:right;">
+45.7
+</td>
+<td style="text-align:right;">
+66.4
+</td>
+<td style="text-align:right;">
+18.3
+</td>
+<td style="text-align:right;">
+30.0
+</td>
+<td style="text-align:right;">
+5.9
+</td>
+<td style="text-align:right;">
+108.1
+</td>
+<td style="text-align:right;">
+7.3
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+34.9
+</td>
+<td style="text-align:right;">
+91.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+45821.3
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+51.5
+</td>
+<td style="text-align:right;">
+26.0
+</td>
+<td style="text-align:right;">
+97.5
+</td>
+<td style="text-align:right;">
+38.3
+</td>
+<td style="text-align:right;">
+48.1
+</td>
+<td style="text-align:right;">
+13.6
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.66
+</td>
+<td style="text-align:right;">
+2.37
+</td>
+<td style="text-align:right;">
+9.06
+</td>
+<td style="text-align:right;">
+31.13
+</td>
+<td style="text-align:right;">
+6.29
+</td>
+<td style="text-align:right;">
+30.83
+</td>
+<td style="text-align:right;">
+30.10
+</td>
+<td style="text-align:right;">
+107.42
+</td>
+<td style="text-align:right;">
+265.92
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.61
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+1.35
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.93
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+1.10
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+10.75
+</td>
+<td style="text-align:right;">
+4.85
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.83
+</td>
+<td style="text-align:right;">
+1.62
+</td>
+<td style="text-align:right;">
+14.95
+</td>
+<td style="text-align:right;">
+23.83
+</td>
+<td style="text-align:right;">
+2.02
+</td>
+<td style="text-align:right;">
+4.85
+</td>
+<td style="text-align:right;">
+2.83
+</td>
+<td style="text-align:right;">
+23.03
+</td>
+<td style="text-align:right;">
+14.95
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9.70
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+30.30
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.42
+</td>
+<td style="text-align:right;">
+7.68
+</td>
+<td style="text-align:right;">
+25.45
+</td>
+<td style="text-align:right;">
+11.31
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+1.62
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+27.47
+</td>
+<td style="text-align:right;">
+60.59
+</td>
+<td style="text-align:right;">
+61.40
+</td>
+<td style="text-align:right;">
+36.76
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+42.01
+</td>
+<td style="text-align:right;">
+7.68
+</td>
+<td style="text-align:right;">
+3.64
+</td>
+<td style="text-align:right;">
+49.69
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+7.27
+</td>
+<td style="text-align:right;">
+2.83
+</td>
+<td style="text-align:right;">
+1.62
+</td>
+<td style="text-align:right;">
+487.18
+</td>
+<td style="text-align:right;">
+1206
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+6862
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+43.20
+</td>
+<td style="text-align:right;">
+10.73
+</td>
+<td style="text-align:right;">
+53.87
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+Schleswig-Holstein
+</td>
+<td style="text-align:right;">
+217198
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+69.7
+</td>
+<td style="text-align:right;">
+26.5
+</td>
+<td style="text-align:right;">
+7.0
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+35.7
+</td>
+<td style="text-align:right;">
+17.2
+</td>
+<td style="text-align:right;">
+58.0
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+36.3
+</td>
+<td style="text-align:right;">
+176.7
+</td>
+<td style="text-align:right;">
+18.6
+</td>
+<td style="text-align:right;">
+52.5
+</td>
+<td style="text-align:right;">
+75.6
+</td>
+<td style="text-align:right;">
+24.3
+</td>
+<td style="text-align:right;">
+40.5
+</td>
+<td style="text-align:right;">
+56.1
+</td>
+<td style="text-align:right;">
+18.5
+</td>
+<td style="text-align:right;">
+48.4
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+46.9
+</td>
+<td style="text-align:right;">
+17.6
+</td>
+<td style="text-align:right;">
+31.9
+</td>
+<td style="text-align:right;">
+81.1
+</td>
+<td style="text-align:right;">
+85.6
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+8.2
+</td>
+<td style="text-align:right;">
+7.0
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+21.5
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+<td style="text-align:right;">
+23.2
+</td>
+<td style="text-align:right;">
+12.7
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+44.7
+</td>
+<td style="text-align:right;">
+2.2
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+19.5
+</td>
+<td style="text-align:right;">
+36.1
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+12.7
+</td>
+<td style="text-align:right;">
+0.72
+</td>
+<td style="text-align:right;">
+79.62
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+70.7
+</td>
+<td style="text-align:right;">
+54.5
+</td>
+<td style="text-align:right;">
+43.0
+</td>
+<td style="text-align:right;">
+104.4
+</td>
+<td style="text-align:right;">
+49.2
+</td>
+<td style="text-align:right;">
+22.7
+</td>
+<td style="text-align:right;">
+16.3
+</td>
+<td style="text-align:right;">
+60.1
+</td>
+<td style="text-align:right;">
+10.0
+</td>
+<td style="text-align:right;">
+25.6
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+11.1
+</td>
+<td style="text-align:right;">
+12.8
+</td>
+<td style="text-align:right;">
+14.2
+</td>
+<td style="text-align:right;">
+2.81
+</td>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+2593
+</td>
+<td style="text-align:right;">
+1298.6
+</td>
+<td style="text-align:right;">
+3036
+</td>
+<td style="text-align:right;">
+15.1
+</td>
+<td style="text-align:right;">
+17.0
+</td>
+<td style="text-align:right;">
+26859
+</td>
+<td style="text-align:right;">
+23.9
+</td>
+<td style="text-align:right;">
+3784
+</td>
+<td style="text-align:right;">
+3055
+</td>
+<td style="text-align:right;">
+3324
+</td>
+<td style="text-align:right;">
+2718.6
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+37.1
+</td>
+<td style="text-align:right;">
+56.8
+</td>
+<td style="text-align:right;">
+15.4
+</td>
+<td style="text-align:right;">
+152.6
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+16.8
+</td>
+<td style="text-align:right;">
+2028.8
+</td>
+<td style="text-align:right;">
+442.1
+</td>
+<td style="text-align:right;">
+52.6
+</td>
+<td style="text-align:right;">
+19.6
+</td>
+<td style="text-align:right;">
+27.3
+</td>
+<td style="text-align:right;">
+16.0
+</td>
+<td style="text-align:right;">
+9.15
+</td>
+<td style="text-align:right;">
+393.9
+</td>
+<td style="text-align:right;">
+20.5
+</td>
+<td style="text-align:right;">
+36.0
+</td>
+<td style="text-align:right;">
+120.0
+</td>
+<td style="text-align:right;">
+44.7
+</td>
+<td style="text-align:right;">
+156.1
+</td>
+<td style="text-align:right;">
+34.3
+</td>
+<td style="text-align:right;">
+22.3
+</td>
+<td style="text-align:right;">
+92.3
+</td>
+<td style="text-align:right;">
+61.7
+</td>
+<td style="text-align:right;">
+35.4
+</td>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+375.7
+</td>
+<td style="text-align:right;">
+3039.8
+</td>
+<td style="text-align:right;">
+106.4
+</td>
+<td style="text-align:right;">
+724.8
+</td>
+<td style="text-align:right;">
+36.9
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+101
+</td>
+<td style="text-align:right;">
+1454
+</td>
+<td style="text-align:right;">
+22491
+</td>
+<td style="text-align:right;">
+16.1
+</td>
+<td style="text-align:right;">
+25.6
+</td>
+<td style="text-align:right;">
+16.5
+</td>
+<td style="text-align:right;">
+31.0
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+20.1
+</td>
+<td style="text-align:right;">
+6.82
+</td>
+<td style="text-align:right;">
+26.6
+</td>
+<td style="text-align:right;">
+132.3
+</td>
+<td style="text-align:right;">
+6.25
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+5.7
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+532
+</td>
+<td style="text-align:right;">
+90
+</td>
+<td style="text-align:right;">
+707
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:right;">
+705
+</td>
+<td style="text-align:right;">
+88
+</td>
+<td style="text-align:right;">
+276
+</td>
+<td style="text-align:right;">
+99
+</td>
+<td style="text-align:right;">
+444
+</td>
+<td style="text-align:right;">
+43.6
+</td>
+<td style="text-align:right;">
+31.3
+</td>
+<td style="text-align:right;">
+17.9
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+3.9
+</td>
+<td style="text-align:right;">
+3.0
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+0.6
+</td>
+<td style="text-align:right;">
+43.2
+</td>
+<td style="text-align:right;">
+7.8
+</td>
+<td style="text-align:right;">
+19.7
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+109.0
+</td>
+<td style="text-align:right;">
+27.1
+</td>
+<td style="text-align:right;">
+5.13
+</td>
+<td style="text-align:right;">
+38.0
+</td>
+<td style="text-align:right;">
+65.3
+</td>
+<td style="text-align:right;">
+17.8
+</td>
+<td style="text-align:right;">
+26.6
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+87.4
+</td>
+<td style="text-align:right;">
+11.1
+</td>
+<td style="text-align:right;">
+2.0
+</td>
+<td style="text-align:right;">
+34.3
+</td>
+<td style="text-align:right;">
+92.3
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+38078.1
+</td>
+<td style="text-align:right;">
+4.0
+</td>
+<td style="text-align:right;">
+56.1
+</td>
+<td style="text-align:right;">
+29.2
+</td>
+<td style="text-align:right;">
+95.9
+</td>
+<td style="text-align:right;">
+37.0
+</td>
+<td style="text-align:right;">
+48.1
+</td>
+<td style="text-align:right;">
+14.8
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+<td style="text-align:right;">
+1.54
+</td>
+<td style="text-align:right;">
+24.51
+</td>
+<td style="text-align:right;">
+17.43
+</td>
+<td style="text-align:right;">
+22.51
+</td>
+<td style="text-align:right;">
+42.43
+</td>
+<td style="text-align:right;">
+43.38
+</td>
+<td style="text-align:right;">
+150.27
+</td>
+<td style="text-align:right;">
+326.38
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.44
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+1.23
+</td>
+<td style="text-align:right;">
+0.88
+</td>
+<td style="text-align:right;">
+0.48
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.79
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+8.62
+</td>
+<td style="text-align:right;">
+2.30
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+30.39
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+73.21
+</td>
+<td style="text-align:right;">
+60.77
+</td>
+<td style="text-align:right;">
+6.91
+</td>
+<td style="text-align:right;">
+3.22
+</td>
+<td style="text-align:right;">
+1.38
+</td>
+<td style="text-align:right;">
+42.82
+</td>
+<td style="text-align:right;">
+9.21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+15.65
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+34.53
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.30
+</td>
+<td style="text-align:right;">
+16.11
+</td>
+<td style="text-align:right;">
+45.12
+</td>
+<td style="text-align:right;">
+49.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+4.60
+</td>
+<td style="text-align:right;">
+6.45
+</td>
+<td style="text-align:right;">
+3.68
+</td>
+<td style="text-align:right;">
+25.78
+</td>
+<td style="text-align:right;">
+120.17
+</td>
+<td style="text-align:right;">
+86.10
+</td>
+<td style="text-align:right;">
+46.96
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.60
+</td>
+<td style="text-align:right;">
+48.80
+</td>
+<td style="text-align:right;">
+10.59
+</td>
+<td style="text-align:right;">
+5.52
+</td>
+<td style="text-align:right;">
+77.35
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+1.84
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+840.25
+</td>
+<td style="text-align:right;">
+1825
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+6487
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+31.48
+</td>
+<td style="text-align:right;">
+9.98
+</td>
+<td style="text-align:right;">
+54.08
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+Schleswig-Holstein
+</td>
+<td style="text-align:right;">
+79487
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+75.6
+</td>
+<td style="text-align:right;">
+25.8
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+11.5
+</td>
+<td style="text-align:right;">
+48.9
+</td>
+<td style="text-align:right;">
+17.9
+</td>
+<td style="text-align:right;">
+63.7
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+38.3
+</td>
+<td style="text-align:right;">
+100.6
+</td>
+<td style="text-align:right;">
+12.5
+</td>
+<td style="text-align:right;">
+9.7
+</td>
+<td style="text-align:right;">
+81.8
+</td>
+<td style="text-align:right;">
+18.1
+</td>
+<td style="text-align:right;">
+43.1
+</td>
+<td style="text-align:right;">
+56.2
+</td>
+<td style="text-align:right;">
+19.5
+</td>
+<td style="text-align:right;">
+50.5
+</td>
+<td style="text-align:right;">
+21.2
+</td>
+<td style="text-align:right;">
+46.2
+</td>
+<td style="text-align:right;">
+16.9
+</td>
+<td style="text-align:right;">
+27.2
+</td>
+<td style="text-align:right;">
+82.1
+</td>
+<td style="text-align:right;">
+78.1
+</td>
+<td style="text-align:right;">
+2.7
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+11.3
+</td>
+<td style="text-align:right;">
+8.2
+</td>
+<td style="text-align:right;">
+6.5
+</td>
+<td style="text-align:right;">
+24.3
+</td>
+<td style="text-align:right;">
+21.8
+</td>
+<td style="text-align:right;">
+10.4
+</td>
+<td style="text-align:right;">
+22.6
+</td>
+<td style="text-align:right;">
+12.2
+</td>
+<td style="text-align:right;">
+9.4
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+44.2
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:right;">
+21.0
+</td>
+<td style="text-align:right;">
+35.3
+</td>
+<td style="text-align:right;">
+1.0
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+14.4
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+<td style="text-align:right;">
+78.65
+</td>
+<td style="text-align:right;">
+4.3
+</td>
+<td style="text-align:right;">
+66.0
+</td>
+<td style="text-align:right;">
+62.3
+</td>
+<td style="text-align:right;">
+39.6
+</td>
+<td style="text-align:right;">
+99.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+16.1
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+11.3
+</td>
+<td style="text-align:right;">
+29.8
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+1572
+</td>
+<td style="text-align:right;">
+2464
+</td>
+<td style="text-align:right;">
+1316.4
+</td>
+<td style="text-align:right;">
+2842
+</td>
+<td style="text-align:right;">
+17.9
+</td>
+<td style="text-align:right;">
+21.6
+</td>
+<td style="text-align:right;">
+42238
+</td>
+<td style="text-align:right;">
+14.9
+</td>
+<td style="text-align:right;">
+3433
+</td>
+<td style="text-align:right;">
+2872
+</td>
+<td style="text-align:right;">
+3012
+</td>
+<td style="text-align:right;">
+2184.3
+</td>
+<td style="text-align:right;">
+5.3
+</td>
+<td style="text-align:right;">
+50.7
+</td>
+<td style="text-align:right;">
+48.2
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:right;">
+40.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+6.0
+</td>
+<td style="text-align:right;">
+7671.7
+</td>
+<td style="text-align:right;">
+563.9
+</td>
+<td style="text-align:right;">
+55.4
+</td>
+<td style="text-align:right;">
+23.8
+</td>
+<td style="text-align:right;">
+32.8
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+<td style="text-align:right;">
+8.62
+</td>
+<td style="text-align:right;">
+448.4
+</td>
+<td style="text-align:right;">
+23.8
+</td>
+<td style="text-align:right;">
+30.4
+</td>
+<td style="text-align:right;">
+126.6
+</td>
+<td style="text-align:right;">
+51.9
+</td>
+<td style="text-align:right;">
+158.6
+</td>
+<td style="text-align:right;">
+29.3
+</td>
+<td style="text-align:right;">
+13.0
+</td>
+<td style="text-align:right;">
+85.5
+</td>
+<td style="text-align:right;">
+40.1
+</td>
+<td style="text-align:right;">
+62.2
+</td>
+<td style="text-align:right;">
+7.6
+</td>
+<td style="text-align:right;">
+337.3
+</td>
+<td style="text-align:right;">
+1650.6
+</td>
+<td style="text-align:right;">
+35.2
+</td>
+<td style="text-align:right;">
+775.4
+</td>
+<td style="text-align:right;">
+3.5
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1108
+</td>
+<td style="text-align:right;">
+1645
+</td>
+<td style="text-align:right;">
+26087
+</td>
+<td style="text-align:right;">
+15.6
+</td>
+<td style="text-align:right;">
+21.3
+</td>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+22.5
+</td>
+<td style="text-align:right;">
+8.5
+</td>
+<td style="text-align:right;">
+16.1
+</td>
+<td style="text-align:right;">
+8.62
+</td>
+<td style="text-align:right;">
+25.2
+</td>
+<td style="text-align:right;">
+133.9
+</td>
+<td style="text-align:right;">
+7.76
+</td>
+<td style="text-align:right;">
+1.99
+</td>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+588
+</td>
+<td style="text-align:right;">
+85
+</td>
+<td style="text-align:right;">
+645
+</td>
+<td style="text-align:right;">
+82
+</td>
+<td style="text-align:right;">
+682
+</td>
+<td style="text-align:right;">
+81
+</td>
+<td style="text-align:right;">
+187
+</td>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+514
+</td>
+<td style="text-align:right;">
+54.5
+</td>
+<td style="text-align:right;">
+38.6
+</td>
+<td style="text-align:right;">
+25.9
+</td>
+<td style="text-align:right;">
+14.7
+</td>
+<td style="text-align:right;">
+4.4
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:right;">
+1.4
+</td>
+<td style="text-align:right;">
+13.9
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+26.6
+</td>
+<td style="text-align:right;">
+2.1
+</td>
+<td style="text-align:right;">
+129.8
+</td>
+<td style="text-align:right;">
+31.3
+</td>
+<td style="text-align:right;">
+5.06
+</td>
+<td style="text-align:right;">
+39.5
+</td>
+<td style="text-align:right;">
+61.9
+</td>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+25.0
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+70.6
+</td>
+<td style="text-align:right;">
+7.2
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+29.3
+</td>
+<td style="text-align:right;">
+85.5
+</td>
+<td style="text-align:right;">
+100.0
+</td>
+<td style="text-align:right;">
+39620.9
+</td>
+<td style="text-align:right;">
+4.5
+</td>
+<td style="text-align:right;">
+56.2
+</td>
+<td style="text-align:right;">
+27.7
+</td>
+<td style="text-align:right;">
+97.9
+</td>
+<td style="text-align:right;">
+34.7
+</td>
+<td style="text-align:right;">
+48.2
+</td>
+<td style="text-align:right;">
+17.1
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+<td style="text-align:right;">
+11.25
+</td>
+<td style="text-align:right;">
+9.52
+</td>
+<td style="text-align:right;">
+26.65
+</td>
+<td style="text-align:right;">
+38.50
+</td>
+<td style="text-align:right;">
+50.19
+</td>
+<td style="text-align:right;">
+136.11
+</td>
+<td style="text-align:right;">
+108.19
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.27
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.56
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.96
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+23.90
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+11.32
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+5.03
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+8.81
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+22.65
+</td>
+<td style="text-align:right;">
+5.03
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+28.94
+</td>
+<td style="text-align:right;">
+50.32
+</td>
+<td style="text-align:right;">
+21.39
+</td>
+<td style="text-align:right;">
+18.87
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+28.94
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+1.26
+</td>
+<td style="text-align:right;">
+11.32
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+2.52
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+265.45
+</td>
+<td style="text-align:right;">
+211
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+3521
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+19.75
+</td>
+<td style="text-align:right;">
+9.11
+</td>
+<td style="text-align:right;">
+54.13
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+Schleswig-Holstein
+</td>
+<td style="text-align:right;">
+133210
+</td>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+55.4
+</td>
+<td style="text-align:right;">
+19.3
+</td>
+<td style="text-align:right;">
+7.6
+</td>
+<td style="text-align:right;">
+13.7
+</td>
+<td style="text-align:right;">
+43.0
+</td>
+<td style="text-align:right;">
+17.8
+</td>
+<td style="text-align:right;">
+41.3
+</td>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+30.5
+</td>
+<td style="text-align:right;">
+52.5
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+16.6
+</td>
+<td style="text-align:right;">
+94.1
+</td>
+<td style="text-align:right;">
+5.8
+</td>
+<td style="text-align:right;">
+54.3
+</td>
+<td style="text-align:right;">
+55.8
+</td>
+<td style="text-align:right;">
+19.7
+</td>
+<td style="text-align:right;">
+45.2
+</td>
+<td style="text-align:right;">
+23.3
+</td>
+<td style="text-align:right;">
+50.1
+</td>
+<td style="text-align:right;">
+16.1
+</td>
+<td style="text-align:right;">
+30.0
+</td>
+<td style="text-align:right;">
+81.1
+</td>
+<td style="text-align:right;">
+130.9
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+4.8
+</td>
+<td style="text-align:right;">
+11.2
+</td>
+<td style="text-align:right;">
+7.8
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+22.6
+</td>
+<td style="text-align:right;">
+23.8
+</td>
+<td style="text-align:right;">
+11.9
+</td>
+<td style="text-align:right;">
+24.6
+</td>
+<td style="text-align:right;">
+12.7
+</td>
+<td style="text-align:right;">
+9.9
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+45.8
+</td>
+<td style="text-align:right;">
+0.4
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.4
+</td>
+<td style="text-align:right;">
+20.5
+</td>
+<td style="text-align:right;">
+39.2
+</td>
+<td style="text-align:right;">
+4.6
+</td>
+<td style="text-align:right;">
+8.0
+</td>
+<td style="text-align:right;">
+13.3
+</td>
+<td style="text-align:right;">
+0.77
+</td>
+<td style="text-align:right;">
+79.28
+</td>
+<td style="text-align:right;">
+3.7
+</td>
+<td style="text-align:right;">
+72.2
+</td>
+<td style="text-align:right;">
+23.1
+</td>
+<td style="text-align:right;">
+38.6
+</td>
+<td style="text-align:right;">
+99.3
+</td>
+<td style="text-align:right;">
+13.7
+</td>
+<td style="text-align:right;">
+13.7
+</td>
+<td style="text-align:right;">
+19.7
+</td>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+11.2
+</td>
+<td style="text-align:right;">
+27.8
+</td>
+<td style="text-align:right;">
+3.6
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+12.7
+</td>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+0.96
+</td>
+<td style="text-align:right;">
+1793
+</td>
+<td style="text-align:right;">
+2317
+</td>
+<td style="text-align:right;">
+1260.8
+</td>
+<td style="text-align:right;">
+2914
+</td>
+<td style="text-align:right;">
+12.8
+</td>
+<td style="text-align:right;">
+17.3
+</td>
+<td style="text-align:right;">
+36985
+</td>
+<td style="text-align:right;">
+13.7
+</td>
+<td style="text-align:right;">
+3343
+</td>
+<td style="text-align:right;">
+2924
+</td>
+<td style="text-align:right;">
+3248
+</td>
+<td style="text-align:right;">
+844.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+11.1
+</td>
+<td style="text-align:right;">
+58.6
+</td>
+<td style="text-align:right;">
+3.8
+</td>
+<td style="text-align:right;">
+402.7
+</td>
+<td style="text-align:right;">
+10.2
+</td>
+<td style="text-align:right;">
+9.5
+</td>
+<td style="text-align:right;">
+1607.3
+</td>
+<td style="text-align:right;">
+518.4
+</td>
+<td style="text-align:right;">
+46.1
+</td>
+<td style="text-align:right;">
+25.3
+</td>
+<td style="text-align:right;">
+21.7
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+5.26
+</td>
+<td style="text-align:right;">
+411.9
+</td>
+<td style="text-align:right;">
+23.6
+</td>
+<td style="text-align:right;">
+28.8
+</td>
+<td style="text-align:right;">
+125.9
+</td>
+<td style="text-align:right;">
+43.7
+</td>
+<td style="text-align:right;">
+130.8
+</td>
+<td style="text-align:right;">
+20.6
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+85.1
+</td>
+<td style="text-align:right;">
+7.9
+</td>
+<td style="text-align:right;">
+54.4
+</td>
+<td style="text-align:right;">
+8.3
+</td>
+<td style="text-align:right;">
+366.3
+</td>
+<td style="text-align:right;">
+1831.6
+</td>
+<td style="text-align:right;">
+53.4
+</td>
+<td style="text-align:right;">
+824.7
+</td>
+<td style="text-align:right;">
+7.9
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+74
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+93
+</td>
+<td style="text-align:right;">
+122
+</td>
+<td style="text-align:right;">
+11103
+</td>
+<td style="text-align:right;">
+11.8
+</td>
+<td style="text-align:right;">
+13.2
+</td>
+<td style="text-align:right;">
+19.9
+</td>
+<td style="text-align:right;">
+20.2
+</td>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+24.2
+</td>
+<td style="text-align:right;">
+5.35
+</td>
+<td style="text-align:right;">
+19.1
+</td>
+<td style="text-align:right;">
+94.6
+</td>
+<td style="text-align:right;">
+7.64
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+71
+</td>
+<td style="text-align:right;">
+19
+</td>
+<td style="text-align:right;">
+65
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1864
+</td>
+<td style="text-align:right;">
+51
+</td>
+<td style="text-align:right;">
+248
+</td>
+<td style="text-align:right;">
+41
+</td>
+<td style="text-align:right;">
+1823
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+576
+</td>
+<td style="text-align:right;">
+87
+</td>
+<td style="text-align:right;">
+583
+</td>
+<td style="text-align:right;">
+70.8
+</td>
+<td style="text-align:right;">
+73.5
+</td>
+<td style="text-align:right;">
+-15.8
+</td>
+<td style="text-align:right;">
+16.7
+</td>
+<td style="text-align:right;">
+4.0
+</td>
+<td style="text-align:right;">
+3.1
+</td>
+<td style="text-align:right;">
+-0.1
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+0.5
+</td>
+<td style="text-align:right;">
+84.3
+</td>
+<td style="text-align:right;">
+11.7
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+91.7
+</td>
+<td style="text-align:right;">
+16.0
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+31.4
+</td>
+<td style="text-align:right;">
+70.1
+</td>
+<td style="text-align:right;">
+11.8
+</td>
+<td style="text-align:right;">
+18.9
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+47.2
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+1.9
+</td>
+<td style="text-align:right;">
+20.6
+</td>
+<td style="text-align:right;">
+85.1
+</td>
+<td style="text-align:right;">
+63.0
+</td>
+<td style="text-align:right;">
+31456.6
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+55.8
+</td>
+<td style="text-align:right;">
+26.3
+</td>
+<td style="text-align:right;">
+71.8
+</td>
+<td style="text-align:right;">
+32.9
+</td>
+<td style="text-align:right;">
+47.4
+</td>
+<td style="text-align:right;">
+19.7
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+41.70
+</td>
+<td style="text-align:right;">
+6.89
+</td>
+<td style="text-align:right;">
+90.28
+</td>
+<td style="text-align:right;">
+297.00
+</td>
+<td style="text-align:right;">
+262.48
+</td>
+<td style="text-align:right;">
+698.35
+</td>
+<td style="text-align:right;">
+930.27
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+6.01
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+18.77
+</td>
+<td style="text-align:right;">
+28.53
+</td>
+<td style="text-align:right;">
+1.50
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+1.50
+</td>
+<td style="text-align:right;">
+25.52
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+6.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+60.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+12.01
+</td>
+<td style="text-align:right;">
+9.01
+</td>
+<td style="text-align:right;">
+19.52
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+7.51
+</td>
+<td style="text-align:right;">
+0.75
+</td>
+<td style="text-align:right;">
+1.50
+</td>
+<td style="text-align:right;">
+20.27
+</td>
+<td style="text-align:right;">
+78.82
+</td>
+<td style="text-align:right;">
+37.53
+</td>
+<td style="text-align:right;">
+27.78
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+52.55
+</td>
+<td style="text-align:right;">
+6.01
+</td>
+<td style="text-align:right;">
+4.50
+</td>
+<td style="text-align:right;">
+38.29
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+6.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+481.20
+</td>
+<td style="text-align:right;">
+641
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+4041
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+54.83
+</td>
+<td style="text-align:right;">
+10.60
+</td>
+<td style="text-align:right;">
+53.59
+</td>
+<td style="text-align:left;">
+108
+</td>
+<td style="text-align:left;">
+Schleswig-Holstein
+</td>
+<td style="text-align:right;">
+197264
+</td>
+<td style="text-align:right;">
+5.5
+</td>
+<td style="text-align:right;">
+44.9
+</td>
+<td style="text-align:right;">
+22.6
+</td>
+<td style="text-align:right;">
+6.4
+</td>
+<td style="text-align:right;">
+11.4
+</td>
+<td style="text-align:right;">
+32.3
+</td>
+<td style="text-align:right;">
+22.3
+</td>
+<td style="text-align:right;">
+44.5
+</td>
+<td style="text-align:right;">
+6.3
+</td>
+<td style="text-align:right;">
+35.9
+</td>
+<td style="text-align:right;">
+114.1
+</td>
+<td style="text-align:right;">
+22.7
+</td>
+<td style="text-align:right;">
+19.5
+</td>
+<td style="text-align:right;">
+90.7
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+47.5
+</td>
+<td style="text-align:right;">
+58.2
+</td>
+<td style="text-align:right;">
+20.0
+</td>
+<td style="text-align:right;">
+51.2
+</td>
+<td style="text-align:right;">
+19.8
+</td>
+<td style="text-align:right;">
+45.4
+</td>
+<td style="text-align:right;">
+17.1
+</td>
+<td style="text-align:right;">
+32.5
+</td>
+<td style="text-align:right;">
+82.1
+</td>
+<td style="text-align:right;">
+136.0
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+5.6
+</td>
+<td style="text-align:right;">
+11.8
+</td>
+<td style="text-align:right;">
+6.8
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+24.9
+</td>
+<td style="text-align:right;">
+23.8
+</td>
+<td style="text-align:right;">
+10.2
+</td>
+<td style="text-align:right;">
+22.3
+</td>
+<td style="text-align:right;">
+12.0
+</td>
+<td style="text-align:right;">
+9.3
+</td>
+<td style="text-align:right;">
+2.8
+</td>
+<td style="text-align:right;">
+44.6
+</td>
+<td style="text-align:right;">
+4.3
+</td>
+<td style="text-align:right;">
+6.1
+</td>
+<td style="text-align:right;">
+2.5
+</td>
+<td style="text-align:right;">
+22.2
+</td>
+<td style="text-align:right;">
+35.0
+</td>
+<td style="text-align:right;">
+8.3
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+12.1
+</td>
+<td style="text-align:right;">
+0.87
+</td>
+<td style="text-align:right;">
+80.58
+</td>
+<td style="text-align:right;">
+3.9
+</td>
+<td style="text-align:right;">
+76.8
+</td>
+<td style="text-align:right;">
+10.3
+</td>
+<td style="text-align:right;">
+36.3
+</td>
+<td style="text-align:right;">
+100.1
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+16.7
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+11.8
+</td>
+<td style="text-align:right;">
+22.5
+</td>
+<td style="text-align:right;">
+4.0
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+10.8
+</td>
+<td style="text-align:right;">
+10.6
+</td>
+<td style="text-align:right;">
+1.11
+</td>
+<td style="text-align:right;">
+1903
+</td>
+<td style="text-align:right;">
+2404
+</td>
+<td style="text-align:right;">
+1257.6
+</td>
+<td style="text-align:right;">
+2832
+</td>
+<td style="text-align:right;">
+10.1
+</td>
+<td style="text-align:right;">
+11.7
+</td>
+<td style="text-align:right;">
+54979
+</td>
+<td style="text-align:right;">
+20.9
+</td>
+<td style="text-align:right;">
+3404
+</td>
+<td style="text-align:right;">
+287
+</td>
+<td style="text-align:right;">
+3031
+</td>
+<td style="text-align:right;">
+1344.4
+</td>
+<td style="text-align:right;">
+0.9
+</td>
+<td style="text-align:right;">
+11.5
+</td>
+<td style="text-align:right;">
+59.8
+</td>
+<td style="text-align:right;">
+26.0
+</td>
+<td style="text-align:right;">
+1673.3
+</td>
+<td style="text-align:right;">
+3.3
+</td>
+<td style="text-align:right;">
+5.0
+</td>
+<td style="text-align:right;">
+2476.9
+</td>
+<td style="text-align:right;">
+490.2
+</td>
+<td style="text-align:right;">
+47.9
+</td>
+<td style="text-align:right;">
+23.3
+</td>
+<td style="text-align:right;">
+19.9
+</td>
+<td style="text-align:right;">
+12.7
+</td>
+<td style="text-align:right;">
+3.14
+</td>
+<td style="text-align:right;">
+406.7
+</td>
+<td style="text-align:right;">
+25.6
+</td>
+<td style="text-align:right;">
+28.4
+</td>
+<td style="text-align:right;">
+111.1
+</td>
+<td style="text-align:right;">
+56.2
+</td>
+<td style="text-align:right;">
+126.2
+</td>
+<td style="text-align:right;">
+31.7
+</td>
+<td style="text-align:right;">
+19.2
+</td>
+<td style="text-align:right;">
+83.1
+</td>
+<td style="text-align:right;">
+38.5
+</td>
+<td style="text-align:right;">
+40.9
+</td>
+<td style="text-align:right;">
+7.5
+</td>
+<td style="text-align:right;">
+474.9
+</td>
+<td style="text-align:right;">
+1251.8
+</td>
+<td style="text-align:right;">
+52.9
+</td>
+<td style="text-align:right;">
+791.1
+</td>
+<td style="text-align:right;">
+1.6
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+155
+</td>
+<td style="text-align:right;">
+193
+</td>
+<td style="text-align:right;">
+35799
+</td>
+<td style="text-align:right;">
+8.6
+</td>
+<td style="text-align:right;">
+10.3
+</td>
+<td style="text-align:right;">
+27.4
+</td>
+<td style="text-align:right;">
+13.0
+</td>
+<td style="text-align:right;">
+7.8
+</td>
+<td style="text-align:right;">
+14.9
+</td>
+<td style="text-align:right;">
+4.62
+</td>
+<td style="text-align:right;">
+13.5
+</td>
+<td style="text-align:right;">
+71.8
+</td>
+<td style="text-align:right;">
+7.77
+</td>
+<td style="text-align:right;">
+2.02
+</td>
+<td style="text-align:right;">
+6.9
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+20
+</td>
+<td style="text-align:right;">
+31
+</td>
+<td style="text-align:right;">
+13
+</td>
+<td style="text-align:right;">
+1545
+</td>
+<td style="text-align:right;">
+63
+</td>
+<td style="text-align:right;">
+2042
+</td>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+1804
+</td>
+<td style="text-align:right;">
+48
+</td>
+<td style="text-align:right;">
+343
+</td>
+<td style="text-align:right;">
+94
+</td>
+<td style="text-align:right;">
+572
+</td>
+<td style="text-align:right;">
+71.7
+</td>
+<td style="text-align:right;">
+79.7
+</td>
+<td style="text-align:right;">
+-52.4
+</td>
+<td style="text-align:right;">
+15.6
+</td>
+<td style="text-align:right;">
+4.1
+</td>
+<td style="text-align:right;">
+2.9
+</td>
+<td style="text-align:right;">
+-0.5
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+0.3
+</td>
+<td style="text-align:right;">
+23.6
+</td>
+<td style="text-align:right;">
+3.4
+</td>
+<td style="text-align:right;">
+4.9
+</td>
+<td style="text-align:right;">
+3.2
+</td>
+<td style="text-align:right;">
+94.4
+</td>
+<td style="text-align:right;">
+15.0
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+21.7
+</td>
+<td style="text-align:right;">
+61.0
+</td>
+<td style="text-align:right;">
+9.1
+</td>
+<td style="text-align:right;">
+13.4
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+41.8
+</td>
+<td style="text-align:right;">
+9.6
+</td>
+<td style="text-align:right;">
+1.7
+</td>
+<td style="text-align:right;">
+31.7
+</td>
+<td style="text-align:right;">
+83.1
+</td>
+<td style="text-align:right;">
+71.7
+</td>
+<td style="text-align:right;">
+21795.1
+</td>
+<td style="text-align:right;">
+2.6
+</td>
+<td style="text-align:right;">
+58.2
+</td>
+<td style="text-align:right;">
+27.4
+</td>
+<td style="text-align:right;">
+92.6
+</td>
+<td style="text-align:right;">
+27.3
+</td>
+<td style="text-align:right;">
+47.7
+</td>
+<td style="text-align:right;">
+25.1
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+0.78
+</td>
+<td style="text-align:right;">
+58.77
+</td>
+<td style="text-align:right;">
+5.10
+</td>
+<td style="text-align:right;">
+90.62
+</td>
+<td style="text-align:right;">
+153.91
+</td>
+<td style="text-align:right;">
+193.65
+</td>
+<td style="text-align:right;">
+502.04
+</td>
+<td style="text-align:right;">
+990.34
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+<td style="text-align:right;">
+3.55
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+9.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+24.33
+</td>
+<td style="text-align:right;">
+64.38
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+<td style="text-align:right;">
+8.11
+</td>
+<td style="text-align:right;">
+2.53
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+4.06
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+18.76
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+8.62
+</td>
+<td style="text-align:right;">
+19.77
+</td>
+<td style="text-align:right;">
+14.70
+</td>
+<td style="text-align:right;">
+6.08
+</td>
+<td style="text-align:right;">
+7.60
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+20.78
+</td>
+<td style="text-align:right;">
+70.97
+</td>
+<td style="text-align:right;">
+32.95
+</td>
+<td style="text-align:right;">
+31.94
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.03
+</td>
+<td style="text-align:right;">
+39.03
+</td>
+<td style="text-align:right;">
+8.11
+</td>
+<td style="text-align:right;">
+3.04
+</td>
+<td style="text-align:right;">
+27.37
+</td>
+<td style="text-align:right;">
+0.51
+</td>
+<td style="text-align:right;">
+3.55
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+439.51
+</td>
+<td style="text-align:right;">
+867
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+4296
+</td>
+</tr>
+</tbody>
+</table>
+<p>The first column (<code>AdjRate</code>) contains age-adjusted incidence rates. The <code>X</code> and <code>Y</code> columns represent longitude and latitude. <code>NUTS2_Fact</code> represents government regions (Regierungsbezirke), <code>BL_ID</code> is the federal state (Bundesland), and <code>EWZ</code> is the population. The remaining columns cover socioeconomic, infrastructural, and built environment features. We will filter out only the most relevant features later.</p>
+<p>BART requires a <em>data.frame</em> of predictors and a separate vector for the response variable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">psych</span><span class="o">::</span><span class="nf">skew</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">AdjRate</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## [1] 3.64179
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Response variable</span>
+</span></span><span class="line"><span class="cl"><span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">log</span><span class="p">(</span><span class="n">data</span><span class="o">$</span><span class="n">AdjRate</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Data.frame of predictors</span>
+</span></span><span class="line"><span class="cl"><span class="n">data_bm</span> <span class="o">&lt;-</span> <span class="nf">select</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="n">AdjRate</span><span class="p">))</span>
+</span></span></code></pre></div><p>Because <code>AdjRate</code> is highly skewed (skewness = 3.64), we apply a log transformation. Though BART is non-parametric and can handle skewed data, transforming the response variable aids in visually interpreting results.</p>
+<p>Below is a summary of the log-transformed <code>AdjRate</code>:</p>
+<table class=" lightable-classic lightable-striped" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;font-weight: bold;">
+Mean
+</th>
+<th style="text-align:right;font-weight: bold;">
+SD
+</th>
+<th style="text-align:right;font-weight: bold;">
+Min
+</th>
+<th style="text-align:right;font-weight: bold;">
+Max
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+4.13
+</td>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+1.75
+</td>
+<td style="text-align:right;">
+6.51
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="first-bart-model">First BART model</h2>
+<p>We can use default hyperparameter values for BART, but <code>bartMachine</code> offers a convenient tuning function called <code>bartMachineCV</code> to find optimal values. Because that process can be time-consuming, I’ve omitted it here. Below, I simply build a BART model using those <em>pre-determined</em> optimal hyperparameters.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">bm_All</span> <span class="o">&lt;-</span> <span class="nf">bartMachine</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">data_bm</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">k</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="m">0.9</span><span class="p">,</span> <span class="n">num_trees</span><span class="o">=</span><span class="m">100</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">num_iterations_after_burn_in</span><span class="o">=</span><span class="m">2000</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">num_burn_in</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                      <span class="n">seed</span> <span class="o">=</span> <span class="m">1234</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## Warning in build_bart_machine(X = X, y = y, Xy = Xy, num_trees = num_trees, : Setting the seed when using parallelization does not result in deterministic output.
+## If you need deterministic output, you must run &quot;set_bart_machine_num_cores(1)&quot; and then build the BART model with the set seed.
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">summary</span><span class="p">(</span><span class="n">bm_All</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## bartMachine v1.3.4.1 for regression
+## 
+## training data size: n = 401 and p = 366 
+## built in 6.1 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
+## 
+## sigsq est for y beforehand: 0.024 
+## avg sigsq estimate after burn-in: 0.09589 
+## 
+## in-sample statistics:
+##  L1 = 60.66 
+##  L2 = 15.61 
+##  rmse = 0.2 
+##  Pseudo-Rsq = 0.9193
+## p-val for shapiro-wilk test of normality of residuals: 0.00015 
+## p-val for zero-mean noise: 0.97071
+</code></pre>
+<p>The Pseudo-R² of 0.92 and RMSE of 0.2 look promising. Let’s check the error assumptions next:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">check_bart_error_assumptions</span><span class="p">(</span><span class="n">bm_All</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="" srcset="
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu12269356596323251249.webp 400w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu6900723206486711484.webp 760w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu310824325497122199.webp 1200w"
+               src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu12269356596323251249.webp"
+               width="760"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>Both diagnostic plots look reasonable. In the second one (Assessment of Heteroskedasticity), there is a mild pattern, but not a stark one. Overall, the model seems to fit well, though it might struggle slightly with extreme values.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_y_vs_yhat</span><span class="p">(</span><span class="n">bm_All</span><span class="p">,</span> <span class="n">credible_intervals</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="" srcset="
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu17583491945340938510.webp 400w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu5145276906781368730.webp 760w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu10044893994888527076.webp 1200w"
+               src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu17583491945340938510.webp"
+               width="760"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>The “Fitted vs. Actual Values” plot also demonstrates good model performance. Again, we see that the model tends to <em>over-predict</em> extremely low values and <em>under-predict</em> extremely high values. We could also map the residuals to check for spatial clustering, but let’s first reduce the model’s complexity by removing non-important predictors.</p>
+<h2 id="variable-selection">Variable Selection</h2>
+<p>Although BART yields <em>excellent</em> R² values, part of its power lies in its ability to handle high-dimensional data. In large datasets, often only a fraction of the predictors significantly influence the response variable. <em>Occam’s razor</em> suggests favoring simpler models over overly complex ones.</p>
+<p>The function <code>var_selection_by_permute</code> (introduced by (Bleich et al. 2014)) helps reduce model complexity. Feel free to skip the following code and just trust my results—this step can be time-consuming:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Leave the num_trees_for_permute small, to force variables to compete for entry into the model!</span>
+</span></span><span class="line"><span class="cl"><span class="n">var_sel</span> <span class="o">&lt;-</span> <span class="n">bartMachine</span><span class="o">::</span><span class="nf">var_selection_by_permute_cv</span><span class="p">(</span><span class="n">bm_All</span><span class="p">,</span> <span class="n">num_trees_for_permute</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Look at the most important variables</span>
+</span></span><span class="line"><span class="cl"><span class="n">var_sel</span><span class="o">$</span><span class="n">important_vars_cv</span>
+</span></span></code></pre></div><pre><code>##  [1] &quot;BL_ID_Baden-Württemberg&quot; &quot;BL_ID_Bayern&quot;           
+##  [3] &quot;BL_ID_Hessen&quot;            &quot;ff_pop&quot;                 
+##  [5] &quot;hair_pp&quot;                 &quot;thea_pp&quot;                
+##  [7] &quot;NUTS2_Fact_11&quot;           &quot;NUTS2_Fact_27&quot;          
+##  [9] &quot;NUTS2_Fact_40&quot;           &quot;NUTS2_Fact_71&quot;          
+## [11] &quot;S_170&quot;                   &quot;play_dn&quot;                
+## [13] &quot;bir_km2&quot;                 &quot;cc_pop&quot;                 
+## [15] &quot;sch_den&quot;                 &quot;kid_den&quot;                
+## [17] &quot;Rch_den&quot;                 &quot;S_109_2&quot;                
+## [19] &quot;EWZ&quot;                     &quot;Pop_Den&quot;                
+## [21] &quot;S_004&quot;                   &quot;S_006&quot;                  
+## [23] &quot;S_020&quot;                   &quot;S_051&quot;                  
+## [25] &quot;S_054&quot;                   &quot;S_066&quot;                  
+## [27] &quot;S_070&quot;                   &quot;S_080&quot;                  
+## [29] &quot;S_104&quot;                   &quot;S_107&quot;                  
+## [31] &quot;S_115&quot;                   &quot;S_123&quot;                  
+## [33] &quot;S_130&quot;                   &quot;S_146&quot;                  
+## [35] &quot;S_153&quot;                   &quot;X&quot;                      
+## [37] &quot;Y&quot;
+</code></pre>
+<p>Below is the subset of important variables (grouped thematically). I also removed <em>NUTS2_Fact</em> and <em>BL_ID</em>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">data_subset</span> <span class="o">&lt;-</span> <span class="n">data_bm</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Geographical Units</span>
+</span></span><span class="line"><span class="cl">    <span class="n">X</span><span class="p">,</span> <span class="c1">#Longitude</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Y</span><span class="p">,</span> <span class="c1">#Latitude</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Political units</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_109</span><span class="p">,</span> <span class="c1">#Rural/Urban</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Socioeconomic</span>
+</span></span><span class="line"><span class="cl">    <span class="n">EWZ</span><span class="p">,</span> <span class="c1">#Population</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Pop_Den</span><span class="p">,</span> <span class="c1">#Population density</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_004</span><span class="p">,</span> <span class="c1">#Unemployment rate under 25</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_006</span><span class="p">,</span> <span class="c1">#Household income per capita </span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_020</span><span class="p">,</span> <span class="c1">#Employment rate 15-&lt;30</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_051</span><span class="p">,</span> <span class="c1">#Voter participation</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_054</span><span class="p">,</span> <span class="c1">#Apprenticeship positions</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_066</span><span class="p">,</span> <span class="c1">#Household income</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_070</span><span class="p">,</span> <span class="c1">#Deptors rate</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_080</span><span class="p">,</span> <span class="c1">#Recreationl Space</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_104</span><span class="p">,</span> <span class="c1">#Income tax</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_107</span><span class="p">,</span> <span class="c1">#Steuerkraft</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_115</span><span class="p">,</span> <span class="c1">#Regional population potential</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_123</span><span class="p">,</span> <span class="c1">#Child poverty</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_130</span><span class="p">,</span> <span class="c1">#IC train station access</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_146</span><span class="p">,</span> <span class="c1">#Commuters &gt;150km</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_153</span><span class="p">,</span> <span class="c1">#Foreign guests in tourist establishments</span>
+</span></span><span class="line"><span class="cl">    <span class="n">S_170</span><span class="p">,</span> <span class="c1">#Longterm unemployment rate</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="c1"># Built environment</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Rch_den</span><span class="p">,</span> <span class="c1">#Church density</span>
+</span></span><span class="line"><span class="cl">    <span class="n">play_dn</span><span class="p">,</span> <span class="c1">#Playground density</span>
+</span></span><span class="line"><span class="cl">    <span class="n">bir_km2</span><span class="p">,</span> <span class="c1">#Biergarten per km²</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ff_pop</span><span class="p">,</span> <span class="c1">#Fast food places per capita</span>
+</span></span><span class="line"><span class="cl">    <span class="n">hair_pp</span><span class="p">,</span> <span class="c1">#Hairdresser per capita</span>
+</span></span><span class="line"><span class="cl">    <span class="n">thea_pp</span><span class="p">,</span> <span class="c1">#Theatre per capita</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cc_pop</span><span class="p">,</span> <span class="c1">#Community centre density</span>
+</span></span><span class="line"><span class="cl">    <span class="n">sch_den</span><span class="p">,</span> <span class="c1">#School density</span>
+</span></span><span class="line"><span class="cl">    <span class="n">kid_den</span> <span class="c1">#Kindergarten density</span>
+</span></span><span class="line"><span class="cl">  <span class="p">))</span>
+</span></span></code></pre></div><h2 id="second-bart-model">Second BART model</h2>
+<p>With this subset of key predictors, I now build a new BART model (again using <em>pre-determined</em> optimal hyperparameters):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">bm_final</span> <span class="o">&lt;-</span> <span class="nf">bartMachine</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">data_subset</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                        <span class="n">k</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">nu</span><span class="o">=</span><span class="m">3</span><span class="p">,</span> <span class="n">q</span><span class="o">=</span><span class="m">0.99</span><span class="p">,</span> <span class="n">num_trees</span><span class="o">=</span><span class="m">225</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">seed</span> <span class="o">=</span> <span class="m">1234</span><span class="p">,</span> <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## Warning in build_bart_machine(X = X, y = y, Xy = Xy, num_trees = num_trees, : Setting the seed when using parallelization does not result in deterministic output.
+## If you need deterministic output, you must run &quot;set_bart_machine_num_cores(1)&quot; and then build the BART model with the set seed.
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">summary</span><span class="p">(</span><span class="n">bm_final</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## bartMachine v1.3.4.1 for regression
+## 
+## training data size: n = 401 and p = 31 
+## built in 5.9 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
+## 
+## sigsq est for y beforehand: 0.185 
+## avg sigsq estimate after burn-in: 0.126 
+## 
+## in-sample statistics:
+##  L1 = 89.17 
+##  L2 = 33.3 
+##  rmse = 0.29 
+##  Pseudo-Rsq = 0.8279
+## p-val for shapiro-wilk test of normality of residuals: 0.00128 
+## p-val for zero-mean noise: 0.99946
+</code></pre>
+<p>Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.83, equating to a 10% reduction in explained variance. The RMSE increased from 0.2 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">check_bart_error_assumptions</span><span class="p">(</span><span class="n">bm_final</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="" srcset="
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu4644990556343871879.webp 400w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu6331346206649035652.webp 760w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu11101393665874843280.webp 1200w"
+               src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu4644990556343871879.webp"
+               width="760"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+ The new model’s Q-Q and residuals plots look fine, but as expected, it performs slightly worse on extreme values.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">plot_y_vs_yhat</span><span class="p">(</span><span class="n">bm_final</span><span class="p">,</span> <span class="n">credible_intervals</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="" srcset="
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu2513165142461614508.webp 400w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu5328215665089232257.webp 760w,
+               /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu3541744112284214280.webp 1200w"
+               src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu2513165142461614508.webp"
+               width="760"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>The “Fitted vs. Actual Values” plot shows <em>okay</em> performance, though more points lie outside the confidence intervals. Next, let’s map the residuals to check for any spatial clustering.</p>
+<h2 id="spatial-autocorrelation">Spatial autocorrelation</h2>
+<p>We can quickly visualize residuals by linking them to a shapefile of German counties (<em>NUTS3</em>). Any obvious clustering of positive or negative residuals would indicate spatial autocorrelation.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">tmap</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Download shapefile</span>
+</span></span><span class="line"><span class="cl"><span class="n">shp</span> <span class="o">&lt;-</span> <span class="nf">read_sf</span><span class="p">(</span><span class="s">&#34;https://github.com/STBrinkmann/data/raw/main/RKI_sf.gpkg&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Sort shapefile, that it has the same order as the data_subset</span>
+</span></span><span class="line"><span class="cl"><span class="n">shp</span> <span class="o">&lt;-</span> <span class="n">shp</span><span class="nf">[order</span><span class="p">(</span><span class="nf">match</span><span class="p">(</span><span class="n">shp</span><span class="o">$</span><span class="n">EWZ</span><span class="p">,</span> <span class="n">data_subset</span><span class="o">$</span><span class="n">EWZ</span><span class="p">)),</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Join residuals to shapefile, then map residuals</span>
+</span></span><span class="line"><span class="cl"><span class="n">shp</span><span class="o">$</span><span class="n">resid</span> <span class="o">&lt;-</span> <span class="n">bm_final</span><span class="o">$</span><span class="n">residuals</span>
+</span></span><span class="line"><span class="cl"><span class="nf">tm_shape</span><span class="p">(</span><span class="n">shp</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">tm_polygons</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="s">&#34;resid&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">              <span class="n">title</span><span class="o">=</span><span class="s">&#34;BART Machine Residuals\n(log incidence rate)&#34;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">              <span class="n">breaks</span><span class="o">=</span><span class="nf">seq</span><span class="p">(</span><span class="m">-1.75</span><span class="p">,</span> <span class="m">1.75</span><span class="p">,</span> <span class="m">0.5</span><span class="p">),</span> <span class="n">midpoint</span><span class="o">=</span><span class="kc">NA</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s">&#34;RdBu&#34;</span><span class="p">)</span> <span class="o">+</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">tm_layout</span><span class="p">(</span><span class="n">frame</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inner.margins</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0.02</span><span class="p">,</span> <span class="m">0.02</span><span class="p">,</span> <span class="m">0.02</span><span class="p">,</span> <span class="m">0.20</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">legend.position</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.7</span><span class="p">,</span> <span class="m">0.22</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">legend.frame</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="n">legend.outside</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">            <span class="n">bg.color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<p>No clear geographical pattern emerges, suggesting no strong spatial clusters. For a formal test, we can compute <em>Moran’s I</em>. I will not explain Moran’s I in this post, but I would highly recommend these posts: <a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#app8_3" target="_blank" rel="noopener">Intro to GIS and Spatial Analysis</a> and <a href="https://rpubs.com/quarcs-lab/spatial-autocorrelation" target="_blank" rel="noopener">Spatial autocorrelation analysis in R</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">spdep</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Define neighboring polygons</span>
+</span></span><span class="line"><span class="cl"><span class="n">nb</span> <span class="o">&lt;-</span> <span class="nf">poly2nb</span><span class="p">(</span><span class="n">shp</span><span class="p">,</span> <span class="n">queen</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Assign weights to each neighboring polygon</span>
+</span></span><span class="line"><span class="cl"><span class="n">lw</span> <span class="o">&lt;-</span> <span class="nf">nb2listw</span><span class="p">(</span><span class="n">nb</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s">&#34;B&#34;</span><span class="p">,</span> <span class="n">zero.policy</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Compute Moran&#39;s I statistic using a Monte-Carlo simulation </span>
+</span></span><span class="line"><span class="cl"><span class="n">MC</span> <span class="o">&lt;-</span> <span class="nf">moran.mc</span><span class="p">(</span><span class="n">shp</span><span class="o">$</span><span class="n">resid</span><span class="p">,</span> <span class="n">lw</span><span class="p">,</span> <span class="n">nsim</span><span class="o">=</span><span class="m">99</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">MC</span>
+</span></span></code></pre></div><pre><code>## 
+## 	Monte-Carlo simulation of Moran I
+## 
+## data:  shp$resid 
+## weights: lw  
+## number of simulations + 1: 100 
+## 
+## statistic = 0.059006, observed rank = 100, p-value = 0.01
+## alternative hypothesis: greater
+</code></pre>
+<p>Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.01), we conclude there is no significant spatial autocorrelation in the residuals.</p>
+<h2 id="partial-dependence-plots">Partial Dependence Plots</h2>
+<p>So far, we’ve built and refined a BART model to predict age-adjusted incidence rates of COVID-19 in German counties. However, our main goal is to explore the data rather than simply predict. BART’s high R² suggests it captures these non-linear relationships, and Partial Dependence Plots (PDPs) let us visualize and interpret them (Friedman 2002; Scarpone et al. 2017, 2020).</p>
+<p>Although the <a href="https://cran.r-project.org/web/packages/pdp/index.html" target="_blank" rel="noopener">pdp</a> is great for computing PDPs, it does not directly support <code>bartMachine</code>. Fortunately, <code>bartMachine</code> provides its own PDP function, <code>pd_plot</code>. Below is a demonstration using <code>S_115</code> (Regional Population Potential):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Set parameters to plot PDP top and histogram bottom</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">pd_plot</span><span class="p">(</span><span class="n">bm_final</span><span class="p">,</span> <span class="s">&#34;S_115&#34;</span><span class="p">,</span> <span class="n">levs</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> <span class="m">1</span><span class="p">))</span>
+</span></span></code></pre></div><pre><code>## ...........
+</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">hist</span><span class="p">(</span><span class="n">bm_final</span><span class="o">$</span><span class="n">X</span><span class="o">$</span><span class="n">S_115</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">     <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Histogram of the Regional Population Potential&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">     <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#34;Regional Population Potential&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-17-1.png" width="768" />
+<p><em>Regional population potential</em> measures the likelihood of direct human interactions in a region. This PDP suggests minimal marginal change in incidence at the lower end of the distribution, implying less chance of viral contagion in areas with fewer human interactions. The curve rises notably between the 20th and 80th percentiles (14,016 to 47,067), indicating a strong non-linear effect on incidence rates.</p>
+<p>To log-transform the x-axis for clarity, you would need a custom PDP function, since <code>pd_plot</code> does not support that directly. I wrote a variant that returns ggplot2 objects <a href="https://github.com/CHEST-Lab/BART_Covid-19/blob/master/pdPlotGG.R" target="_blank" rel="noopener">GitHub</a>), which lets you customize plots extensively.</p>
+<p>Below is a <em>multi-panel</em> PDP from our publication, showing the top 10 variables. You can see more details and interpretation of these variables <a href="https://ij-healthgeographics.biomedcentral.com/articles/10.1186/s12942-020-00225-1#Sec18" target="_blank" rel="noopener">here</a>.</p>
+<p><a href="https://ij-healthgeographics.biomedcentral.com/articles/10.1186/s12942-020-00225-1/figures/6" target="_blank" rel="noopener">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt="Partial Dependence Plots (PDP) of the 10 most prevalent variables in the final Bayesian Additive Regression Tree (BART) model. Histograms are shown for the entire country (green), for only the low rates region (LRR, teal), and for only the high rates region (HRR, purple). The PDPs indicate marginal changes in the predicted (log-transformed, age-adjusted) incidence rate per 100,000 residents (upper y-axis) for different values of each independent variable (x-axis)"
+           src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/WallOfShame.svg"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+</a></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post, we developed and refined a BART-based workflow for modeling age-adjusted COVID-19 incidence rates across German counties. We started by applying BART to a high-dimensional dataset of socioeconomic, infrastructural, and built environment predictors, then used a permutation-based variable selection technique to isolate the most important features. Although BART can handle dozens or even hundreds of predictors, our results showed that only a smaller subset of variables drove most of the explanatory power.</p>
+<p>By visualizing these relationships with Partial Dependence Plots, we uncovered non-linear effects and interactions that more conventional methods might have missed. These plots also help “open the black box,” translating an otherwise opaque machine learning model into actionable insights. Although BART performed well overall, we observed that it tended to under-predict very high values and over-predict very low ones, highlighting the challenges of modeling extreme outcomes.</p>
+<p>In future posts, I will focus on <strong>out-of-sample validation</strong> to confirm the model’s robustness and detect any lingering overfitting issues. I also plan to dive deeper into how the variable selection procedure can be tuned for different research contexts. Ultimately, BART’s Bayesian foundation—combined with flexible tree-ensemble strategies—offers a compelling toolkit for complex, spatially heterogeneous data like COVID-19 incidence.</p>
+<h2 id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-bleich2014" class="csl-entry">
+<p>Bleich, Justin, Adam Kapelner, Edward I. George, and Shane T. Jensen. 2014. “Variable Selection for BART: An Application to Gene Regulation.” <em>The Annals of Applied Statistics</em> 8 (3). <a href="https://doi.org/10.1214/14-aoas755" target="_blank" rel="noopener">https://doi.org/10.1214/14-aoas755</a>.</p>
+</div>
+<div id="ref-breiman2001" class="csl-entry">
+<p>Breiman, Leo. 2001. “Statistical Modeling: The Two Cultures (with Comments and a Rejoinder by the Author).” <em>Statistical Science</em> 16 (3). <a href="https://doi.org/10.1214/ss/1009213726" target="_blank" rel="noopener">https://doi.org/10.1214/ss/1009213726</a>.</p>
+</div>
+<div id="ref-Chipman2010" class="csl-entry">
+<p>Chipman, Hugh A., Edward I. George, and Robert E. McCulloch. 2010. “<span class="nocase">BART: Bayesian additive regressiontrees</span>.” <em>The Annals of Applied Statistics</em> 4 (1): 266–98. <a href="https://doi.org/10.1214/09-AOAS285" target="_blank" rel="noopener">https://doi.org/10.1214/09-AOAS285</a>.</p>
+</div>
+<div id="ref-friedman2002" class="csl-entry">
+<p>Friedman, Jerome H. 2002. “Stochastic Gradient Boosting.” <em>Computational Statistics &amp; Data Analysis</em> 38 (4): 367–78. <a href="https://doi.org/10.1016/s0167-9473%2801%2900065-2" target="_blank" rel="noopener">https://doi.org/10.1016/s0167-9473(01)00065-2</a>.</p>
+</div>
+<div id="ref-kapelner2016" class="csl-entry">
+<p>Kapelner, Adam, and Justin Bleich. 2016. “bartMachine: Machine Learning with Bayesian Additive Regression Trees.” <em>Journal of Statistical Software</em> 70 (4). <a href="https://doi.org/10.18637/jss.v070.i04" target="_blank" rel="noopener">https://doi.org/10.18637/jss.v070.i04</a>.</p>
+</div>
+<div id="ref-scarpone2020" class="csl-entry">
+<p>Scarpone, Christopher, Sebastian T. Brinkmann, Tim Große, Daniel Sonnenwald, Martin Fuchs, and Blake Byron Walker. 2020. “A Multimethod Approach for County-Scale Geospatial Analysis of Emerging Infectious Diseases: A Cross-Sectional Case Study of COVID-19 Incidence in Germany.” <em>International Journal of Health Geographics</em> 19 (1). <a href="https://doi.org/10.1186/s12942-020-00225-1" target="_blank" rel="noopener">https://doi.org/10.1186/s12942-020-00225-1</a>.</p>
+</div>
+<div id="ref-scarpone2017" class="csl-entry">
+<p>Scarpone, Christopher, Margaret G. Schmidt, Chuck E. Bulmer, and Anders Knudby. 2017. “Semi-Automated Classification of Exposed Bedrock Cover in British Columbia’s Southern Mountains Using a Random Forest Approach.” <em>Geomorphology</em> 285 (May): 214–24. <a href="https://doi.org/10.1016/j.geomorph.2017.02.013" target="_blank" rel="noopener">https://doi.org/10.1016/j.geomorph.2017.02.013</a>.</p>
+</div>
+</div>
+
+      </div>
+
+      
+  <time class="mt-12 mb-8 block text-xs text-gray-500 ltr:text-right rtl:text-left dark:text-gray-400" datetime="2021-04-20T15:54:53.000Z">
+    <span>Last updated on</span>
+    Apr 20, 2021</time>
+
+      <div class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert mt-5">
+        
+        <div class="max-w-prose print:hidden">
+  
+  
+
+  
+
+<div class="flex justify-center">
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/r/">R</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/bayesian/">Bayesian</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/machine-learning/">Machine Learning</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/health-geography/">Health Geography</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/covid-19/">COVID-19</a>
+  
+</div>
+
+
+  
+<section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;text=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
+    title="X"
+    aria-label="X"
+    id="share-link-x"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;t=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
+    title="Facebook"
+    aria-label="Facebook"
+    id="share-link-facebook"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+    
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="mailto:?subject=BART%20-%20A%20Bayesian%20machine%20learning%20workflow%20for%20complex%20spatial%20data&amp;body=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F"
+    title="Email"
+    aria-label="Email"
+    id="share-link-email"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;title=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
+    title="LinkedIn"
+    aria-label="LinkedIn"
+    id="share-link-linkedin"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="whatsapp://send?text=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data%20http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F"
+    title="WhatsApp"
+    aria-label="WhatsApp"
+    id="share-link-whatsapp"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="m187.58 144.84-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40 88.1 88.1 0 0 0 88 88 40 40 0 0 0 40-40 8 8 0 0 0-4.42-7.16ZM152 176a72.08 72.08 0 0 1-72-72 24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51 56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155l14.61-9.74 23 11.48A24 24 0 0 1 152 176ZM128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81 8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+  </a>
+  
+</section>
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+
+<div class="flex pt-12 pb-4">
+  
+  
+  <img
+    class="mr-4 h-24 w-24 rounded-full"
+    width="96"
+    height="96"
+    alt="Sebastian T. Brinkmann"
+  src="/author/sebastian-t.-brinkmann/avatar_hu12292808825799653284.jpg"
+  loading="lazy"
+  />
+  
+  <div class="place-self-center">
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Authors
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      <a href="http://localhost:4321/" class="no-underline">
+      Sebastian T. Brinkmann
+      </a>
+    </div>
+
+    
+    <div class="text-sm font-bold text-neutral-700 dark:text-neutral-300">
+    Data Scientist
+    </div>
+    
+
+
+    
+
+    <div class="text-2xl sm:text-lg pt-1">
+
+      
+<div class="flex flex-wrap text-neutral-500 dark:text-neutral-300">
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="/#contact"
+      
+      aria-label="At-Symbol"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://github.com/STBrinkmann"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Github"
+    ><svg style="height: 1em;" fill="currentColor" viewBox="3 3 18 18"><path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://www.linkedin.com/in/sebastian-t-brinkmann/"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Linkedin"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://orcid.org/0000-0001-9835-7347"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Academicons/Orcid"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M336.62 194.538c-7.13-3.328-13.866-5.56-20.253-6.614c-6.365-1.095-16.574-1.612-30.71-1.612h-36.704v152.747h37.634c14.673 0 26.081-1.013 34.224-3.017c8.142-2.004 14.921-4.526 20.356-7.626a69.448 69.448 0 0 0 14.942-11.388c14.488-14.714 21.742-33.273 21.742-55.717c0-22.052-7.44-40.052-22.341-53.982c-5.498-5.166-11.822-9.444-18.89-12.793zM256 8C119.022 8 8 119.042 8 256s111.022 248 248 248s248-111.042 248-248S392.978 8 256 8Zm-82.336 357.513h-29.389V160.148h29.389zM158.95 138.696c-11.14 0-20.213-9.01-20.213-20.212c0-11.118 9.052-20.191 20.213-20.191c11.18 0 20.232 9.052 20.232 20.191a20.194 20.194 0 0 1-20.232 20.212zm241.386 163.597c-5.29 12.545-12.834 23.581-22.65 33.088c-9.982 9.837-21.597 17.194-34.844 22.196c-7.75 3.017-14.839 5.063-21.307 6.117c-6.49 1.013-18.828 1.509-37.076 1.509h-64.956V160.148h69.233c27.962 0 50.034 4.154 66.32 12.545c16.265 8.37 29.181 20.728 38.792 36.972c9.61 16.265 14.425 34.018 14.425 53.196c.023 13.765-2.666 26.908-7.936 39.432z"/></svg></a>
+  
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+    
+<div class="pt-1 no-prose w-full">
+  <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+  <div class="flex flex-col md:flex-row flex-nowrap justify-between gap-5 pt-2">
+    <div class="">
+      
+        <a class="group flex no-underline" href="/post/visibility-sensitivity-analysis/">
+          <span
+            class="mt-[-0.3rem] me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline rtl:hidden">&larr;</span></span>
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Visibility - Sensitivity Analysis</span>
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jun 22, 2021
+              
+            </span>
+          </span>
+        </a>
+      
+    </div>
+    <div class="">
+      
+        <a class="group flex text-right no-underline" href="/post/visible-greenness-exposure/">
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Visible Greenness Exposure</span
+            >
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Mar 15, 2021
+              
+            </span>
+          </span>
+          <span
+            class="mt-[-0.3rem] ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline">&rarr;</span></span>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  
+
+
+
+</div>
+
+      </div>
+
+    </main>
+  </article>
+</div>
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by text-center">
+    © 2025 geobrinkmann.com. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by text-center">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

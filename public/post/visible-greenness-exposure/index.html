@@ -1,0 +1,1962 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="white">
+  
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.3.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Sebastian T. Brinkmann" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/post/visible-greenness-exposure/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/themes/cyan.min.css" />
+  
+
+  
+  
+    
+    <link href="/dist/wc.min.40d365a5c94bd94585e708f7c92e5782e00a8d8eefc348f5d2f21a80bb7783c8.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
+
+  <link rel="canonical" href="http://localhost:4321/post/visible-greenness-exposure/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary" />
+  
+  <meta property="og:site_name" content="Hugo Academic CV Theme" />
+  <meta property="og:url" content="http://localhost:4321/post/visible-greenness-exposure/" />
+  <meta property="og:title" content="Visible Greenness Exposure | Hugo Academic CV Theme" />
+  <meta property="og:description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2021-03-15T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2021-03-15T18:43:26&#43;01:00">
+  
+
+  
+
+
+
+  
+
+
+  <title>Visible Greenness Exposure | Hugo Academic CV Theme</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link type="text/css" rel="stylesheet" href="/dist/lib/katex/katex.min.505d5f829022bb7b4f24dfee0aa1141cd7bba67afe411d1240335f820960b5c3.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr&#43;QR0SQDNfgglgtcM=" />
+  
+  
+  <script defer src="/dist/lib/katex/katex.min.dc84b296ec3e884de093158f760fd9d45b6c7abe58b5381557f4e138f46a58ae.js" integrity="sha256-3ISyluw&#43;iE3gkxWPdg/Z1Ftser5YtTgVV/ThOPRqWK4="></script>
+  
+  
+  
+  
+  <script defer src="/js/katex-renderer.6579ec9683211cfb952064aedf3a3baea5eeb17a061775b32b70917474637c80.js" integrity="sha256-ZXnsloMhHPuVIGSu3zo7rqXusXoGF3WzK3CRdHRjfIA="></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/js/hugo-blox-en.min.js"
+    integrity=""
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+        
+        
+        
+          <header id="site-header" class="header">
+  <nav class="navbar px-3 flex justify-left">
+    <div class="order-0 h-100">
+      
+      <a class="navbar-brand" href="/" title="Hugo Academic CV Theme">
+            
+            
+              
+              <img
+                fetchpriority="high"
+                decoding="async"
+                class=""
+                width="36"
+                height="36"
+                src="/media/icon_hu1615250596747404985.webp"
+                alt="Hugo Academic CV Theme" />
+            
+          
+        
+        GeoBrinkmann
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Open Menu</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Close Menu</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-left
+      ">
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/"
+        >Home</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/post/"
+        >Posts</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/publication/"
+        >Papers</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/experience/"
+        >Experience</a
+        >
+      </li>
+      
+      
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+
+      
+      
+      
+
+      
+      
+      <div class="px-3 text-black hover:text-primary-700 dark:text-white dark:hover:text-primary-300
+            [&.active]:font-bold [&.active]:text-black/90 dark:[&.active]:text-white">
+        <button class="theme-toggle mt-1" accesskey="t" title="appearance">
+          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class="dark:hidden">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class=" dark:block [&:not(dark)]:hidden">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+      
+
+      
+      
+
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+
+        
+      
+    </div>
+    <div class="page-body  my-10">
+      
+
+
+
+
+
+<div class="mx-auto flex max-w-screen-xl">
+  
+
+
+
+<aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] lg:hidden xl:block">
+  
+  <div class="px-4 pt-4 lg:hidden">
+    
+    
+  </div>
+  <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
+    <ul class="flex flex-col gap-1 lg:hidden">
+      
+      
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/"
+    
+  >Publications
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/digidem_2024/"
+    
+  >Räumliche Erreichbarkeit von Gedächtnisambulanzen – Eine geographische Analyse im Rahmen von digiDEM Bayern
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/brinkmann_2022/"
+    
+  >Modelling eye-level visibility of urban green space: Optimising city-wide point-based viewshed computations through prototyping
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/walker_2022/"
+    
+  >Neighborhood Greenspace and Socioeconomic Risk are Associated with Diabetes Risk at the Sub-neighborhood Scale: Results from the Prospective Urban and Rural Epidemiology (PURE) Study
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/scarpone2020/"
+    
+  >A multimethod approach for county-scale geospatial analysis of emerging infectious diseases. A cross-sectional case study of COVID-19 incidence in Germany
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/experience/"
+    
+  >Experience
+    </a></li>
+        <li class="open"><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/"
+    
+  >Blog
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visibility-sensitivity-analysis/"
+    
+  >Visibility - Sensitivity Analysis
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/"
+    
+  >BART - A Bayesian machine learning workflow for complex spatial data
+    </a>
+              
+            </li><li class="flex flex-col open"><a
+    class="hb-sidebar-custom-link
+      sidebar-active-item bg-primary-100 font-semibold text-primary-800 dark:bg-primary-300 dark:text-primary-900"
+    href="/post/visible-greenness-exposure/"
+    
+  >Visible Greenness Exposure
+    </a>
+  
+    <ul class="hb-sidebar-mobile-toc"><li>
+              <a
+                href="#libraries"
+                class="hb-docs-link"
+              >Libraries</a>
+            </li>
+          <li>
+              <a
+                href="#data"
+                class="hb-docs-link"
+              >Data</a>
+            </li>
+          <li>
+              <a
+                href="#visibility-analysis"
+                class="hb-docs-link"
+              >Visibility Analysis</a>
+            </li>
+          <li>
+              <a
+                href="#network-visible-greenspace"
+                class="hb-docs-link"
+              >Network Visible Greenspace</a>
+            </li>
+          <li>
+              <a
+                href="#conclusion"
+                class="hb-docs-link"
+              >Conclusion</a>
+            </li>
+          <li>
+              <a
+                href="#references"
+                class="hb-docs-link"
+              >References</a>
+            </li>
+          </ul>
+  
+              
+            </li></ul>
+      </div></li>
+    </ul>
+
+    <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
+
+</aside>
+  
+
+<nav class="hb-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#libraries">Libraries</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#data">Data</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#visibility-analysis">Visibility Analysis</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#rasterprofile">Rasterprofile</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#line-of-sight">Line of Sight</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#viewshed">Viewshed</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#examples">Examples</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-8 rtl:pr-8 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#1-resolution--1m">1. Resolution = 1m</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-8 rtl:pr-8 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#3-resolution--2m">3. Resolution = 2m</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-8 rtl:pr-8 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#4-resolution--5m">4. Resolution = 5m</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#network-visible-greenspace">Network Visible Greenspace</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#greenspace-mask">Greenspace Mask</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#viewshed-greenness-visibility-index">Viewshed Greenness Visibility Index</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#network-analysis">Network Analysis</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#results">Results</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#conclusion">Conclusion</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#references">References</a>
+      </li></ul>
+
+  
+  
+    
+    
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </nav>
+
+
+  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+    <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
+
+      
+
+      <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Visible Greenness Exposure</h1>
+
+      <div class="mt-4 mb-16">
+      <div class="text-gray-500 dark:text-gray-300 text-sm flex items-center flex-wrap gap-y-2"><span class="mr-1">Mar 15, 2021</span>
+        
+
+        
+        <span class="mx-1">·</span>
+        <span class="mx-1">
+          12 min read
+        </span>
+        
+        </div>
+
+        <div class="mt-3">
+          
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+      
+      
+      
+
+      
+      
+
+      <div class="prose prose-slate lg:prose-xl dark:prose-invert">
+        <script src="/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js"></script>
+<link href="/post/visible-greenness-exposure/index.en_files/lightable/lightable.css" rel="stylesheet" />
+<style>
+body {text-align: justify}
+</style>
+<p>Exposure to residential greenness—such as parks, gardens, or other vegetated areas—has been linked to various health benefits, ranging from improved mental well-being to reduced chronic disease risk (Markevych et al. 2017; Labib, Lindley, and Huck 2020). Throughout this post, the terms greenness and greenspace will be used interchangeably. Greenspace exposure is commonly categorized into three types:</p>
+<ul>
+<li><strong>Availability</strong>: The physical amount of greenspace</li>
+<li><strong>Accessibility</strong>: The spatial proximity to greenspace</li>
+<li><strong>Visibility</strong>: The visual perception of greenness (Labib, Lindley, and Huck 2020)</li>
+</ul>
+<p>In our recent <a href="https://doi.org/10.1007/s11524-022-00630-w" target="_blank" rel="noopener">publication</a>, we evaluated the <em>availability</em> of greenness via remote sensing–derived <a href="https://eos.com/ndvi/" target="_blank" rel="noopener">NDVI</a> from a top-down (bird’s-eye) view, and further integrated a distance-weighted road network to assess <em>accessibility</em> around participants’ residences. The next logical step is to incorporate <em>visibility</em>, capturing how much greenery is actually seen within a person’s surroundings.</p>
+<p>This post demonstrates how to download and prepare all necessary files for a viewshed-based visibility analysis. In the first section, I cover data acquisition and processing; in the second, I explain the main functions used for the analysis. My implementation is both lightweight and fast, maintaining high spatial resolution. Additionally, I showcase how these methods can be used to compute a Viewshed Greenness Visibility Index (VGVI), which is available in my <a href="https://github.com/STBrinkmann/CGEI" target="_blank" rel="noopener">CGEI</a> R package.</p>
+<h2 id="libraries">Libraries</h2>
+<p>First, load all packages. If one of these packages is not installed, use the <code>install.packages()</code> function.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">ggthemes</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">lidR</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">future</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">data.table</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="data">Data</h2>
+<p>The data is being provided online at <a href="https://zenodo.org/records/5061257" target="_blank" rel="noopener">Zenodo</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">dsm</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="s">&#34;https://zenodo.org/records/5061257/files/Vancouver_DSM_1m.tif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dtm</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="s">&#34;https://zenodo.org/records/5061257/files/Vancouver_DTM_1m.tif&#34;</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="visibility-analysis">Visibility Analysis</h2>
+<p>Greenspace is associated with multiple health benefits through a variety of pathways (Markevych et al. 2017; Dzhambov et al. 2020; Labib, Lindley, and Huck 2020). In a recent study (in submission), we analyzed health benefits based on the availability and accessibility of greenspace using a top-down, bird’s-eye approach. Visibility constitutes a third type of exposure assessment and represents the amount of greenspace observable from a given point (Labib, Lindley, and Huck 2020). While recent studies have adopted viewshed-based visibility analysis (Chamberlain and Meitner 2013; Tabrizian et al. 2020; Labib, Huck, and Lindley 2021), visibility measures are still underrepresented in current research (Labib, Lindley, and Huck 2020). The code below is primarily based on the methods described by Labib, Huck, and Lindley (2021) and their Python implementation of the <a href="https://github.com/jonnyhuck/green-visibility-index/blob/master/gvi.py" target="_blank" rel="noopener">Green Visibility Index</a>. The overall process is illustrated in the figure below.</p>
+<p><a href="https://doi.org/10.1016/j.scitotenv.2020.143050" target="_blank" rel="noopener"><img src="gvi.jpg" style="width:7.13in" /></a></p>
+<p><sub><em>Conceptual design of greenspace visibility modelling (Labib, Huck, and Lindley 2021).</em></sub></p>
+<p>A line of sight is calculated from the observer to every point in the area of interest, determining which points are visible versus those that are hidden. To distinguish green from non-green points, a greenspace mask is applied. For simplicity in this post, the code is not fully optimized. A more optimized approach is available in my <a href="https://github.com/STBrinkmann/CGEI" target="_blank" rel="noopener">CGEI</a> R package, which employs improved data structures and C++.</p>
+<h3 id="rasterprofile">Rasterprofile</h3>
+<p>To determine the visibility of point B from point A, we first need to retrieve all raster cells between these two points. The <code>rasterprofile</code> function returns a <code>matrix</code> with the X- and Y-coordinates, height, and cell number for every cell along the line from A to B. Surprisingly, <code>raster::extract</code> is faster than <code>terra::extract</code> when used with a matrix.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">rasterprofile</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">resolution</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Sample a raster along a straight line between two points</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Try to match the sampling size to the raster resolution</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dx</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">((</span><span class="n">x0</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span><span class="n">^2</span> <span class="o">+</span> <span class="p">(</span><span class="n">y0</span> <span class="o">-</span> <span class="n">y1</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">nsteps</span> <span class="o">=</span> <span class="m">1</span> <span class="o">+</span> <span class="nf">round</span><span class="p">(</span><span class="n">dx</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pointsZ</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">x0</span> <span class="o">+</span> <span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="n">nsteps</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">nsteps</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                   <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="n">nsteps</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">/</span> <span class="n">nsteps</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">rasterVals</span> <span class="o">&lt;-</span> <span class="n">raster</span><span class="o">::</span><span class="nf">extract</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">r</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">pointsZ</span><span class="p">,</span> <span class="n">cellnumber</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="n">pointsZ</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="n">pointsZ</span><span class="p">,</span> <span class="n">rasterVals[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span><span class="p">,</span> <span class="n">rasterVals[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kr">if</span> <span class="p">(</span><span class="nf">anyNA</span><span class="p">(</span><span class="n">pointsZ</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pointsZ</span> <span class="o">&lt;-</span> <span class="n">pointsZ[stats</span><span class="o">::</span><span class="nf">complete.cases</span><span class="p">(</span><span class="n">pointsZ</span><span class="p">),,</span><span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">pointsZ</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="line-of-sight">Line of Sight</h3>
+<p>An observer at point A can see point B only if no object in between blocks the view. The <code>lineOfSight</code> function evaluates visibility for every raster cell between A and B. It calculates the tangent <em>⍺</em> on the change in height <em>𝚫height</em> (opposite side) and <em>distance traveled</em> (adjacent side) for each step. A point is visible if its tangent <em>⍺</em> is greater than the maximum tangent observed so far.</p>
+<p>n R, this would require a for-loop to compare each point’s tangent to the maximum tangent seen so far, thus preventing vectorization. Native R code can be slow for these tasks, so I implemented the step in C++ using the <a href="http://www.rcpp.org/" target="_blank" rel="noopener">Rcpp</a> package.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;Rcpp.h&gt;</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">Rcpp</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// [[Rcpp::export]]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NumericVector</span> <span class="nf">isVisibleC</span><span class="p">(</span><span class="n">NumericVector</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">  <span class="n">NumericVector</span> <span class="n">out</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kt">double</span> <span class="n">max_tangent</span> <span class="o">=</span> <span class="o">-</span><span class="mi">9999</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">double</span> <span class="n">this_tangent</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">this_tangent</span> <span class="o">&gt;</span> <span class="n">max_tangent</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">max_tangent</span> <span class="o">=</span> <span class="n">this_tangent</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="n">out</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The <code>lineOfSight</code> function returns a <code>data.table</code> with the cell number and corresponding visibility status for every point between A and B. Visible cells are marked with 1 and non-visible cells with 0.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lineOfSight</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">xy1</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">height0</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">dsm_data</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Get start XY from input</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x1</span> <span class="o">&lt;-</span> <span class="n">xy1[1]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">y1</span> <span class="o">&lt;-</span> <span class="n">xy1[2]</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># Get the pixels in the line</span>
+</span></span><span class="line"><span class="cl">  <span class="n">pixels</span> <span class="o">&lt;-</span> <span class="nf">rasterprofile</span><span class="p">(</span><span class="n">r</span> <span class="o">=</span> <span class="n">dsm_data</span><span class="p">,</span> <span class="n">x0</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">y1</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                          <span class="n">resolution</span> <span class="o">=</span> <span class="n">resolution</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># Distance traveled so far</span>
+</span></span><span class="line"><span class="cl">  <span class="n">distance_traveled</span> <span class="o">=</span> <span class="nf">sqrt</span><span class="p">((</span><span class="n">y0</span> <span class="o">-</span> <span class="n">pixels[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span><span class="p">)</span><span class="n">^2</span> <span class="o">+</span> <span class="p">(</span><span class="n">x0</span> <span class="o">-</span> <span class="n">pixels[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">)</span><span class="n">^2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">  <span class="c1"># Calculate tangent from delta height (opposite side) and distance traveled (adjacent side)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tangents</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">pixels[</span><span class="p">,</span><span class="m">3</span><span class="n">]</span> <span class="o">-</span> <span class="n">height0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">distance_traveled</span> <span class="o">*</span> <span class="n">resolution</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># Is visible? Current tangent must be greater than max. tangent</span>
+</span></span><span class="line"><span class="cl">  <span class="n">visibility</span> <span class="o">&lt;-</span> <span class="nf">isVisibleC</span><span class="p">(</span><span class="n">tangents</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="c1"># Return cellnumber and visibility-value</span>
+</span></span><span class="line"><span class="cl">  <span class="n">data.table</span><span class="o">::</span><span class="nf">as.data.table</span><span class="p">(</span><span class="nf">cbind</span><span class="p">(</span><span class="n">pixels[</span><span class="p">,</span><span class="m">4</span><span class="n">]</span><span class="p">,</span> <span class="n">visibility</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="viewshed">Viewshed</h3>
+<p>Finally, we can calculate the visibility of all points within a specified buffer around point <em>A</em> using <code>lineOfSight</code> function. The <code>viewshed</code> function creates a circular raster (the start point plus a <code>max_distance</code> buffer) where 1 indicates visible points and 0 indicates non-visible points. To do this efficiently, we only need to compute the line of sight from the center to each boundary point of the circle, storing visibility information for intermediate cells along the way.
+The animation below demonstrates how the <code>viewshed</code> function operates. We start with a raster of unknown visibility (yellow), then iteratively call <code>lineOfSight</code> to mark cells as visible (green) or non-visible (white).</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img alt=""
+           src="/post/visible-greenness-exposure/LoS.gif"
+           loading="lazy" data-zoomable /></div>
+  </div></figure>
+<!-- --></p>
+<p>As noted earlier, I have already implemented the <code>viewshed</code> function in my <code>CGEI</code> R package.</p>
+<h3 id="examples">Examples</h3>
+<p>We first create a starting point to see how different resolutions affect visibility.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Disable progress bar for terra::aggregate</span>
+</span></span><span class="line"><span class="cl"><span class="n">terra</span><span class="o">::</span><span class="nf">terraOptions</span><span class="p">(</span><span class="n">progress</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">sf_start</span> <span class="o">&lt;-</span> <span class="n">sfheaders</span><span class="o">::</span><span class="nf">sf_point</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">487616.2</span><span class="p">,</span> <span class="m">5455970</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">    <span class="nf">st_sf</span><span class="p">(</span><span class="n">crs</span> <span class="o">=</span> <span class="nf">st_crs</span><span class="p">(</span><span class="m">26910</span><span class="p">))</span>
+</span></span></code></pre></div><h4 id="1-resolution--1m">1. Resolution = 1m</h4>
+<p>Output-Raster-Cells: 360 000<br>
+Runtime: 124.3 milliseconds<br>
+Total visibility: 9.1%</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">viewshed_1</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">viewshed_list</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">sf_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="n">dsm</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">dtm_rast</span> <span class="o">=</span> <span class="n">dtm</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_1[[1]]</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png" width="1536" />
+<h4 id="3-resolution--2m">3. Resolution = 2m</h4>
+<p>Output-Raster-Cells: 90 000<br>
+Runtime: 27.12 milliseconds
+Total visibility: 11.5%</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">viewshed_2</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">viewshed_list</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">sf_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">dtm_rast</span> <span class="o">=</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dtm</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_2[[1]]</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png" width="1536" />
+<h4 id="4-resolution--5m">4. Resolution = 5m</h4>
+<p>Output-Raster-Cells: 14 400<br>
+Runtime: 9.21 milliseconds
+Total visibility: 14.6%</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">viewshed_3</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">viewshed_list</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">sf_start</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">dtm_rast</span> <span class="o">=</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dtm</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                  <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_3[[1]]</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png" width="1536" />
+<h2 id="network-visible-greenspace">Network Visible Greenspace</h2>
+<p>A practical use case for the viewshed algorithm is to calculate the visible greenness in a person’s neighborhood by examining visibility along roads and paths.</p>
+<h3 id="greenspace-mask">Greenspace Mask</h3>
+<p>To determine how much of the visible area is green, we need a vegetation mask that differentiates green from non-green pixels. For this example, we use the <a href="http://www.metrovancouver.org/data/Data/LandCoverClassification-2m/LCC2014_2m_LiDAR_gdb.zip" target="_blank" rel="noopener">Vancouver Land Cover Classification 2014 - 2m LiDAR (Raster)</a>. After opening the dataset in ArcGIS and exporting it as a TIFF, the class values can be read from the documentation.</p>
+<table style="width:90%; font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;" class=" lightable-classic lightable-striped">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;">
+Value
+</th>
+<th style="text-align:center;font-weight: bold;">
+Level 1
+</th>
+<th style="text-align:center;font-weight: bold;">
+Level 2
+</th>
+<th style="text-align:center;font-weight: bold;">
+Level 3
+</th>
+<th style="text-align:left;font-weight: bold;">
+Criteria
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:center;">
+Built-up
+</td>
+<td style="text-align:center;">
+Buildings
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Identified using shape/size, shadow cast, height, relative canopy height, texture.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Paved
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Everything from sidewalks and alleys to highways.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Other Built
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Not concrete/asphalt built surfaces or building roofs. Sports surfaces (artificial turf and running tacks), possibly transit or rail areas, other impervious surfaces, etc.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:center;">
+Bare
+</td>
+<td style="text-align:center;">
+Barren
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Beaches, alpine rock, shoreline rock, etc. Lack of vegetation. Likely not soil (colour/context suggests no organic matter and/or imperviousness). Also quarries, gravel pits, dirt roads.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Soil
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Agricultural soils (could be light or dark), cleared/open areas where darker colours indicate organic matter present (as compared to, e.g. sand), potentially riverine/alluvial deposits.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:center;">
+Vegetation
+</td>
+<td style="text-align:center;">
+Tree canopy
+</td>
+<td style="text-align:center;">
+Coniferous
+</td>
+<td style="text-align:left;">
+Predominantly coniferous (\>75%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Deciduous
+</td>
+<td style="text-align:left;">
+Predominantly deciduous (\>75%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Shrub
+</td>
+<td style="text-align:left;">
+Woody, leafy, and generally rough-textured vegetation shorter than trees (approx.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+9
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Grass-herb
+</td>
+<td style="text-align:center;">
+Modified Grass-herb
+</td>
+<td style="text-align:left;">
+Crops, golf course greens, city park grass, lawns, etc.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Natural Grass-herb
+</td>
+<td style="text-align:left;">
+Alpine meadows, near-shore grass areas, bog/wetland areas.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+11
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+Non-photosynthetic vegetation
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Dead grass, drought stressed vegetation, could include log
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+12
+</td>
+<td style="text-align:center;">
+Water
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Lakes, rivers, inlets, irrigation channels, retention ponds, pools, etc.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+13
+</td>
+<td style="text-align:center;">
+Shadow
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Dark pixels with v/ low reflectance values. Image features not easily visible. Compare w/ RapidEye image for shadow
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+14
+</td>
+<td style="text-align:center;">
+Clouds/Ice
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:left;">
+Very bright pixels, that are not high-reflectance features from built-up areas.
+</td>
+</tr>
+</tbody>
+</table>
+<p>For demonstration purposes, we will treat all vegetation classes as green.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Load LandCover</span>
+</span></span><span class="line"><span class="cl"><span class="n">landCover</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="s">&#34;https://zenodo.org/records/5061257/files/Vancouver_LULC_2m.tif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Select Vegetation</span>
+</span></span><span class="line"><span class="cl"><span class="n">greenspace</span> <span class="o">&lt;-</span> <span class="n">landCover</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="m">6</span><span class="o">:</span><span class="m">10</span><span class="p">);</span> <span class="nf">invisible</span><span class="p">(</span><span class="nf">gc</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Plot to compare LandCover and vegetation mask</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">landCover</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">crop</span><span class="p">(</span><span class="nf">st_buffer</span><span class="p">(</span><span class="n">sf_start</span><span class="p">,</span> <span class="m">300</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">plot</span><span class="p">(</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">sf_start</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="nf">st_coordinates</span><span class="p">(</span><span class="n">sf_start</span><span class="p">)</span><span class="n">[2]</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;blue&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">greenspace</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">crop</span><span class="p">(</span><span class="nf">st_buffer</span><span class="p">(</span><span class="n">sf_start</span><span class="p">,</span> <span class="m">300</span><span class="p">))</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="nf">plot</span><span class="p">(</span><span class="n">legend</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">sf_start</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="nf">st_coordinates</span><span class="p">(</span><span class="n">sf_start</span><span class="p">)</span><span class="n">[2]</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">       <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;blue&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png" width="1536" />
+<h3 id="viewshed-greenness-visibility-index">Viewshed Greenness Visibility Index</h3>
+<p>The VGVI (Viewshed Greenness Visibility Index; (Labib, Huck, and Lindley 2021)) represents the proportion of visible greenspace to the total visible area. Its values range from 0 to 1, where 0 = no visible greenspace and 1 = all visible cells are green. Applying the <code>vgvi</code> function below to <code>viewshed_1</code> returns 0.91, meaning 91% of the visible area is vegetated.<br>
+In Labib, Huck, and Lindley (2021), the authors applied a distance-decay function to account for the decreasing visual prominence of an object with increasing distance from the observer. I will address distance-decay models in a future post.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">vgvi</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">viewshed</span><span class="p">,</span> <span class="n">greenspace</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Get XY coordinates that are visible</span>
+</span></span><span class="line"><span class="cl">  <span class="n">xy</span> <span class="o">&lt;-</span> <span class="n">viewshed</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">terra</span><span class="o">::</span><span class="nf">xyFromCell</span><span class="p">(</span><span class="nf">which</span><span class="p">(</span><span class="n">viewshed[]</span> <span class="o">==</span> <span class="m">1</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Intersect XY with greenspace mask</span>
+</span></span><span class="line"><span class="cl">  <span class="n">output</span> <span class="o">&lt;-</span> <span class="n">greenspace[terra</span><span class="o">::</span><span class="nf">cellFromXY</span><span class="p">(</span><span class="n">greenspace</span><span class="p">,</span> <span class="n">xy</span><span class="p">)</span><span class="n">]</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">    <span class="nf">unlist</span><span class="p">(</span><span class="n">use.names</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Proportion of visible green</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">output</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> <span class="nf">length</span><span class="p">(</span><span class="n">output</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="network-analysis">Network Analysis</h3>
+<p>We can also leverage the <code>DRIGLUCoSE</code> R package from our recent publication to calculate a road network and then assess visible greenspace along it. For more details on <code>DRIGLUCoSE</code>, refer to the <a href="https://github.com/STBrinkmann/DRIGLUCoSE" target="_blank" rel="noopener">GitHub repository</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Download and process road network from OSM data</span>
+</span></span><span class="line"><span class="cl"><span class="n">aoi.osm</span> <span class="o">&lt;-</span> <span class="n">DRIGLUCoSE</span><span class="o">::</span><span class="nf">osm_roads</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sf_start</span><span class="p">,</span> <span class="n">dist</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">speed</span> <span class="o">=</span> <span class="m">75</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Calculate isodistances</span>
+</span></span><span class="line"><span class="cl"><span class="n">aoi.isodistances</span> <span class="o">&lt;-</span> <span class="n">DRIGLUCoSE</span><span class="o">::</span><span class="nf">isodistances</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sf_start</span> <span class="o">%&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">tag</span> <span class="o">=</span> <span class="m">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                                             <span class="n">tag</span> <span class="o">=</span> <span class="s">&#34;tag&#34;</span><span class="p">,</span> <span class="n">road_network</span> <span class="o">=</span> <span class="n">aoi.osm</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                             <span class="n">speed</span> <span class="o">=</span> <span class="m">75</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                                             <span class="n">isochrones_seq</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
+</span></span></code></pre></div><p>The figure below shows the isodistances with the red dot indicating the starting point. We will calculate the proportion of visible greenspace every 10 meters.</p>
+<img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg" width="960" />
+<p>To evaluate network visibility, we use the <code>vgvi</code> function from the <code>CGEI</code> package to calculate the VGVI along the road network. In this example, we sample points every 5 meters along the isodistances. A 2m resolution would be sufficient for a larger study because it does not differ much from 1m in practice—but here the total runtime at 1m resolution is still acceptable (only 4 seconds using 22 cores).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">vgvi</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">aoi.isodistances</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                     <span class="n">dsm_rast</span> <span class="o">=</span> <span class="n">dsm</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">dtm_rast</span> <span class="o">=</span> <span class="n">dtm</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                     <span class="n">greenspace_rast</span> <span class="o">=</span> <span class="n">greenspace</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                     <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                     <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">spacing</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">cores</span> <span class="o">=</span> <span class="m">22</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## Warning in st_cast.sf(., &quot;LINESTRING&quot;): repeating attributes for all
+## sub-geometries for which they may not be constant
+</code></pre>
+<h3 id="results">Results</h3>
+<p>The results of the VGVI appear in the figure below.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">%&gt;%</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">tmap</span><span class="o">::</span><span class="nf">tm_shape</span><span class="p">()</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tmap</span><span class="o">::</span><span class="nf">tm_dots</span><span class="p">(</span><span class="n">col</span> <span class="o">=</span> <span class="s">&#34;VGVI&#34;</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="m">20</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">0.25</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;RdYlGn&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Visible Greenspace&#34;</span><span class="p">)</span> <span class="o">+</span>
+</span></span><span class="line"><span class="cl">  <span class="n">tmap</span><span class="o">::</span><span class="nf">tm_layout</span><span class="p">(</span><span class="n">legend.outside.position</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">legend.position</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-0.25</span><span class="p">,</span> <span class="m">0.62</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">legend.outside.size</span> <span class="o">=</span> <span class="m">.15</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">legend.title.size</span> <span class="o">=</span> <span class="m">1.35</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">legend.text.size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">panel.show</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">frame</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg" width="960" />
+<p>To determine the mean VGVI for the observer in the center, we simply take the average of all measurements. More sophisticated approaches might apply linear or logistic weighting to account for distance, as shown in our recent publication.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">output</span><span class="o">$</span><span class="n">VGVI</span><span class="p">),</span> <span class="m">2</span><span class="p">)</span>
+</span></span></code></pre></div><pre><code>## [1] 0.47
+</code></pre>
+<p>A mean value of 0.47 indicates that 47% of the visible area along the network is vegetated.</p>
+<p>One notable limitation of the viewshed algorithm is its inability to accurately account for eye-level visibility when the observer is under a tree. This is because the LiDAR-derived DSM blocks all lines of sight under the canopy.</p>
+<img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg" width="480" />
+<p>In the histogram above, many points have a GVI of 1. I have plotted the DSM and the GVI points along the route network in QGIS.<img src="GVI_bad.png" style="width:7.13in" /></p>
+<p>The image shows that these green points are located underneath trees, so no lines of sight extend beyond the canopy. As a result, all visible cells are green, leading to a GVI of 1.</p>
+<p>Although we can incorporate a distance-decay function or measure <em>actual</em> activity space rather than <em>potential</em> activity space, these are topics for future posts. Regardless, there is a clear variation in GVI values indicating areas with higher versus lower visible greenness.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In summary, this post demonstrates a fast, lightweight, and parallelizable approach to measuring greenspace visibility using open-source R packages. By comparing resolutions from 1m to 5m, we found that 2m provides a practical balance between accuracy and speed, making large-scale applications feasible. However, the method cannot fully capture eye-level views under tree canopies, a challenge that underscores the need for more sophisticated modeling and sensor data. Despite this limitation, viewshed-based exposure assessments can add a valuable visual dimension to health geography studies, complementing traditional availability and accessibility measures of greenspace. Future work may explore integrating actual GPS-tracked routes and distance-decay functions, allowing for more nuanced activity-space models. We encourage researchers and urban planners to adopt and refine these methods, helping to deepen our collective understanding of how visible greenery influences wellbeing.</p>
+<h2 id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-chamberlain2013" class="csl-entry">
+<p>Chamberlain, Brent C., and Michael J. Meitner. 2013. “A Route-Based Visibility Analysis for Landscape Management.” <em>Landscape and Urban Planning</em> 111 (March): 13–24. <a href="https://doi.org/10.1016/j.landurbplan.2012.12.004" target="_blank" rel="noopener">https://doi.org/10.1016/j.landurbplan.2012.12.004</a>.</p>
+</div>
+<div id="ref-dzhambov2020" class="csl-entry">
+<p>Dzhambov, Angel M., Matthew H.E.M. Browning, Iana Markevych, Terry Hartig, and Peter Lercher. 2020. “Analytical Approaches to Testing Pathways Linking Greenspace to Health: A Scoping Review of the Empirical Literature.” <em>Environmental Research</em> 186 (July): 109613. <a href="https://doi.org/10.1016/j.envres.2020.109613" target="_blank" rel="noopener">https://doi.org/10.1016/j.envres.2020.109613</a>.</p>
+</div>
+<div id="ref-labib2021" class="csl-entry">
+<p>Labib, S.M., Jonny J. Huck, and Sarah Lindley. 2021. “Modelling and Mapping Eye-Level Greenness Visibility Exposure Using Multi-Source Data at High Spatial Resolutions.” <em>Science of The Total Environment</em> 755 (February): 143050. <a href="https://doi.org/10.1016/j.scitotenv.2020.143050" target="_blank" rel="noopener">https://doi.org/10.1016/j.scitotenv.2020.143050</a>.</p>
+</div>
+<div id="ref-labib2020" class="csl-entry">
+<p>Labib, S.M., Sarah Lindley, and Jonny J. Huck. 2020. “Spatial Dimensions of the Influence of Urban Green-Blue Spaces on Human Health: A Systematic Review.” <em>Environmental Research</em> 180 (January): 108869. <a href="https://doi.org/10.1016/j.envres.2019.108869" target="_blank" rel="noopener">https://doi.org/10.1016/j.envres.2019.108869</a>.</p>
+</div>
+<div id="ref-markevych2017" class="csl-entry">
+<p>Markevych, Iana, Julia Schoierer, Terry Hartig, Alexandra Chudnovsky, Perry Hystad, Angel M. Dzhambov, Sjerp de Vries, et al. 2017. “Exploring Pathways Linking Greenspace to Health: Theoretical and Methodological Guidance.” <em>Environmental Research</em> 158 (October): 301–17. <a href="https://doi.org/10.1016/j.envres.2017.06.028" target="_blank" rel="noopener">https://doi.org/10.1016/j.envres.2017.06.028</a>.</p>
+</div>
+<div id="ref-tabrizian2020" class="csl-entry">
+<p>Tabrizian, Payam, Perver K. Baran, Derek Van Berkel, Helena Mitasova, and Ross Meentemeyer. 2020. “Modeling Restorative Potential of Urban Environments by Coupling Viewscape Analysis of Lidar Data with Experiments in Immersive Virtual Environments.” <em>Landscape and Urban Planning</em> 195 (March): 103704. <a href="https://doi.org/10.1016/j.landurbplan.2019.103704" target="_blank" rel="noopener">https://doi.org/10.1016/j.landurbplan.2019.103704</a>.</p>
+</div>
+</div>
+
+      </div>
+
+      
+  <time class="mt-12 mb-8 block text-xs text-gray-500 ltr:text-right rtl:text-left dark:text-gray-400" datetime="2021-03-15T18:43:26.000Z">
+    <span>Last updated on</span>
+    Mar 15, 2021</time>
+
+      <div class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert mt-5">
+        
+        <div class="max-w-prose print:hidden">
+  
+  
+
+  
+
+<div class="flex justify-center">
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/r/">R</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/gis/">GIS</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenspace/">Greenspace</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/health-geography/">Health Geography</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/lidar/">LiDAR</a>
+  
+</div>
+
+
+  
+<section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F&amp;text=Visible&#43;Greenness&#43;Exposure"
+    title="X"
+    aria-label="X"
+    id="share-link-x"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F&amp;t=Visible&#43;Greenness&#43;Exposure"
+    title="Facebook"
+    aria-label="Facebook"
+    id="share-link-facebook"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+    
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="mailto:?subject=Visible%20Greenness%20Exposure&amp;body=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F"
+    title="Email"
+    aria-label="Email"
+    id="share-link-email"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F&amp;title=Visible&#43;Greenness&#43;Exposure"
+    title="LinkedIn"
+    aria-label="LinkedIn"
+    id="share-link-linkedin"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="whatsapp://send?text=Visible&#43;Greenness&#43;Exposure%20http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F"
+    title="WhatsApp"
+    aria-label="WhatsApp"
+    id="share-link-whatsapp"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="m187.58 144.84-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40 88.1 88.1 0 0 0 88 88 40 40 0 0 0 40-40 8 8 0 0 0-4.42-7.16ZM152 176a72.08 72.08 0 0 1-72-72 24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51 56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155l14.61-9.74 23 11.48A24 24 0 0 1 152 176ZM128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81 8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+  </a>
+  
+</section>
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+
+<div class="flex pt-12 pb-4">
+  
+  
+  <img
+    class="mr-4 h-24 w-24 rounded-full"
+    width="96"
+    height="96"
+    alt="Sebastian T. Brinkmann"
+  src="/author/sebastian-t.-brinkmann/avatar_hu12292808825799653284.jpg"
+  loading="lazy"
+  />
+  
+  <div class="place-self-center">
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Authors
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      <a href="http://localhost:4321/" class="no-underline">
+      Sebastian T. Brinkmann
+      </a>
+    </div>
+
+    
+    <div class="text-sm font-bold text-neutral-700 dark:text-neutral-300">
+    Data Scientist
+    </div>
+    
+
+
+    
+
+    <div class="text-2xl sm:text-lg pt-1">
+
+      
+<div class="flex flex-wrap text-neutral-500 dark:text-neutral-300">
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="/#contact"
+      
+      aria-label="At-Symbol"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://github.com/STBrinkmann"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Github"
+    ><svg style="height: 1em;" fill="currentColor" viewBox="3 3 18 18"><path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://www.linkedin.com/in/sebastian-t-brinkmann/"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Linkedin"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://orcid.org/0000-0001-9835-7347"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Academicons/Orcid"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M336.62 194.538c-7.13-3.328-13.866-5.56-20.253-6.614c-6.365-1.095-16.574-1.612-30.71-1.612h-36.704v152.747h37.634c14.673 0 26.081-1.013 34.224-3.017c8.142-2.004 14.921-4.526 20.356-7.626a69.448 69.448 0 0 0 14.942-11.388c14.488-14.714 21.742-33.273 21.742-55.717c0-22.052-7.44-40.052-22.341-53.982c-5.498-5.166-11.822-9.444-18.89-12.793zM256 8C119.022 8 8 119.042 8 256s111.022 248 248 248s248-111.042 248-248S392.978 8 256 8Zm-82.336 357.513h-29.389V160.148h29.389zM158.95 138.696c-11.14 0-20.213-9.01-20.213-20.212c0-11.118 9.052-20.191 20.213-20.191c11.18 0 20.232 9.052 20.232 20.191a20.194 20.194 0 0 1-20.232 20.212zm241.386 163.597c-5.29 12.545-12.834 23.581-22.65 33.088c-9.982 9.837-21.597 17.194-34.844 22.196c-7.75 3.017-14.839 5.063-21.307 6.117c-6.49 1.013-18.828 1.509-37.076 1.509h-64.956V160.148h69.233c27.962 0 50.034 4.154 66.32 12.545c16.265 8.37 29.181 20.728 38.792 36.972c9.61 16.265 14.425 34.018 14.425 53.196c.023 13.765-2.666 26.908-7.936 39.432z"/></svg></a>
+  
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+    
+<div class="pt-1 no-prose w-full">
+  <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+  <div class="flex flex-col md:flex-row flex-nowrap justify-between gap-5 pt-2">
+    <div class="">
+      
+        <a class="group flex no-underline" href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/">
+          <span
+            class="mt-[-0.3rem] me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline rtl:hidden">&larr;</span></span>
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >BART - A Bayesian machine learning workflow for complex spatial data</span>
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Apr 20, 2021
+              
+            </span>
+          </span>
+        </a>
+      
+    </div>
+    <div class="">
+      
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  
+
+
+
+</div>
+
+      </div>
+
+    </main>
+  </article>
+</div>
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by text-center">
+    © 2025 geobrinkmann.com. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by text-center">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

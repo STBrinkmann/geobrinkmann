@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Optimisation | Hugo Academic CV Theme</title>
+    <link>http://localhost:4321/tags/optimisation/</link>
+      <atom:link href="http://localhost:4321/tags/optimisation/index.xml" rel="self" type="application/rss+xml" />
+    <description>Optimisation</description>
+    <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 10 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>http://localhost:4321/media/icon_hu11167265919780470973.png</url>
+      <title>Optimisation</title>
+      <link>http://localhost:4321/tags/optimisation/</link>
+    </image>
+    
+    <item>
+      <title>Modelling eye-level visibility of urban green space: Optimising city-wide point-based viewshed computations through prototyping</title>
+      <link>http://localhost:4321/publication/brinkmann_2022/</link>
+      <pubDate>Fri, 10 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/publication/brinkmann_2022/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
