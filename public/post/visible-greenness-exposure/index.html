@@ -172,7 +172,6 @@
   
   
     
-    
   
   
 
@@ -181,13 +180,13 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
   <meta property="og:url" content="http://localhost:4321/post/visible-greenness-exposure/" />
   <meta property="og:title" content="Visible Greenness Exposure | GeoBrinkmann" />
-  <meta property="og:description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." /><meta property="og:image" content="http://localhost:4321/post/visible-greenness-exposure/featured.jpg" />
+    <meta property="twitter:image" content="http://localhost:4321/post/visible-greenness-exposure/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -358,6 +357,12 @@
         
       
     
+  
+  
+  
+  
+  
+  
   
   
   
@@ -801,6 +806,22 @@
             </li><li class="flex flex-col "><a
     class="hb-sidebar-custom-link
       text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/spatlac-index-r-package/"
+    
+  >spatLac: Spatial Lacunarity
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/gvi-greenness-visibility-index-r-package/"
+    
+  >GVI: Greenness Visibility Index R package
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
     href="/publication/scarpone2020/"
     
   >A multimethod approach for county-scale geospatial analysis of emerging infectious diseases. A cross-sectional case study of COVID-19 incidence in Germany
@@ -888,15 +909,16 @@
           </ul>
   
               
-            </li></ul>
-      </div></li>
-        <li class=""><a
+            </li><li class="flex flex-col "><a
     class="hb-sidebar-custom-link
       text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
-    href="/content/"
+    href="/post/text-mining-belval/"
     
-  >Contents
-    </a></li>
+  >Text Mining - Belval Campus
+    </a>
+              
+            </li></ul>
+      </div></li>
     </ul>
 
     <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
@@ -1063,7 +1085,7 @@ body {text-align: justify}
 </span></span><span class="line"><span class="cl"><span class="n">dtm</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="s">&#34;https://zenodo.org/records/5061257/files/Vancouver_DTM_1m.tif&#34;</span><span class="p">)</span>
 </span></span></code></pre></div><h2 id="visibility-analysis">Visibility Analysis</h2>
 <p>Greenspace is associated with multiple health benefits through a variety of pathways (Markevych et al. 2017; Dzhambov et al. 2020; Labib, Lindley, and Huck 2020). In a recent study (in submission), we analyzed health benefits based on the availability and accessibility of greenspace using a top-down, bird’s-eye approach. Visibility constitutes a third type of exposure assessment and represents the amount of greenspace observable from a given point (Labib, Lindley, and Huck 2020). While recent studies have adopted viewshed-based visibility analysis (Chamberlain and Meitner 2013; Tabrizian et al. 2020; Labib, Huck, and Lindley 2021), visibility measures are still underrepresented in current research (Labib, Lindley, and Huck 2020). The code below is primarily based on the methods described by Labib, Huck, and Lindley (2021) and their Python implementation of the <a href="https://github.com/jonnyhuck/green-visibility-index/blob/master/gvi.py" target="_blank" rel="noopener">Green Visibility Index</a>. The overall process is illustrated in the figure below.</p>
-<p><a href="https://doi.org/10.1016/j.scitotenv.2020.143050" target="_blank" rel="noopener"><img src="gvi.jpg" style="width:7.13in" /></a></p>
+<p><a href="https://doi.org/10.1016/j.scitotenv.2020.143050" target="_blank" rel="noopener"><img src="featured.jpg" style="width:7.13in" /></a></p>
 <p><sub><em>Conceptual design of greenspace visibility modelling (Labib, Huck, and Lindley 2021).</em></sub></p>
 <p>A line of sight is calculated from the observer to every point in the area of interest, determining which points are visible versus those that are hidden. To distinguish green from non-green points, a greenspace mask is applied. For simplicity in this post, the code is not fully optimized. A more optimized approach is available in my <a href="https://github.com/STBrinkmann/CGEI" target="_blank" rel="noopener">CGEI</a> R package, which employs improved data structures and C++.</p>
 <h3 id="rasterprofile">Rasterprofile</h3>
@@ -1180,7 +1202,7 @@ Total visibility: 9.1%</p>
 </span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png" width="1536" />
 <h4 id="3-resolution--2m">3. Resolution = 2m</h4>
 <p>Output-Raster-Cells: 90 000<br>
-Runtime: 27.12 milliseconds
+Runtime: 27.12 milliseconds<br>
 Total visibility: 11.5%</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">viewshed_2</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">viewshed_list</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">sf_start</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> 
@@ -1191,7 +1213,7 @@ Total visibility: 11.5%</p>
 </span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png" width="1536" />
 <h4 id="4-resolution--5m">4. Resolution = 5m</h4>
 <p>Output-Raster-Cells: 14 400<br>
-Runtime: 9.21 milliseconds
+Runtime: 9.21 milliseconds<br>
 Total visibility: 14.6%</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">viewshed_3</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">viewshed_list</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">sf_start</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span> <span class="m">5</span><span class="p">),</span> 
@@ -1570,13 +1592,13 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 
 <div class="flex justify-center">
   
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenness-visibility/">Greenness Visibility</a>
+  
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/r/">R</a>
   
-  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/gis/">GIS</a>
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/health-geography/">Health Geography</a>
   
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenspace/">Greenspace</a>
-  
-  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/health-geography/">Health Geography</a>
   
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/lidar/">LiDAR</a>
   
@@ -1840,6 +1862,23 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
       
     </div>
     <div class="">
+      
+        <a class="group flex text-right no-underline" href="/post/text-mining-belval/">
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Text Mining - Belval Campus</span
+            >
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                May 7, 2020
+              
+            </span>
+          </span>
+          <span
+            class="mt-[-0.3rem] ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline">&rarr;</span></span>
+        </a>
       
     </div>
   </div>

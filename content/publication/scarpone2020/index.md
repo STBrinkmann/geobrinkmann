@@ -20,7 +20,7 @@ authors:
 - Blake Byron Walker
 date: "2020-08-13T00:00:00Z"
 doi: "10.1186/s12942-020-00225-1"
-featured: false
+featured: true
 image:
   focal_point: ""
   preview_only: true

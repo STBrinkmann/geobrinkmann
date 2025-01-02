@@ -4,16 +4,16 @@ author: Sebastian Brinkmann
 date: '2021-04-20'
 slug: bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data
 categories: ["R"]
-tags: ["R", "Bayesian", "Machine learning", "Health Geography", "COVID-19"]
+tags: ["Machine learning", "R", "Bayesian", "Health Geography", "COVID-19", "Exploratory Spatial Data Analysis (ESDA)"]
 subtitle: ''
 summary: 'In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates.'
 authors: []
 lastmod: '2021-04-20T15:54:53+02:00'
 featured: yes
 image:
-  caption: ''
-  focal_point: ''
-  preview_only: no
+  focal_point: ""
+  placement: 2
+  preview_only: true
 projects: []
 output: html_document
 bibliography: references.bib
@@ -6776,20 +6776,20 @@ summary(bm_All)
     ## bartMachine v1.3.4.1 for regression
     ## 
     ## training data size: n = 401 and p = 366 
-    ## built in 6.1 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
+    ## built in 6.4 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
     ## 
     ## sigsq est for y beforehand: 0.024 
-    ## avg sigsq estimate after burn-in: 0.09589 
+    ## avg sigsq estimate after burn-in: 0.09236 
     ## 
     ## in-sample statistics:
-    ##  L1 = 60.66 
-    ##  L2 = 15.61 
-    ##  rmse = 0.2 
-    ##  Pseudo-Rsq = 0.9193
-    ## p-val for shapiro-wilk test of normality of residuals: 0.00015 
-    ## p-val for zero-mean noise: 0.97071
+    ##  L1 = 58.88 
+    ##  L2 = 14.93 
+    ##  rmse = 0.19 
+    ##  Pseudo-Rsq = 0.9228
+    ## p-val for shapiro-wilk test of normality of residuals: 2e-05 
+    ## p-val for zero-mean noise: 0.92439
 
-The Pseudo-R² of 0.92 and RMSE of 0.2 look promising. Let’s check the error assumptions next:
+The Pseudo-R² of 0.92 and RMSE of 0.19 look promising. Let’s check the error assumptions next:
 
 ``` r
 check_bart_error_assumptions(bm_All)
@@ -6906,20 +6906,20 @@ summary(bm_final)
     ## bartMachine v1.3.4.1 for regression
     ## 
     ## training data size: n = 401 and p = 31 
-    ## built in 5.9 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
+    ## built in 6.5 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
     ## 
     ## sigsq est for y beforehand: 0.185 
-    ## avg sigsq estimate after burn-in: 0.126 
+    ## avg sigsq estimate after burn-in: 0.12859 
     ## 
     ## in-sample statistics:
-    ##  L1 = 89.17 
-    ##  L2 = 33.3 
+    ##  L1 = 90.04 
+    ##  L2 = 34.13 
     ##  rmse = 0.29 
-    ##  Pseudo-Rsq = 0.8279
-    ## p-val for shapiro-wilk test of normality of residuals: 0.00128 
-    ## p-val for zero-mean noise: 0.99946
+    ##  Pseudo-Rsq = 0.8236
+    ## p-val for shapiro-wilk test of normality of residuals: 0.00156 
+    ## p-val for zero-mean noise: 0.95958
 
-Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.83, equating to a 10% reduction in explained variance. The RMSE increased from 0.2 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:
+Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.82, equating to a 11% reduction in explained variance. The RMSE increased from 0.19 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:
 
 ``` r
 check_bart_error_assumptions(bm_final)
@@ -6988,10 +6988,10 @@ MC
     ## weights: lw  
     ## number of simulations + 1: 100 
     ## 
-    ## statistic = 0.059006, observed rank = 100, p-value = 0.01
+    ## statistic = 0.061242, observed rank = 97, p-value = 0.03
     ## alternative hypothesis: greater
 
-Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.01), we conclude there is no significant spatial autocorrelation in the residuals.
+Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.03), we conclude there is no significant spatial autocorrelation in the residuals.
 
 ## Partial Dependence Plots
 

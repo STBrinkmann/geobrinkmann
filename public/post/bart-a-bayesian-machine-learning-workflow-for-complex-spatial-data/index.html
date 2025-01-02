@@ -172,7 +172,6 @@
   
   
     
-    
   
   
 
@@ -181,13 +180,13 @@
     
     
   
-  <meta property="twitter:card" content="summary" />
+  <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
   <meta property="og:url" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
   <meta property="og:title" content="BART - A Bayesian machine learning workflow for complex spatial data | GeoBrinkmann" />
-  <meta property="og:description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." /><meta property="og:image" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/featured.jpg" />
+    <meta property="twitter:image" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -358,6 +357,12 @@
         
       
     
+  
+  
+  
+  
+  
+  
   
   
   
@@ -801,6 +806,22 @@
             </li><li class="flex flex-col "><a
     class="hb-sidebar-custom-link
       text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/spatlac-index-r-package/"
+    
+  >spatLac: Spatial Lacunarity
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/gvi-greenness-visibility-index-r-package/"
+    
+  >GVI: Greenness Visibility Index R package
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
     href="/publication/scarpone2020/"
     
   >A multimethod approach for county-scale geospatial analysis of emerging infectious diseases. A cross-sectional case study of COVID-19 incidence in Germany
@@ -900,15 +921,16 @@
   >Visible Greenness Exposure
     </a>
               
-            </li></ul>
-      </div></li>
-        <li class=""><a
+            </li><li class="flex flex-col "><a
     class="hb-sidebar-custom-link
       text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
-    href="/content/"
+    href="/post/text-mining-belval/"
     
-  >Contents
-    </a></li>
+  >Text Mining - Belval Campus
+    </a>
+              
+            </li></ul>
+      </div></li>
     </ul>
 
     <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
@@ -7737,20 +7759,20 @@ Max
 </span></span></code></pre></div><pre><code>## bartMachine v1.3.4.1 for regression
 ## 
 ## training data size: n = 401 and p = 366 
-## built in 6.1 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
+## built in 6.4 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
 ## 
 ## sigsq est for y beforehand: 0.024 
-## avg sigsq estimate after burn-in: 0.09589 
+## avg sigsq estimate after burn-in: 0.09236 
 ## 
 ## in-sample statistics:
-##  L1 = 60.66 
-##  L2 = 15.61 
-##  rmse = 0.2 
-##  Pseudo-Rsq = 0.9193
-## p-val for shapiro-wilk test of normality of residuals: 0.00015 
-## p-val for zero-mean noise: 0.97071
+##  L1 = 58.88 
+##  L2 = 14.93 
+##  rmse = 0.19 
+##  Pseudo-Rsq = 0.9228
+## p-val for shapiro-wilk test of normality of residuals: 2e-05 
+## p-val for zero-mean noise: 0.92439
 </code></pre>
-<p>The Pseudo-R² of 0.92 and RMSE of 0.2 look promising. Let’s check the error assumptions next:</p>
+<p>The Pseudo-R² of 0.92 and RMSE of 0.19 look promising. Let’s check the error assumptions next:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">check_bart_error_assumptions</span><span class="p">(</span><span class="n">bm_All</span><span class="p">)</span>
 </span></span></code></pre></div><p>
 
@@ -7892,20 +7914,20 @@ Max
 </span></span></code></pre></div><pre><code>## bartMachine v1.3.4.1 for regression
 ## 
 ## training data size: n = 401 and p = 31 
-## built in 5.9 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
+## built in 6.5 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
 ## 
 ## sigsq est for y beforehand: 0.185 
-## avg sigsq estimate after burn-in: 0.126 
+## avg sigsq estimate after burn-in: 0.12859 
 ## 
 ## in-sample statistics:
-##  L1 = 89.17 
-##  L2 = 33.3 
+##  L1 = 90.04 
+##  L2 = 34.13 
 ##  rmse = 0.29 
-##  Pseudo-Rsq = 0.8279
-## p-val for shapiro-wilk test of normality of residuals: 0.00128 
-## p-val for zero-mean noise: 0.99946
+##  Pseudo-Rsq = 0.8236
+## p-val for shapiro-wilk test of normality of residuals: 0.00156 
+## p-val for zero-mean noise: 0.95958
 </code></pre>
-<p>Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.83, equating to a 10% reduction in explained variance. The RMSE increased from 0.2 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:</p>
+<p>Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.82, equating to a 11% reduction in explained variance. The RMSE increased from 0.19 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">check_bart_error_assumptions</span><span class="p">(</span><span class="n">bm_final</span><span class="p">)</span>
 </span></span></code></pre></div><p>
 
@@ -8008,10 +8030,10 @@ Max
 ## weights: lw  
 ## number of simulations + 1: 100 
 ## 
-## statistic = 0.059006, observed rank = 100, p-value = 0.01
+## statistic = 0.061242, observed rank = 97, p-value = 0.03
 ## alternative hypothesis: greater
 </code></pre>
-<p>Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.01), we conclude there is no significant spatial autocorrelation in the residuals.</p>
+<p>Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.03), we conclude there is no significant spatial autocorrelation in the residuals.</p>
 <h2 id="partial-dependence-plots">Partial Dependence Plots</h2>
 <p>So far, we’ve built and refined a BART model to predict age-adjusted incidence rates of COVID-19 in German counties. However, our main goal is to explore the data rather than simply predict. BART’s high R² suggests it captures these non-linear relationships, and Partial Dependence Plots (PDPs) let us visualize and interpret them (Friedman 2002; Scarpone et al. 2017, 2020).</p>
 <p>Although the <a href="https://cran.r-project.org/web/packages/pdp/index.html" target="_blank" rel="noopener">pdp</a> is great for computing PDPs, it does not directly support <code>bartMachine</code>. Fortunately, <code>bartMachine</code> provides its own PDP function, <code>pd_plot</code>. Below is a demonstration using <code>S_115</code> (Regional Population Potential):</p>
@@ -8097,15 +8119,17 @@ Max
 
 <div class="flex justify-center">
   
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/machine-learning/">Machine Learning</a>
+  
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/r/">R</a>
   
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/bayesian/">Bayesian</a>
   
-  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/machine-learning/">Machine Learning</a>
-  
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/health-geography/">Health Geography</a>
   
   <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/covid-19/">COVID-19</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/exploratory-spatial-data-analysis-esda/">Exploratory Spatial Data Analysis (ESDA)</a>
   
 </div>
 

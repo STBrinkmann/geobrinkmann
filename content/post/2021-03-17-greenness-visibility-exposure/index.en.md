@@ -3,15 +3,16 @@ title: 'Visible Greenness Exposure'
 author: Sebastian Brinkmann
 date: '2021-03-15'
 slug: visible-greenness-exposure
-categories: ["R"]
-tags: ["R", "GIS", "Greenspace", "Health Geography", "LiDAR"]
+tags: ["Greenness Visibility", "R", "Health Geography", "Greenspace", "LiDAR"]
 subtitle: ''
 summary: 'Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis.'
 authors: []
 lastmod: '2021-03-15T18:43:26+01:00'
 featured: no
 image:
-    caption: ''
+  focal_point: ""
+  placement: 2
+  preview_only: true
 focal_point: ''
 preview_only: no
 projects: []
@@ -66,7 +67,7 @@ dtm <- rast("https://zenodo.org/records/5061257/files/Vancouver_DTM_1m.tif")
 
 Greenspace is associated with multiple health benefits through a variety of pathways (Markevych et al. 2017; Dzhambov et al. 2020; Labib, Lindley, and Huck 2020). In a recent study (in submission), we analyzed health benefits based on the availability and accessibility of greenspace using a top-down, bird’s-eye approach. Visibility constitutes a third type of exposure assessment and represents the amount of greenspace observable from a given point (Labib, Lindley, and Huck 2020). While recent studies have adopted viewshed-based visibility analysis (Chamberlain and Meitner 2013; Tabrizian et al. 2020; Labib, Huck, and Lindley 2021), visibility measures are still underrepresented in current research (Labib, Lindley, and Huck 2020). The code below is primarily based on the methods described by Labib, Huck, and Lindley (2021) and their Python implementation of the [Green Visibility Index](https://github.com/jonnyhuck/green-visibility-index/blob/master/gvi.py). The overall process is illustrated in the figure below.
 
-[<img src="gvi.jpg" style="width:7.13in" />](https://doi.org/10.1016/j.scitotenv.2020.143050)
+[<img src="featured.jpg" style="width:7.13in" />](https://doi.org/10.1016/j.scitotenv.2020.143050)
 
 <sub>*Conceptual design of greenspace visibility modelling (Labib, Huck, and Lindley 2021).*</sub>
 
@@ -195,7 +196,7 @@ plot(viewshed_1[[1]])
 #### 3. Resolution = 2m
 
 Output-Raster-Cells: 90 000  
-Runtime: 27.12 milliseconds
+Runtime: 27.12 milliseconds  
 Total visibility: 11.5%
 
 ``` r
@@ -212,7 +213,7 @@ plot(viewshed_2[[1]])
 #### 4. Resolution = 5m
 
 Output-Raster-Cells: 14 400  
-Runtime: 9.21 milliseconds
+Runtime: 9.21 milliseconds  
 Total visibility: 14.6%
 
 ``` r

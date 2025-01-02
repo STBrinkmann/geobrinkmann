@@ -4,16 +4,16 @@ author: Sebastian Brinkmann
 date: '2021-06-22'
 slug: visibility-sensitivity-analysis
 categories: ["R"]
-tags: ["R", "Greenspace", "Exploratory Spatial Data Analysis (ESDA)"]
+tags: ["Greenness Visibility", "R", "Greenspace", "Exploratory Spatial Data Analysis (ESDA)"]
 subtitle: ''
 summary: 'Thinking critically about parameters before running the code is always important. In this post I will explain how to set important parameters when conducting a Visibility Analysis.'
 authors: []
 lastmod: '2021-06-22T18:06:03+02:00'
 featured: no
 image:
-  caption: ''
-  focal_point: ''
-  preview_only: no
+  focal_point: ""
+  placement: 2
+  preview_only: true
 projects: []
 ---
 

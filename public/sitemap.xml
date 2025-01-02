@@ -82,15 +82,27 @@
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
+    <loc>http://localhost:4321/tags/r/</loc>
+    <lastmod>2021-12-16T11:14:11+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:4321/publication/spatlac-index-r-package/</loc>
+    <lastmod>2021-12-16T11:14:11+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:4321/publication/gvi-greenness-visibility-index-r-package/</loc>
+    <lastmod>2021-07-05T11:14:11+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:4321/tags/health-geography/</loc>
+    <lastmod>2021-07-05T11:14:11+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
     <loc>http://localhost:4321/post/</loc>
     <lastmod>2021-06-22T18:06:03+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>http://localhost:4321/tags/exploratory-spatial-data-analysis-esda/</loc>
-    <lastmod>2021-06-22T18:06:03+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>http://localhost:4321/tags/r/</loc>
     <lastmod>2021-06-22T18:06:03+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
@@ -110,20 +122,8 @@
     <lastmod>2021-04-20T15:54:53+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/health-geography/</loc>
-    <lastmod>2021-04-20T15:54:53+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
     <loc>http://localhost:4321/tags/machine-learning/</loc>
     <lastmod>2021-04-20T15:54:53+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>http://localhost:4321/tags/lidar/</loc>
-    <lastmod>2021-03-15T18:43:26+01:00</lastmod>
-    <changefreq>weekly</changefreq>
-  </url><url>
-    <loc>http://localhost:4321/post/visible-greenness-exposure/</loc>
-    <lastmod>2021-03-15T18:43:26+01:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
     <loc>http://localhost:4321/publication/scarpone2020/</loc>
@@ -142,7 +142,16 @@
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/content/</loc>
+    <loc>http://localhost:4321/tags/stm/</loc>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:4321/tags/text-mining/</loc>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>http://localhost:4321/post/text-mining-belval/</loc>
+    <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>

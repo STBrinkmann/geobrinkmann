@@ -45,6 +45,22 @@
     </item>
     
     <item>
+      <title>spatLac: Spatial Lacunarity</title>
+      <link>http://localhost:4321/publication/spatlac-index-r-package/</link>
+      <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/publication/spatlac-index-r-package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>GVI: Greenness Visibility Index R package</title>
+      <link>http://localhost:4321/publication/gvi-greenness-visibility-index-r-package/</link>
+      <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/publication/gvi-greenness-visibility-index-r-package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Visibility - Sensitivity Analysis</title>
       <link>http://localhost:4321/post/visibility-sensitivity-analysis/</link>
       <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
@@ -6984,20 +7000,20 @@ Max
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## bartMachine v1.3.4.1 for regression
 ## 
 ## training data size: n = 401 and p = 366 
-## built in 6.1 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
+## built in 6.4 secs on 20 cores, 100 trees, 300 burn-in and 2000 post. samples
 ## 
 ## sigsq est for y beforehand: 0.024 
-## avg sigsq estimate after burn-in: 0.09589 
+## avg sigsq estimate after burn-in: 0.09236 
 ## 
 ## in-sample statistics:
-##  L1 = 60.66 
-##  L2 = 15.61 
-##  rmse = 0.2 
-##  Pseudo-Rsq = 0.9193
-## p-val for shapiro-wilk test of normality of residuals: 0.00015 
-## p-val for zero-mean noise: 0.97071
+##  L1 = 58.88 
+##  L2 = 14.93 
+##  rmse = 0.19 
+##  Pseudo-Rsq = 0.9228
+## p-val for shapiro-wilk test of normality of residuals: 2e-05 
+## p-val for zero-mean noise: 0.92439
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The Pseudo-R² of 0.92 and RMSE of 0.2 look promising. Let’s check the error assumptions next:&lt;/p&gt;
+&lt;p&gt;The Pseudo-R² of 0.92 and RMSE of 0.19 look promising. Let’s check the error assumptions next:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;check_bart_error_assumptions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bm_All&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
 
@@ -7139,20 +7155,20 @@ Max
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## bartMachine v1.3.4.1 for regression
 ## 
 ## training data size: n = 401 and p = 31 
-## built in 5.9 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
+## built in 6.5 secs on 20 cores, 225 trees, 250 burn-in and 1000 post. samples
 ## 
 ## sigsq est for y beforehand: 0.185 
-## avg sigsq estimate after burn-in: 0.126 
+## avg sigsq estimate after burn-in: 0.12859 
 ## 
 ## in-sample statistics:
-##  L1 = 89.17 
-##  L2 = 33.3 
+##  L1 = 90.04 
+##  L2 = 34.13 
 ##  rmse = 0.29 
-##  Pseudo-Rsq = 0.8279
-## p-val for shapiro-wilk test of normality of residuals: 0.00128 
-## p-val for zero-mean noise: 0.99946
+##  Pseudo-Rsq = 0.8236
+## p-val for shapiro-wilk test of normality of residuals: 0.00156 
+## p-val for zero-mean noise: 0.95958
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.83, equating to a 10% reduction in explained variance. The RMSE increased from 0.2 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:&lt;/p&gt;
+&lt;p&gt;Compared to the first model, the Pseudo-R² decreases from 0.92 to 0.82, equating to a 11% reduction in explained variance. The RMSE increased from 0.19 to 0.29, indicating that the final model predicts the age-adjusted incidence rate of COVID-19 with an accuracy of roughly +/− 1.3 cases per 100,000. Let’s again check the diagnostic plots:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;check_bart_error_assumptions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bm_final&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;
 
@@ -7255,10 +7271,10 @@ Max
 ## weights: lw  
 ## number of simulations + 1: 100 
 ## 
-## statistic = 0.059006, observed rank = 100, p-value = 0.01
+## statistic = 0.061242, observed rank = 97, p-value = 0.03
 ## alternative hypothesis: greater
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.01), we conclude there is no significant spatial autocorrelation in the residuals.&lt;/p&gt;
+&lt;p&gt;Moran’s I ranges from -1 to 1, where values closer to ±1 indicate strong positive/negative spatial autocorrelation, and 0 implies randomness. With a Moran’s I of 0.06 (p=0.03), we conclude there is no significant spatial autocorrelation in the residuals.&lt;/p&gt;
 &lt;h2 id=&#34;partial-dependence-plots&#34;&gt;Partial Dependence Plots&lt;/h2&gt;
 &lt;p&gt;So far, we’ve built and refined a BART model to predict age-adjusted incidence rates of COVID-19 in German counties. However, our main goal is to explore the data rather than simply predict. BART’s high R² suggests it captures these non-linear relationships, and Partial Dependence Plots (PDPs) let us visualize and interpret them (Friedman 2002; Scarpone et al. 2017, 2020).&lt;/p&gt;
 &lt;p&gt;Although the &lt;a href=&#34;https://cran.r-project.org/web/packages/pdp/index.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;pdp&lt;/a&gt; is great for computing PDPs, it does not directly support &lt;code&gt;bartMachine&lt;/code&gt;. Fortunately, &lt;code&gt;bartMachine&lt;/code&gt; provides its own PDP function, &lt;code&gt;pd_plot&lt;/code&gt;. Below is a demonstration using &lt;code&gt;S_115&lt;/code&gt; (Regional Population Potential):&lt;/p&gt;
@@ -7363,7 +7379,7 @@ body {text-align: justify}
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;dtm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rast&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;https://zenodo.org/records/5061257/files/Vancouver_DTM_1m.tif&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;visibility-analysis&#34;&gt;Visibility Analysis&lt;/h2&gt;
 &lt;p&gt;Greenspace is associated with multiple health benefits through a variety of pathways (Markevych et al. 2017; Dzhambov et al. 2020; Labib, Lindley, and Huck 2020). In a recent study (in submission), we analyzed health benefits based on the availability and accessibility of greenspace using a top-down, bird’s-eye approach. Visibility constitutes a third type of exposure assessment and represents the amount of greenspace observable from a given point (Labib, Lindley, and Huck 2020). While recent studies have adopted viewshed-based visibility analysis (Chamberlain and Meitner 2013; Tabrizian et al. 2020; Labib, Huck, and Lindley 2021), visibility measures are still underrepresented in current research (Labib, Lindley, and Huck 2020). The code below is primarily based on the methods described by Labib, Huck, and Lindley (2021) and their Python implementation of the &lt;a href=&#34;https://github.com/jonnyhuck/green-visibility-index/blob/master/gvi.py&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Green Visibility Index&lt;/a&gt;. The overall process is illustrated in the figure below.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1016/j.scitotenv.2020.143050&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;gvi.jpg&#34; style=&#34;width:7.13in&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://doi.org/10.1016/j.scitotenv.2020.143050&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;img src=&#34;featured.jpg&#34; style=&#34;width:7.13in&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;sub&gt;&lt;em&gt;Conceptual design of greenspace visibility modelling (Labib, Huck, and Lindley 2021).&lt;/em&gt;&lt;/sub&gt;&lt;/p&gt;
 &lt;p&gt;A line of sight is calculated from the observer to every point in the area of interest, determining which points are visible versus those that are hidden. To distinguish green from non-green points, a greenspace mask is applied. For simplicity in this post, the code is not fully optimized. A more optimized approach is available in my &lt;a href=&#34;https://github.com/STBrinkmann/CGEI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CGEI&lt;/a&gt; R package, which employs improved data structures and C++.&lt;/p&gt;
 &lt;h3 id=&#34;rasterprofile&#34;&gt;Rasterprofile&lt;/h3&gt;
@@ -7480,7 +7496,7 @@ Total visibility: 9.1%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h4 id=&#34;3-resolution--2m&#34;&gt;3. Resolution = 2m&lt;/h4&gt;
 &lt;p&gt;Output-Raster-Cells: 90 000&lt;br&gt;
-Runtime: 27.12 milliseconds
+Runtime: 27.12 milliseconds&lt;br&gt;
 Total visibility: 11.5%&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;viewshed_2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CGEI&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;viewshed_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;observer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sf_start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;aggregate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
@@ -7491,7 +7507,7 @@ Total visibility: 11.5%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h4 id=&#34;4-resolution--5m&#34;&gt;4. Resolution = 5m&lt;/h4&gt;
 &lt;p&gt;Output-Raster-Cells: 14 400&lt;br&gt;
-Runtime: 9.21 milliseconds
+Runtime: 9.21 milliseconds&lt;br&gt;
 Total visibility: 14.6%&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;viewshed_3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CGEI&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;viewshed_list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;observer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sf_start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;aggregate&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
@@ -7861,6 +7877,72 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
       <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
       <guid>http://localhost:4321/publication/scarpone2020/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>Text Mining - Belval Campus</title>
+      <link>http://localhost:4321/post/text-mining-belval/</link>
+      <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
+      <guid>http://localhost:4321/post/text-mining-belval/</guid>
+      <description>&lt;p&gt;In 2001 a project has been created to transform the former steel production site in Belval,
+Luxembourg into the &lt;a href=&#34;https://wwwde.uni.lu/fhse/belval_campus&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cité des Sciences&lt;/a&gt;.
+In &lt;a href=&#34;https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-clin-doeil/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;2015&lt;/a&gt; the new campus has been opened.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://www.uni.lu/wp-content/uploads/sites/9/2023/07/Esch-Belval_areal-view2_2014.jpg&#34; alt=&#34;Campus Belval&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;In this analysis I want to explore how this topic is being represented in the news.&lt;/p&gt;
+&lt;p&gt;Therefore I first collected the top 58 news articles from &lt;a href=&#34;https://www.google.com/search?q=belval&amp;#43;campus&amp;#43;esch-sur-alzette&amp;amp;client=firefox-b-d&amp;amp;sxsrf=ALeKk0080OxF6oOpC3lb6hNxafFccNgYjA:1590592264605&amp;amp;source=lnms&amp;amp;tbm=nws&amp;amp;sa=X&amp;amp;ved=2ahUKEwi57Kf3qdTpAhU7ThUIHSw_CG0Q_AUoAXoECCwQAw&amp;amp;biw=1920&amp;amp;bih=966&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google News&lt;/a&gt;.
+The texts have been translated to English with &lt;a href=&#34;https://www.deepl.com/en/translator&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DeepL&lt;/a&gt; and structured
+in a .txt document like so:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Title: Title_Name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DATE: dd.mm.yyyy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;. Text
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Title: Title_Name
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DATE: dd.mm.yyyy
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;. Text
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;wordcloud&#34;&gt;Wordcloud&lt;/h3&gt;
+&lt;p&gt;Next a Wordcloud with the word frequency of the whole corpus has been created:
+&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/wordcloud.svg?sanitize=true&#34;&gt;
+We can already see that the new campus is of high importance. But also, the look into the future (&amp;ldquo;2022&amp;rdquo;, &amp;ldquo;future&amp;rdquo;),
+and the acknowledgement of its history (&amp;ldquo;furnace&amp;rdquo;, &amp;ldquo;steel&amp;rdquo;, &amp;ldquo;industrial&amp;rdquo;&amp;hellip;) are often thematised.&lt;/p&gt;
+&lt;h3 id=&#34;term-frequency-inverse-document-frequency&#34;&gt;Term Frequency-Inverse Document Frequency&lt;/h3&gt;
+&lt;p&gt;At this point the corpus does not contain many articles for 2014 and 2015.
+Therefore these articles have been combined for the further analysis. The next figure shows the number of articles per year:
+&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/Articles_Count.svg?sanitize=true&#34;&gt;&lt;/p&gt;
+&lt;p&gt;With the wordcloud we explored the word frequency of the whole corpus. To analyse the keywords of each year, a &lt;a href=&#34;http://www.tfidf.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;term frequency-inverse document frequency&lt;/a&gt; has been conducted:
+&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/tf_idf.svg?sanitize=true&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;structural-topic-model&#34;&gt;Structural Topic Model&lt;/h3&gt;
+&lt;p&gt;Next a &lt;a href=&#34;https://www.structuraltopicmodel.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Structural Topic Model (STM)&lt;/a&gt; has been applied on the data set. From the previous steps we already have gained an understanding of the complexity of the coverage of reports about Belval. Therefore, we knew that there are not that many different topics. After an iterative process of setting the parameter K (number of topics) and interpreting the results, I set K = 6. These 6 topics have been labeled manually.
+&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/stm.svg?sanitize=true&#34;&gt;
+To evaluate the importance and the change over time of these topics, the topic of each article within the corpus has been predicted. The result is shown in the final figure:
+&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/timeseries.svg?sanitize=true&#34;&gt;
+The most frequent articles are those that deal with the university campus in Belval itself. The second most frequent type of article is the one dealing with structural change, i.e. the transformation from a former steel industry location to the Cité des Sciences, the city of science. It should be emphasized that articles on this topic predominantly highlight the positive implementation of structural change. This is followed by articles on the topic of culture, although it is clearly visible here that there has been increased reporting on this area since 2019. This is due to the fact that this year Belval was admitted to the Capital of Culture 2022. This analysis was complemented by a qualitative interview with a partner from the University of Luxembourg about the Belval project.&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+The code is available on &lt;a href=&#34;https://github.com/STBrinkmann/Text_Mining_Belval&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
   </channel>
