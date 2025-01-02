@@ -3,7 +3,7 @@
 <!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="" />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/experience/" />
+  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/experience/" />
 
   
   
@@ -130,45 +130,6 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-      dataLayer.push(arguments);
-  }
-
-  function trackOutboundLink(url, target) {
-    gtag('event', 'click', {
-         'event_category': 'outbound',
-         'event_label': url,
-         'transport_type': 'beacon',
-         'event_callback': function () {
-           if (target !== '_blank') {
-             document.location = url;
-           }
-         }
-    });
-    console.debug("Outbound link clicked: " + url);
-  }
-
-  function onClickCallback(event) {
-    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
-      return;
-    }
-    trackOutboundLink(event.target, event.target.getAttribute('target'));  
-  }
-
-  gtag('js', new Date());
-  gtag('config', 'G-42WCHZHZNS', {});
-  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
-
-  
-  document.addEventListener('click', onClickCallback, false);
-</script>
-
-
-
 
 
 
@@ -200,7 +161,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="https://geobrinkmann.com/experience/" />
+  <link rel="canonical" href="http://localhost:4321/experience/" />
 
   
   
@@ -223,10 +184,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="https://geobrinkmann.com/experience/" />
+  <meta property="og:url" content="http://localhost:4321/experience/" />
   <meta property="og:title" content="Experience | GeoBrinkmann" />
-  <meta property="og:description" content="" /><meta property="og:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="" /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -436,7 +397,6 @@
   
   
   
-  
 
 
 
@@ -599,8 +559,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
-    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
+    src="/js/hugo-blox-en.min.js"
+    integrity=""
   ></script>
 
   
@@ -1215,7 +1175,7 @@
   
   <div class="w-full lg:w-1/2">
     <div class="mb-5 text-xl font-bold text-gray-900 dark:text-white">
-      Technical Skills
+      Programming &amp; GIS
       
     </div>
     
@@ -1248,13 +1208,13 @@
 
       
       <span class="skills-icon inline-block">
-        <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+        <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#00599c" d="M118.766 95.82c.89-1.543 1.441-3.28 1.441-4.843V36.78c0-1.558-.55-3.297-1.441-4.84l-55.32 31.94Zm0 0"/><path fill="#004482" d="m68.36 126.586l46.933-27.094c1.352-.781 2.582-2.129 3.473-3.672l-55.32-31.94L8.12 95.82c.89 1.543 2.121 2.89 3.473 3.672l46.933 27.094c2.703 1.562 7.13 1.562 9.832 0Zm0 0"/><path fill="#659ad2" d="M118.766 31.941c-.891-1.546-2.121-2.894-3.473-3.671L68.359 1.172c-2.703-1.563-7.129-1.563-9.832 0L11.594 28.27C8.89 29.828 6.68 33.66 6.68 36.78v54.196c0 1.562.55 3.3 1.441 4.843L63.445 63.88Zm0 0"/><path fill="#fff" d="M63.445 26.035c-20.867 0-37.843 16.977-37.843 37.844s16.976 37.844 37.843 37.844c13.465 0 26.024-7.247 32.77-18.91L79.84 73.335c-3.38 5.84-9.66 9.465-16.395 9.465c-10.433 0-18.922-8.488-18.922-18.922c0-10.434 8.49-18.922 18.922-18.922c6.73 0 13.017 3.629 16.39 9.465l16.38-9.477c-6.75-11.664-19.305-18.91-32.77-18.91zM92.88 57.57v4.207h-4.207v4.203h4.207v4.207h4.203V65.98h4.203v-4.203h-4.203V57.57zm15.766 0v4.207h-4.204v4.203h4.204v4.207h4.207V65.98h4.203v-4.203h-4.203V57.57z"/></svg>
       </span>
       
 
       <span class="skills-name text-gray-700 dark:text-gray-300">
-        QGIS &amp; ESRI ArcGIS
-        <p class="skills-description">Advanced</p>
+        C++
+        <p class="skills-description">Intermediate</p>
       </span>
       
     </div>
@@ -1267,13 +1227,13 @@
 
       
       <span class="skills-icon inline-block">
-        <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path d="M29.2 63H28c-.5 5.1-1.2 11.3-10 11.3h-4c-2.3 0-2.4-.3-2.4-2V45.8c0-1.7 0-2.4 4.7-2.4h1.6v-1.5c-1.9.1-6.3.1-8.4.1c-1.9 0-5.8 0-7.5-.1v1.5h1.1c3.8 0 3.9.5 3.9 2.3v26.1c0 1.8-.1 2.3-3.9 2.3H2v1.5h25.8z"/><path d="M28.3 41.8c-.2-.6-.3-.8-.9-.8s-.8.2-1 .8l-8 20.3c-.3.8-.9 2.4-4 2.4v1.2h7.7v-1.2c-1.5 0-2.5-.7-2.5-1.7c0-.2 0-.3.1-.7l1.7-4.3h9.9l2 5.1c.1.2.2.4.2.6c0 1-1.9 1-2.8 1v1.2h9.8v-1.2h-.7c-2.3 0-2.6-.3-2.9-1.3zm-1.9 3.6l4.4 11.3h-8.9z"/><path d="M68.2 42.2H37.9L37 53.3h1.2c.7-8 1.4-9.7 9-9.7c.9 0 2.2 0 2.7.1c1 .2 1 .7 1 1.9v26.1c0 1.7 0 2.4-5.2 2.4h-2v1.5c2-.1 7.1-.1 9.4-.1s7.4 0 9.5.1v-1.5h-2c-5.2 0-5.2-.7-5.2-2.4v-26c0-1 0-1.7.9-1.9c.5-.1 1.9-.1 2.8-.1c7.5 0 8.2 1.6 8.9 9.7h1.2z"/><path d="M94.9 74.2h-1.2c-1.2 7.6-2.4 11.3-10.9 11.3h-6.6c-2.3 0-2.4-.3-2.4-2V70.2h4.4c4.8 0 5.4 1.6 5.4 5.8h1.2V62.9h-1.2c0 4.2-.5 5.8-5.4 5.8h-4.4v-12c0-1.6.1-2 2.4-2h6.4c7.6 0 8.9 2.7 9.7 9.7h1.2l-1.4-11.2H64.2v1.5h1.1c3.8 0 3.9.5 3.9 2.3v26c0 1.8-.1 2.3-3.9 2.3h-1.1V87h28.6z"/><path d="m109.9 56.6l6.8-10c1-1.6 2.7-3.2 7.2-3.2v-1.5H112v1.5c2 0 3.1 1.1 3.1 2.3c0 .5-.1.6-.4 1.1l-5.7 8.4l-6.4-9.6c-.1-.1-.3-.5-.3-.7c0-.6 1.1-1.4 3.2-1.5v-1.5c-1.7.1-5.3.1-7.2.1c-1.5 0-4.6 0-6.5-.1v1.5h.9c2.7 0 3.7.3 4.6 1.7l9.1 13.8l-8.1 12c-.7 1-2.2 3.3-7.2 3.3v1.5H103v-1.5c-2.3 0-3.1-1.4-3.1-2.3c0-.4.1-.6.5-1.2l7-10.4l7.9 11.9c.1.2.2.4.2.5c0 .6-1.1 1.4-3.2 1.5v1.5c1.7-.1 5.4-.1 7.2-.1c2.1 0 4.4 0 6.5.1v-1.5h-.9c-2.6 0-3.6-.2-4.7-1.8z"/></svg>
+        <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#E44D26" d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198l-45.019 12.48z"/><path fill="#F16529" d="m64 116.8l36.378-10.086l8.559-95.878H64z"/><path fill="#EBEBEB" d="M64 52.455H45.788L44.53 38.361H64V24.599H29.489l.33 3.692l3.382 37.927H64zm0 35.743l-.061.017l-15.327-4.14l-.979-10.975H33.816l1.928 21.609l28.193 7.826l.063-.017z"/><path fill="#fff" d="M63.952 52.455v13.763h16.947l-1.597 17.849l-15.35 4.143v14.319l28.215-7.82l.207-2.325l3.234-36.233l.335-3.696h-3.708zm0-27.856v13.762h33.244l.276-3.092l.628-6.978l.329-3.692z"/></svg>
       </span>
       
 
       <span class="skills-name text-gray-700 dark:text-gray-300">
-        LaTeX
-        <p class="skills-description">Advanced</p>
+        HTML, CSS
+        <p class="skills-description">Intermediate</p>
       </span>
       
     </div>
@@ -1292,25 +1252,6 @@
 
       <span class="skills-name text-gray-700 dark:text-gray-300">
         SQL
-        <p class="skills-description">Intermediate</p>
-      </span>
-      
-    </div>
-    
-    
-    
-    
-
-    <div class="skills-content">
-
-      
-      <span class="skills-icon inline-block">
-        <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#00599c" d="M118.766 95.82c.89-1.543 1.441-3.28 1.441-4.843V36.78c0-1.558-.55-3.297-1.441-4.84l-55.32 31.94Zm0 0"/><path fill="#004482" d="m68.36 126.586l46.933-27.094c1.352-.781 2.582-2.129 3.473-3.672l-55.32-31.94L8.12 95.82c.89 1.543 2.121 2.89 3.473 3.672l46.933 27.094c2.703 1.562 7.13 1.562 9.832 0Zm0 0"/><path fill="#659ad2" d="M118.766 31.941c-.891-1.546-2.121-2.894-3.473-3.671L68.359 1.172c-2.703-1.563-7.129-1.563-9.832 0L11.594 28.27C8.89 29.828 6.68 33.66 6.68 36.78v54.196c0 1.562.55 3.3 1.441 4.843L63.445 63.88Zm0 0"/><path fill="#fff" d="M63.445 26.035c-20.867 0-37.843 16.977-37.843 37.844s16.976 37.844 37.843 37.844c13.465 0 26.024-7.247 32.77-18.91L79.84 73.335c-3.38 5.84-9.66 9.465-16.395 9.465c-10.433 0-18.922-8.488-18.922-18.922c0-10.434 8.49-18.922 18.922-18.922c6.73 0 13.017 3.629 16.39 9.465l16.38-9.477c-6.75-11.664-19.305-18.91-32.77-18.91zM92.88 57.57v4.207h-4.207v4.203h4.207v4.207h4.203V65.98h4.203v-4.203h-4.203V57.57zm15.766 0v4.207h-4.204v4.203h4.204v4.207h4.207V65.98h4.203v-4.203h-4.203V57.57z"/></svg>
-      </span>
-      
-
-      <span class="skills-name text-gray-700 dark:text-gray-300">
-        HTML, CSS &amp; C++
         <p class="skills-description">Intermediate</p>
       </span>
       
@@ -1350,6 +1291,120 @@
       <span class="skills-name text-gray-700 dark:text-gray-300">
         C#
         <p class="skills-description">Beginner</p>
+      </span>
+      
+    </div>
+    
+    
+    
+    
+
+    <div class="skills-content">
+
+      
+      <span class="skills-icon inline-block">
+        <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5a17.92 17.92 0 0 1-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/></svg>
+      </span>
+      
+
+      <span class="skills-name text-gray-700 dark:text-gray-300">
+        QGIS &amp; ESRI ArcGIS
+        <p class="skills-description">Advanced</p>
+      </span>
+      
+    </div>
+    
+  </div>
+
+  
+  
+  <div class="w-full lg:w-1/2">
+    <div class="mb-5 text-xl font-bold text-gray-900 dark:text-white">
+      Soft Skills
+      
+    </div>
+    
+    
+    
+    
+    
+    
+
+    <div class="skills-content">
+
+      
+
+      <span class="skills-name text-gray-700 dark:text-gray-300">
+        Leadership
+        <p class="skills-description">Guiding team members and managing client projects from planning to delivery.</p>
+      </span>
+      
+    </div>
+    
+    
+    
+    
+    
+    
+
+    <div class="skills-content">
+
+      
+
+      <span class="skills-name text-gray-700 dark:text-gray-300">
+        Communication
+        <p class="skills-description">Tailoring complex technical content for diverse audiences through presentations and visualizations.</p>
+      </span>
+      
+    </div>
+    
+    
+    
+    
+    
+    
+
+    <div class="skills-content">
+
+      
+
+      <span class="skills-name text-gray-700 dark:text-gray-300">
+        Problem-Solving
+        <p class="skills-description">Applying structured approaches to address challenges and deliver data-driven solutions.</p>
+      </span>
+      
+    </div>
+    
+    
+    
+    
+    
+    
+
+    <div class="skills-content">
+
+      
+
+      <span class="skills-name text-gray-700 dark:text-gray-300">
+        Collaboration
+        <p class="skills-description">Leading and contributing to cross-functional teams in dynamic environments.</p>
+      </span>
+      
+    </div>
+    
+    
+    
+    
+    
+    
+
+    <div class="skills-content">
+
+      
+
+      <span class="skills-name text-gray-700 dark:text-gray-300">
+        Adaptability
+        <p class="skills-description">Flexibly aligning deliverables with client feedback and evolving project scopes. <br><br></p>
       </span>
       
     </div>

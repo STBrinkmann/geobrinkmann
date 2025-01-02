@@ -3,7 +3,7 @@
 <!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="Thinking critically about parameters before running the code is always important. In this post I will explain how to set important parameters when conducting a Visibility Analysis." />
 
   
-  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/post/visibility-sensitivity-analysis/" />
+  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/post/visibility-sensitivity-analysis/" />
 
   
   
@@ -130,45 +130,6 @@
 
 
 
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-
-  function gtag() {
-      dataLayer.push(arguments);
-  }
-
-  function trackOutboundLink(url, target) {
-    gtag('event', 'click', {
-         'event_category': 'outbound',
-         'event_label': url,
-         'transport_type': 'beacon',
-         'event_callback': function () {
-           if (target !== '_blank') {
-             document.location = url;
-           }
-         }
-    });
-    console.debug("Outbound link clicked: " + url);
-  }
-
-  function onClickCallback(event) {
-    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
-      return;
-    }
-    trackOutboundLink(event.target, event.target.getAttribute('target'));  
-  }
-
-  gtag('js', new Date());
-  gtag('config', 'G-42WCHZHZNS', {});
-  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
-
-  
-  document.addEventListener('click', onClickCallback, false);
-</script>
-
-
-
 
 
 
@@ -200,7 +161,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="https://geobrinkmann.com/post/visibility-sensitivity-analysis/" />
+  <link rel="canonical" href="http://localhost:4321/post/visibility-sensitivity-analysis/" />
 
   
   
@@ -223,10 +184,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="https://geobrinkmann.com/post/visibility-sensitivity-analysis/" />
+  <meta property="og:url" content="http://localhost:4321/post/visibility-sensitivity-analysis/" />
   <meta property="og:title" content="Visibility - Sensitivity Analysis | GeoBrinkmann" />
-  <meta property="og:description" content="Thinking critically about parameters before running the code is always important. In this post I will explain how to set important parameters when conducting a Visibility Analysis." /><meta property="og:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Thinking critically about parameters before running the code is always important. In this post I will explain how to set important parameters when conducting a Visibility Analysis." /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -599,8 +560,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
-    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
+    src="/js/hugo-blox-en.min.js"
+    integrity=""
   ></script>
 
   
@@ -1030,7 +991,7 @@
 <li>Capture visibility in a way that is meaningful for understanding the local geography (e.g., typical line-of-sight distances in the urban environment of your study area).</li>
 </ol>
 <p>Below, I explain how to systematically evaluate the influence of different distances and resolutions on viewshed calculations and why this step is critical for large-scale studies like the one I am conducting in Vancouver.</p>
-<img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-1-1.png" width="672" />
 <p>To analyze the effect of visible greenness, I&rsquo;ll be using the VGVI. This index expresses the proportion of visible greenness to the total visible area based on a viewshed. VGVI values range from 0 to 1, with 0 indicating that no green cells are visible and 1 meaning all visible cells are green. A detailed example of how to calculate the VGVI can be found in a recent <a href="https://geobrinkmann.com/post/visible-greenness-exposure/" target="_blank" rel="noopener">post</a> and in my <a href="https://github.com/STBrinkmann/CGEI" target="_blank" rel="noopener">CGEI R package</a>.</p>
 <p>Because VGVI relies on a viewshed, the analysis requires a Digital Surface Model (DSM), a Digital Terrain Model (DTM), and the observer location. Conceptually, the <em>viewshed</em> function checks every point within a defined radius (the <em>maximum distance</em>) to determine if it is visible from the observer’s vantage point.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Load libraries</span>
@@ -1053,7 +1014,7 @@
 </span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="n">dsm</span><span class="p">,</span> <span class="n">dtm_rast</span> <span class="o">=</span> <span class="n">dtm</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">250</span><span class="p">,</span> <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.7</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_1[[1]]</span><span class="p">)</span>
-</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+</span></span></code></pre></div><img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 <p>Above, the left plot shows the DSM for a local area, and the right plot highlights visibility in green (visible) and yellow (not visible). The observer (marked as a red dot) has an extensive view toward the west but limited visibility to the east.</p>
 <p>Next, the VGVI calculation typically follows by overlaying a greenspace mask on the viewshed. This post, however, focuses on understanding two crucial parameters for viewshed calculations: <strong>distance</strong> (the radius around each point to be considered) and <strong>resolution</strong> (the level of spatial detail in the raster data).</p>
 <h2 id="sensitivity-analysis">Sensitivity Analysis</h2>
@@ -1074,7 +1035,7 @@
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## 
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">## ── tmap v3 code detected ───────────────────────────────────────────────────────
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-mysql" data-lang="mysql"><span class="line"><span class="cl"><span class="c1">## [v3-&gt;v4] `tm_dots()`: use `fill_alpha` instead of `alpha`.
-</span></span></span></code></pre></div><img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+</span></span></span></code></pre></div><img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 <h3 id="distance">Distance</h3>
 <p>In a previous example, a 250 m distance was used. What happens if we increase the <em>maximum distance</em> to 800 m?</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Compute Viewshed</span>
@@ -1082,7 +1043,7 @@
 </span></span><span class="line"><span class="cl">                                  <span class="n">dsm_rast</span> <span class="o">=</span> <span class="n">dsm</span><span class="p">,</span> <span class="n">dtm_rast</span> <span class="o">=</span> <span class="n">dtm</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">800</span><span class="p">,</span> <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.7</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_2[[1]]</span><span class="p">)</span>
-</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+</span></span></code></pre></div><img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 <p>Here, increasing the distance to 800 m doesn’t reveal much more visible area for this particular observer location compared to 250 m. In other words, beyond 250 m, there isn’t significant new visibility to be gained. But the computation time dropped from around ~1200 ms to ~80 ms!</p>
 <p>This illustrates that maximum distance is not just a random choice—it must be guided by the real-world context. For instance, if you expect most relevant visibility influences (e.g., green spaces) to be within a few hundred meters, using very large radii might not add detail but will consume a lot more compute resources. In urban planning and health studies, visibility beyond a certain threshold can be less relevant because the eye-level environment that truly impacts people often lies closer.</p>
 <p>Below is a function to quantify the proportion of visible area for each distance value in the viewshed:</p>
@@ -1183,12 +1144,12 @@
 </span></span><span class="line"><span class="cl">  <span class="n">out</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">this_dist</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>The following plot shows how visibility generally decreases with increasing distance. Notably, there are local “bumps” at around 250 m and 500 m, possibly due to Vancouver’s urban planning and distribution of parks.</p>
-<img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 <p>Given these findings, I have chosen a distance threshold of <strong>550 meters</strong> — a point that appears to capture most of the visibility in this study area without incurring the full computational cost of an 800 m radius. In real-world terms, 550 m can be considered a reasonable walking distance within an urban environment, aligning with the idea that this radius covers the bulk of directly perceptible green space around a person.</p>
 <h3 id="resolution">Resolution</h3>
 <p>The <em>resolution</em> parameter determines how coarsely or finely the DSM and DTM are aggregated. Higher resolutions (e.g., 1 m) produce more precise visibility maps but also mean more cells to process. Conversely, coarser resolutions (e.g., 10 m) involve significantly fewer cells—thus less computation time—but come at the cost of spatial detail.</p>
 <p>For instance, at a 1 m resolution within a 550 m radius, you would have ~1,210,000 cells and might spend 0.5 seconds per viewshed. At 10 m resolution, there are only ~12,100 cells, and it might take just 0.01 seconds to compute. Below is a direct visualization of 1 m vs. 10 m resolution at a 250 m distance radius:</p>
-<img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+<img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 <p>To quantify these differences, I compare visibility grids of various resolutions to the 1 m baseline:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">compare_resolution</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">observer</span><span class="p">,</span> <span class="n">dsm_path</span><span class="p">,</span> <span class="n">dtm_path</span><span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="n">viewshed_tbl</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="n">FUN</span> <span class="o">=</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
@@ -1221,7 +1182,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kr">return</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>The boxplots below show that similarity decreases as resolution gets coarser. Meanwhile, computation time greatly benefits from lower resolutions. On average, the mean computation time for 1 m, 2 m, 5 m, and 10 m resolutions is approximately 4.80s, 1.05s, 0.85s, and 0.75s, respectively. A 2 m resolution offers a good balance for this analysis — about ~75% similarity to the baseline but only about 1/5 of the computation time.</p>
-<img src="https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+<img src="/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 <h2 id="conclusion">Conclusion</h2>
 <p>Conducting large-scale viewshed analyses — like computing the VGVI for an entire metropolitan region — can quickly become <em>computationally expensive</em>, so <strong>optimally choosing distance and resolution</strong> is essential. A sensitivity analysis helps pinpoint thresholds that capture the real-world visibility context while managing processing times.</p>
 <p>In this study, evaluating Vancouver’s diverse landscapes showed that beyond ~550 m, little additional visibility is gained, so 550 m became the selected maximum distance. For raster resolution, 2 m appeared to balance reasonable similarity to a 1 m baseline with a fivefold decrease in runtime.</p>
@@ -1271,7 +1232,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisibility-sensitivity-analysis%2F&amp;text=Visibility&#43;-&#43;Sensitivity&#43;Analysis"
+    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisibility-sensitivity-analysis%2F&amp;text=Visibility&#43;-&#43;Sensitivity&#43;Analysis"
     title="X"
     aria-label="X"
     id="share-link-x"
@@ -1289,7 +1250,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisibility-sensitivity-analysis%2F&amp;t=Visibility&#43;-&#43;Sensitivity&#43;Analysis"
+    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisibility-sensitivity-analysis%2F&amp;t=Visibility&#43;-&#43;Sensitivity&#43;Analysis"
     title="Facebook"
     aria-label="Facebook"
     id="share-link-facebook"
@@ -1309,7 +1270,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="mailto:?subject=Visibility%20-%20Sensitivity%20Analysis&amp;body=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisibility-sensitivity-analysis%2F"
+    href="mailto:?subject=Visibility%20-%20Sensitivity%20Analysis&amp;body=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisibility-sensitivity-analysis%2F"
     title="Email"
     aria-label="Email"
     id="share-link-email"
@@ -1327,7 +1288,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisibility-sensitivity-analysis%2F&amp;title=Visibility&#43;-&#43;Sensitivity&#43;Analysis"
+    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisibility-sensitivity-analysis%2F&amp;title=Visibility&#43;-&#43;Sensitivity&#43;Analysis"
     title="LinkedIn"
     aria-label="LinkedIn"
     id="share-link-linkedin"
@@ -1345,7 +1306,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="whatsapp://send?text=Visibility&#43;-&#43;Sensitivity&#43;Analysis%20https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisibility-sensitivity-analysis%2F"
+    href="whatsapp://send?text=Visibility&#43;-&#43;Sensitivity&#43;Analysis%20http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisibility-sensitivity-analysis%2F"
     title="WhatsApp"
     aria-label="WhatsApp"
     id="share-link-whatsapp"
@@ -1395,7 +1356,7 @@
       Authors
     </div>
     <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
-      <a href="https://geobrinkmann.com/" class="no-underline">
+      <a href="http://localhost:4321/" class="no-underline">
       Sebastian Brinkmann
       </a>
     </div>

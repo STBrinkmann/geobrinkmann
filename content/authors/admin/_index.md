@@ -43,37 +43,80 @@ profiles:
   url: https://www.linkedin.com/in/sebastian-t-brinkmann/
 - icon: academicons/orcid
   url: https://orcid.org/0000-0001-9835-7347
+# skills:
+# - items:
+#   - description: Expert
+#     icon: devicon/rstudio
+#     icon_pack: fab
+#     name: R
+#   - description: Advanced
+#     icon: hero/globe-alt
+#     icon_pack: hero
+#     name: QGIS & ESRI ArcGIS
+#   - description: Advanced
+#     icon: devicon/latex
+#     icon_pack: devicon  
+#     name: LaTeX
+#   - description: Intermediate
+#     icon: devicon/azuresqldatabase
+#     icon_pack: devicon
+#     name: SQL
+#   - description: Intermediate
+#     icon: devicon/cplusplus
+#     icon_pack: devicon
+#     name: HTML, CSS & C++
+#   - description: Beginner
+#     icon: devicon/python
+#     icon_pack: devicon
+#     name: Python
+#   - description: Beginner
+#     icon: devicon/csharp
+#     icon_pack: devicon
+#     name: C#
+#   name: Technical Skills
 skills:
-- items:
-  - description: Expert
-    icon: devicon/rstudio
-    icon_pack: fab
-    name: R
-  - description: Advanced
-    icon: hero/globe-alt
-    icon_pack: hero
-    name: QGIS & ESRI ArcGIS
-  - description: Advanced
-    icon: devicon/latex
-    icon_pack: devicon  
-    name: LaTeX
-  - description: Intermediate
-    icon: devicon/azuresqldatabase
-    icon_pack: devicon
-    name: SQL
-  - description: Intermediate
-    icon: devicon/cplusplus
-    icon_pack: devicon
-    name: HTML, CSS & C++
-  - description: Beginner
-    icon: devicon/python
-    icon_pack: devicon
-    name: Python
-  - description: Beginner
-    icon: devicon/csharp
-    icon_pack: devicon
-    name: C#
-  name: Technical Skills
+  - name: Programming & GIS
+    items:
+      - description: Expert
+        icon: devicon/rstudio
+        icon_pack: fab
+        name: R
+      - description: Intermediate
+        icon: devicon/cplusplus
+        icon_pack: devicon
+        name: C++
+      - description: Intermediate
+        icon: devicon/html5
+        icon_pack: devicon
+        name: HTML, CSS
+      - description: Intermediate
+        icon: devicon/azuresqldatabase
+        icon_pack: devicon
+        name: SQL
+      - description: Beginner
+        icon: devicon/python
+        icon_pack: devicon
+        name: Python
+      - description: Beginner
+        icon: devicon/csharp
+        icon_pack: devicon
+        name: C#
+      - description: Advanced
+        icon: hero/globe-alt
+        icon_pack: hero
+        name: QGIS & ESRI ArcGIS
+  - name: Soft Skills
+    items:
+      - description: Guiding team members and managing client projects from planning to delivery.
+        name: Leadership
+      - description: Tailoring complex technical content for diverse audiences through presentations and visualizations.
+        name: Communication
+      - description: Applying structured approaches to address challenges and deliver data-driven solutions.
+        name: Problem-Solving
+      - description: Leading and contributing to cross-functional teams in dynamic environments.
+        name: Collaboration
+      - description: Flexibly aligning deliverables with client feedback and evolving project scopes. <br><br>
+        name: Adaptability
 # status:
 #   icon: ☕️
 superuser: true
