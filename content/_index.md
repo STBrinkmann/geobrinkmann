@@ -13,15 +13,6 @@ sections:
       url: uploads/resume.pdf
     text: ""
     username: admin
-# - block: markdown
-#   content:
-#     subtitle: ""
-#     text: "I am a Data Scientist at [GfK Geomarketing](https://www.gfk.com/home) where I develop new methodology for calculating international market data.<br>
-#     Before, I was working as part of the [Digital Health Geography research group](https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/) as a Data Analyst with focus on machine learning, and the intersection of natural environment and human behavior by developing novel algorithms.<br><br>
-#     On this website I would like to share some of my private projects where I solve geo-spatial problems with R.<br><br>"
-#     title: "About me"
-#   design:
-#     columns: "1"
 - block: collection
   content:
     count: 3
@@ -52,4 +43,25 @@ sections:
     columns: 2
     view: article-grid
   id: papers
+- block: markdown
+  content:
+    title: Contact
+    text: |
+      <form name="contact" netlify style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+        <p style="margin-bottom: 1em;">
+          <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Name:</label>
+          <input type="text" name="name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+        </p>
+        <p style="margin-bottom: 1em;">
+          <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Email:</label>
+          <input type="email" name="email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+        </p>
+        <p style="margin-bottom: 1em;">
+          <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Message:</label>
+          <textarea name="message" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 150px;"></textarea>
+        </p>
+        <p style="text-align: center;">
+          <button type="submit" style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Send</button>
+        </p>
+      </form>
 ---

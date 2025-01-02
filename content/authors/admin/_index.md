@@ -86,7 +86,10 @@ work:
   date_start: "2024-10-01"
   position: Data Scientist
   summary: |-
-    Projektleitung im Consulting | Machine Learning | Entwicklung und Optimisierung von Skripten zur Erstellung von Standartprodukten | Prozess-Automatisierung | Implementierung geostatistischer Algortithmen | R Package Maintenance | R Shiny Apps
+    - Led client projects involving machine learning workflows, from initial scoping to final presentations, ensuring timely and effective delivery of insights.
+    - Optimized workflows and automated processes, improving the efficiency and scalability of standard product development.
+    - Developed and implemented advanced geostatistical algorithms to support data-driven decision-making in geomarketing.
+    - Designed and deployed interactive R Shiny dashboards, enabling dynamic geospatial analysis and visualization for clients.
 - company_logo: ""
   company_name: GfK - An NIQ Company
   company_url: "https://nielseniq.com/global/en/"
@@ -94,43 +97,32 @@ work:
   date_start: "2022-12-01"
   position: Junior Research Specialist
   summary: |-
-    Calculation of international purchasing power indicators | Solving client specific problems with geo-spatial data analysis | Tidymodels and Shiny App Development | R Package Maintenance
+    - Calculated international socioeconomic and purchasing power indicators to support market analysis.
+    - Developed innovative tools for data analysis and visualization, leveraging R and geospatial frameworks.
+    - Maintained and enhanced R packages and Shiny applications for internal and client-facing use.
+    - Delivered actionable insights through in-depth data analyses and professional client presentations.
 - company_logo: ""
   company_name: FAU Erlangen-Nürnberg
   company_url: "https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/"
   date_end: "2022-11-01"
-  date_start: "2022-08-01"
-  position: Digital Health Geography - Student assistant
-  summary: |
-    Analysing the effects of urban greenspace (e.g. visibility of nature or access to parks) on mental health as part of the PURE SPACE project. Road-Network analysis and spatial modeling as part of the digiDEM Bayern project.
-- company_logo: ""
-  company_name: GfK - An NIQ Company
-  company_url: "https://nielseniq.com/global/en/"
-  date_end: "2022-07-01"
-  date_start: "2022-05-01"
-  position: Internship
-  summary: |-
-    Calculation of international purchasing power indicators | Data Research | Data Warehouse | R Package Maintenance | Creating reports in Shiny & Leaflet
-- company_logo: ""
-  company_name: FAU Erlangen-Nürnberg
-  company_url: "https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/"
-  date_end: "2022-04-01"
   date_start: "2020-04-01"
-  position: Digital Health Geography - Student assistant
+  position: Student Research Assistant – Digital Health Geographies Group
   summary: |
-    Collecting and processing remote sensing, census and OSM data. Developing algorithms and software in C++ and R. Statistical modelling in the COVID-19, PURE SPACE and GEM projects, as well as contributing to scientific publications.
+    - Designed algorithms for spatial and statistical modeling, integrating R and C++ to address complex data challenges.
+    - Conducted remote sensing and census data analysis to support health geography research.
+    - Contributed to scientific publications on spatial epidemiology and urban green forestry.
 - company_logo: ""
   company_name: FAU Erlangen-Nürnberg
   company_url: "https://www.geography.nat.fau.eu/research/ag-braun/"
   date_end: "2019-09-01"
   date_start: "2019-04-01"
-  position: Remote Sensing & GIS - Student assistant
+  position: GIS and Remote Sensing Assistant
   summary: |
-    Development of scripts for processing optical satellite images and TanDEM-X data in R and Shell, in the context of glaciology. Georeferencing of glacier outlines in QGIS.
+    - Processed optical satellite and TanDEM-X datasets using R and Shell, enhancing geospatial research workflows.
+    - Georeferenced glaciers with precision in QGIS and ArcGIS, supporting climate change studies.
 ---
 
-## Hi there 👋
+## Hi :wave:
 
-I am a Data Scientist at [GfK Geomarketing](https://www.gfk.com/home) where I develop new methodology for calculating international market data.<br>
-Before, I was working as part of the [Digital Health Geography research group](https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/) as a Data Analyst with focus on machine learning, and the intersection of natural environment and human behavior by developing novel algorithms.<br><br>
-On this website I would like to share some of my private projects where I solve geo-spatial problems with R.
+I’m a Data Scientist at [GfK Geomarketing](https://www.gfk.com/home), specializing in developing methodologies for international market analysis. Previously, I explored the intersection of machine learning, natural environments, and human behavior as part of the [Digital Health Geography research group](https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/).<br>
+This site showcases my personal projects, where I tackle geo-spatial challenges using R.

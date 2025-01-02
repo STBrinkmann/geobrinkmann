@@ -3,7 +3,7 @@
 <!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="Memory clinics play a crucial role in the qualified diagnosis of dementia. This study aimed to assess the accessibility of memory clinics for people with dementia in Bavaria by utilizing a Geographic Information System (GIS) to calculate travel times from all Bavarian municipalities to the nearest memory clinic using OpenStreetMap data. It was found that the majority (40%; n = 93,950) of modeled individuals with dementia live in communities with an average travel time of 20 to 40 minutes to the nearest clinic, while approximately 7,000 (3%) face a travel time of more than one hour, particularly in rural areas. In light of demographic trends, improving accessibility to memory clinics across all locations is imperative. The expansion of memory clinics in areas with lengthy travel times or the introduction of mobile diagnostic services could enhance care for people with dementia." />
 
   
-  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/publication/digidem_2024/" />
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/publication/digidem_2024/" />
 
   
   
@@ -130,6 +130,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -161,7 +200,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="http://localhost:4321/publication/digidem_2024/" />
+  <link rel="canonical" href="https://geobrinkmann.com/publication/digidem_2024/" />
 
   
   
@@ -183,10 +222,10 @@
   <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="http://localhost:4321/publication/digidem_2024/" />
+  <meta property="og:url" content="https://geobrinkmann.com/publication/digidem_2024/" />
   <meta property="og:title" content="Räumliche Erreichbarkeit von Gedächtnisambulanzen – Eine geographische Analyse im Rahmen von digiDEM Bayern | GeoBrinkmann" />
-  <meta property="og:description" content="Memory clinics play a crucial role in the qualified diagnosis of dementia. This study aimed to assess the accessibility of memory clinics for people with dementia in Bavaria by utilizing a Geographic Information System (GIS) to calculate travel times from all Bavarian municipalities to the nearest memory clinic using OpenStreetMap data. It was found that the majority (40%; n = 93,950) of modeled individuals with dementia live in communities with an average travel time of 20 to 40 minutes to the nearest clinic, while approximately 7,000 (3%) face a travel time of more than one hour, particularly in rural areas. In light of demographic trends, improving accessibility to memory clinics across all locations is imperative. The expansion of memory clinics in areas with lengthy travel times or the introduction of mobile diagnostic services could enhance care for people with dementia." /><meta property="og:image" content="http://localhost:4321/publication/digidem_2024/featured.jpeg" />
-    <meta property="twitter:image" content="http://localhost:4321/publication/digidem_2024/featured.jpeg" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Memory clinics play a crucial role in the qualified diagnosis of dementia. This study aimed to assess the accessibility of memory clinics for people with dementia in Bavaria by utilizing a Geographic Information System (GIS) to calculate travel times from all Bavarian municipalities to the nearest memory clinic using OpenStreetMap data. It was found that the majority (40%; n = 93,950) of modeled individuals with dementia live in communities with an average travel time of 20 to 40 minutes to the nearest clinic, while approximately 7,000 (3%) face a travel time of more than one hour, particularly in rural areas. In light of demographic trends, improving accessibility to memory clinics across all locations is imperative. The expansion of memory clinics in areas with lengthy travel times or the introduction of mobile diagnostic services could enhance care for people with dementia." /><meta property="og:image" content="https://geobrinkmann.com/publication/digidem_2024/featured.jpeg" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/publication/digidem_2024/featured.jpeg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -216,12 +255,12 @@
   "@type": "Article",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "http://localhost:4321/publication/digidem_2024/"
+    "@id": "https://geobrinkmann.com/publication/digidem_2024/"
   },
   "headline": "Räumliche Erreichbarkeit von Gedächtnisambulanzen – Eine geographische Analyse im Rahmen von digiDEM Bayern",
   
   "image": [
-    "http://localhost:4321/publication/digidem_2024/featured.jpeg"
+    "https://geobrinkmann.com/publication/digidem_2024/featured.jpeg"
   ],
   
   "datePublished": "2022-06-10T00:00:00Z",
@@ -237,7 +276,7 @@
     "name": "GeoBrinkmann",
     "logo": {
       "@type": "ImageObject",
-      "url": "http://localhost:4321/media/icon_hu3521335977528485219.png"
+      "url": "https://geobrinkmann.com/media/icon_hu3521335977528485219.png"
     }
   },
   "description": "Memory clinics play a crucial role in the qualified diagnosis of dementia. This study aimed to assess the accessibility of memory clinics for people with dementia in Bavaria by utilizing a Geographic Information System (GIS) to calculate travel times from all Bavarian municipalities to the nearest memory clinic using OpenStreetMap data. It was found that the majority (40%; n = 93,950) of modeled individuals with dementia live in communities with an average travel time of 20 to 40 minutes to the nearest clinic, while approximately 7,000 (3%) face a travel time of more than one hour, particularly in rural areas. In light of demographic trends, improving accessibility to memory clinics across all locations is imperative. The expansion of memory clinics in areas with lengthy travel times or the introduction of mobile diagnostic services could enhance care for people with dementia."
@@ -332,6 +371,24 @@
         
       
     
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
   
   
@@ -384,6 +441,7 @@
         
       
     
+  
   
   
   
@@ -585,8 +643,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
   ></script>
 
   
@@ -882,6 +940,13 @@
               
             </li></ul>
       </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/content/"
+    
+  >Contents
+    </a></li>
     </ul>
 
     <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
@@ -1136,7 +1201,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4321%2Fpublication%2Fdigidem_2024%2F&amp;text=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern"
+    href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgeobrinkmann.com%2Fpublication%2Fdigidem_2024%2F&amp;text=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern"
     title="X"
     aria-label="X"
     id="share-link-x"
@@ -1154,7 +1219,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A4321%2Fpublication%2Fdigidem_2024%2F&amp;t=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern"
+    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeobrinkmann.com%2Fpublication%2Fdigidem_2024%2F&amp;t=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern"
     title="Facebook"
     aria-label="Facebook"
     id="share-link-facebook"
@@ -1174,7 +1239,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="mailto:?subject=R%C3%A4umliche%20Erreichbarkeit%20von%20Ged%C3%A4chtnisambulanzen%20%E2%80%93%20Eine%20geographische%20Analyse%20im%20Rahmen%20von%20digiDEM%20Bayern&amp;body=http%3A%2F%2Flocalhost%3A4321%2Fpublication%2Fdigidem_2024%2F"
+    href="mailto:?subject=R%C3%A4umliche%20Erreichbarkeit%20von%20Ged%C3%A4chtnisambulanzen%20%E2%80%93%20Eine%20geographische%20Analyse%20im%20Rahmen%20von%20digiDEM%20Bayern&amp;body=https%3A%2F%2Fgeobrinkmann.com%2Fpublication%2Fdigidem_2024%2F"
     title="Email"
     aria-label="Email"
     id="share-link-email"
@@ -1192,7 +1257,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A4321%2Fpublication%2Fdigidem_2024%2F&amp;title=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern"
+    href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fgeobrinkmann.com%2Fpublication%2Fdigidem_2024%2F&amp;title=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern"
     title="LinkedIn"
     aria-label="LinkedIn"
     id="share-link-linkedin"
@@ -1210,7 +1275,7 @@
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="whatsapp://send?text=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern%20http%3A%2F%2Flocalhost%3A4321%2Fpublication%2Fdigidem_2024%2F"
+    href="whatsapp://send?text=R%C3%A4umliche&#43;Erreichbarkeit&#43;von&#43;Ged%C3%A4chtnisambulanzen&#43;%E2%80%93&#43;Eine&#43;geographische&#43;Analyse&#43;im&#43;Rahmen&#43;von&#43;digiDEM&#43;Bayern%20https%3A%2F%2Fgeobrinkmann.com%2Fpublication%2Fdigidem_2024%2F"
     title="WhatsApp"
     aria-label="WhatsApp"
     id="share-link-whatsapp"
@@ -1267,7 +1332,7 @@
       Authors
     </div>
     <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
-      <a href="http://localhost:4321/" class="no-underline">
+      <a href="https://geobrinkmann.com/" class="no-underline">
       Sebastian Brinkmann
       </a>
     </div>
@@ -1507,20 +1572,6 @@
 
 
 
-
-  <p class="powered-by text-center">
-    
-    
-    
-      
-      
-      
-      
-      
-      
-      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
-    
-  </p>
 
 </footer>
 

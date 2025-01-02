@@ -3,7 +3,7 @@
 <!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="Data Scientist" />
 
   
-  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/publication_types/" />
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/publication_types/" />
 
   
   
@@ -130,6 +130,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -163,7 +202,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="http://localhost:4321/publication_types/" />
+  <link rel="canonical" href="https://geobrinkmann.com/publication_types/" />
 
   
   
@@ -186,10 +225,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="http://localhost:4321/publication_types/" />
+  <meta property="og:url" content="https://geobrinkmann.com/publication_types/" />
   <meta property="og:title" content="Publication_types | GeoBrinkmann" />
-  <meta property="og:description" content="Data Scientist" /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Data Scientist" /><meta property="og:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta property="og:updated_time" content="2024-04-05T00:00:00&#43;00:00" />
@@ -284,6 +323,24 @@
         
       
     
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
   
   
@@ -336,6 +393,7 @@
         
       
     
+  
   
   
   
@@ -537,8 +595,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
   ></script>
 
   
@@ -821,20 +879,6 @@
 
 
 
-
-  <p class="powered-by text-center">
-    
-    
-    
-      
-      
-      
-      
-      
-      
-      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
-    
-  </p>
 
 </footer>
 

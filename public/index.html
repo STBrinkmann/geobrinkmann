@@ -3,7 +3,7 @@
 <!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="Data Scientist" />
 
   
-  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/" />
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/" />
 
   
   
@@ -130,6 +130,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -163,7 +202,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="http://localhost:4321/" />
+  <link rel="canonical" href="https://geobrinkmann.com/" />
 
   
   
@@ -186,10 +225,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="http://localhost:4321/" />
+  <meta property="og:url" content="https://geobrinkmann.com/" />
   <meta property="og:title" content="GeoBrinkmann" />
-  <meta property="og:description" content="Data Scientist" /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Data Scientist" /><meta property="og:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta property="og:updated_time" content="2025-01-01T00:00:00&#43;00:00" />
@@ -201,7 +240,7 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite","url": "http://localhost:4321/"
+  "@type": "WebSite","url": "https://geobrinkmann.com/"
 }
 </script>
 
@@ -292,6 +331,24 @@
         
       
     
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
   
   
@@ -344,6 +401,7 @@
         
       
     
+  
   
   
   
@@ -545,8 +603,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
   ></script>
 
   
@@ -955,10 +1013,9 @@
     
     <div class="pt-2 justify-content-center prose prose-slate dark:prose-invert">
       <div class="bio-text" >
-        <h2 id="hi-there-">Hi there 👋</h2>
-<p>I am a Data Scientist at <a href="https://www.gfk.com/home" target="_blank" rel="noopener">GfK Geomarketing</a> where I develop new methodology for calculating international market data.<br>
-Before, I was working as part of the <a href="https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/" target="_blank" rel="noopener">Digital Health Geography research group</a> as a Data Analyst with focus on machine learning, and the intersection of natural environment and human behavior by developing novel algorithms.<br><br>
-On this website I would like to share some of my private projects where I solve geo-spatial problems with R.</p>
+        <h2 id="hi-wave">Hi &#x1f44b;</h2>
+<p>I’m a Data Scientist at <a href="https://www.gfk.com/home" target="_blank" rel="noopener">GfK Geomarketing</a>, specializing in developing methodologies for international market analysis. Previously, I explored the intersection of machine learning, natural environments, and human behavior as part of the <a href="https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/" target="_blank" rel="noopener">Digital Health Geography research group</a>.<br>
+This site showcases my personal projects, where I tackle geo-spatial challenges using R.</p>
 
       </div>
     </div>
@@ -1704,6 +1761,143 @@ On this website I would like to share some of my private projects where I solve 
 
   
 
+  
+  
+    
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+    
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="section-markdown" class="relative hbb-section blox-markdown  " style="padding: 3rem 0 3rem 0;" >
+ <div class="home-section-bg " >
+   
+ </div>
+  
+
+  
+
+    
+
+
+
+
+
+
+
+
+
+<div class="flex flex-col items-center max-w-prose mx-auto gap-3 justify-center px-6">
+
+  <div class="mb-6 text-3xl font-bold text-gray-900 dark:text-white">
+    Contact
+  </div>
+
+  
+  <div class="prose prose-slate lg:prose-xl dark:prose-invert max-w-prose"><form name="contact" netlify style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+  <p style="margin-bottom: 1em;">
+    <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Name:</label>
+    <input type="text" name="name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+  </p>
+  <p style="margin-bottom: 1em;">
+    <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Email:</label>
+    <input type="email" name="email" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
+  </p>
+  <p style="margin-bottom: 1em;">
+    <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Message:</label>
+    <textarea name="message" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; height: 150px;"></textarea>
+  </p>
+  <p style="text-align: center;">
+    <button type="submit" style="background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer;">Send</button>
+  </p>
+</form>
+</div>
+</div>
+
+
+  
+
+  
+</section>
+
+  
+
 
     </div>
     <div class="page-footer">
@@ -1777,20 +1971,6 @@ On this website I would like to share some of my private projects where I solve 
 
 
 
-
-  <p class="powered-by text-center">
-    
-    
-    
-      
-      
-      
-      
-      
-      
-      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
-    
-  </p>
 
 </footer>
 

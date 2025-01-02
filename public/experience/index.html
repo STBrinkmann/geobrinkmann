@@ -3,7 +3,7 @@
 <!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="" />
 
   
-  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/experience/" />
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/experience/" />
 
   
   
@@ -130,6 +130,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -161,7 +200,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="http://localhost:4321/experience/" />
+  <link rel="canonical" href="https://geobrinkmann.com/experience/" />
 
   
   
@@ -184,10 +223,10 @@
   <meta property="twitter:card" content="summary" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="http://localhost:4321/experience/" />
+  <meta property="og:url" content="https://geobrinkmann.com/experience/" />
   <meta property="og:title" content="Experience | GeoBrinkmann" />
-  <meta property="og:description" content="" /><meta property="og:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" />
-    <meta property="twitter:image" content="http://localhost:4321/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="" /><meta property="og:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/media/icon_hu11167265919780470973.png" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -288,6 +327,24 @@
         
       
     
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
   
   
@@ -340,6 +397,7 @@
         
       
     
+  
   
   
   
@@ -541,8 +599,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
   ></script>
 
   
@@ -810,7 +868,7 @@
 
 
 
-<section id="section-resume-experience" class="relative hbb-section blox-resume-experience  " style="padding: 5rem 0 5rem 0;" >
+<section id="section-resume-experience" class="relative hbb-section blox-resume-experience  " style="padding: 3rem 0 3rem 0;" >
  <div class="home-section-bg " >
    
  </div>
@@ -863,7 +921,13 @@
           Present
         
       </time>
-      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert">Projektleitung im Consulting | Machine Learning | Entwicklung und Optimisierung von Skripten zur Erstellung von Standartprodukten | Prozess-Automatisierung | Implementierung geostatistischer Algortithmen | R Package Maintenance | R Shiny Apps</div>
+      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert"><ul>
+<li>Led client projects involving machine learning workflows, from initial scoping to final presentations, ensuring timely and effective delivery of insights.</li>
+<li>Optimized workflows and automated processes, improving the efficiency and scalability of standard product development.</li>
+<li>Developed and implemented advanced geostatistical algorithms to support data-driven decision-making in geomarketing.</li>
+<li>Designed and deployed interactive R Shiny dashboards, enabling dynamic geospatial analysis and visualization for clients.</li>
+</ul>
+</div>
 
       
 
@@ -885,7 +949,13 @@
           Oct 2024
         
       </time>
-      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert">Calculation of international purchasing power indicators | Solving client specific problems with geo-spatial data analysis | Tidymodels and Shiny App Development | R Package Maintenance</div>
+      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert"><ul>
+<li>Calculated international socioeconomic and purchasing power indicators to support market analysis.</li>
+<li>Developed innovative tools for data analysis and visualization, leveraging R and geospatial frameworks.</li>
+<li>Maintained and enhanced R packages and Shiny applications for internal and client-facing use.</li>
+<li>Delivered actionable insights through in-depth data analyses and professional client presentations.</li>
+</ul>
+</div>
 
       
 
@@ -895,51 +965,7 @@
         <span class="absolute flex items-center justify-center w-6 h-6 bg-primary-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-primary-900">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="w-5 h-5 text-primary-800 dark:text-primary-300"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"></path></svg>
         </span>
-      <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white text-wrap">Digital Health Geography - Student assistant
-        
-      </h3>
-      <span class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-300">FAU Erlangen-Nürnberg</span>
-      <time class="block mb-3 text-sm font-normal leading-none text-gray-500 dark:text-gray-300">
-        
-          Aug 2022 –
-        
-        
-          Nov 2022
-        
-      </time>
-      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert">Analysing the effects of urban greenspace (e.g. visibility of nature or access to parks) on mental health as part of the PURE SPACE project. Road-Network analysis and spatial modeling as part of the digiDEM Bayern project.</div>
-
-      
-
-    </li>
-    
-    <li class="mb-10 ms-6">
-        <span class="absolute flex items-center justify-center w-6 h-6 bg-primary-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-primary-900">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="w-5 h-5 text-primary-800 dark:text-primary-300"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"></path></svg>
-        </span>
-      <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white text-wrap">Internship
-        
-      </h3>
-      <span class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-300">GfK - An NIQ Company</span>
-      <time class="block mb-3 text-sm font-normal leading-none text-gray-500 dark:text-gray-300">
-        
-          May 2022 –
-        
-        
-          Jul 2022
-        
-      </time>
-      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert">Calculation of international purchasing power indicators | Data Research | Data Warehouse | R Package Maintenance | Creating reports in Shiny &amp; Leaflet</div>
-
-      
-
-    </li>
-    
-    <li class="mb-10 ms-6">
-        <span class="absolute flex items-center justify-center w-6 h-6 bg-primary-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-primary-900">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="w-5 h-5 text-primary-800 dark:text-primary-300"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"></path></svg>
-        </span>
-      <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white text-wrap">Digital Health Geography - Student assistant
+      <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white text-wrap">Student Research Assistant – Digital Health Geographies Group
         
       </h3>
       <span class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-300">FAU Erlangen-Nürnberg</span>
@@ -948,10 +974,15 @@
           Apr 2020 –
         
         
-          Apr 2022
+          Nov 2022
         
       </time>
-      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert">Collecting and processing remote sensing, census and OSM data. Developing algorithms and software in C++ and R. Statistical modelling in the COVID-19, PURE SPACE and GEM projects, as well as contributing to scientific publications.</div>
+      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert"><ul>
+<li>Designed algorithms for spatial and statistical modeling, integrating R and C++ to address complex data challenges.</li>
+<li>Conducted remote sensing and census data analysis to support health geography research.</li>
+<li>Contributed to scientific publications on spatial epidemiology and urban green forestry.</li>
+</ul>
+</div>
 
       
 
@@ -961,7 +992,7 @@
         <span class="absolute flex items-center justify-center w-6 h-6 bg-primary-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-primary-900">
             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 256 256" class="w-5 h-5 text-primary-800 dark:text-primary-300"><path d="M216,56H176V48a24,24,0,0,0-24-24H104A24,24,0,0,0,80,48v8H40A16,16,0,0,0,24,72V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V72A16,16,0,0,0,216,56ZM96,48a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8v8H96ZM216,72v41.61A184,184,0,0,1,128,136a184.07,184.07,0,0,1-88-22.38V72Zm0,128H40V131.64A200.19,200.19,0,0,0,128,152a200.25,200.25,0,0,0,88-20.37V200ZM104,112a8,8,0,0,1,8-8h32a8,8,0,0,1,0,16H112A8,8,0,0,1,104,112Z"></path></svg>
         </span>
-      <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white text-wrap">Remote Sensing &amp; GIS - Student assistant
+      <h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white text-wrap">GIS and Remote Sensing Assistant
         
       </h3>
       <span class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-300">FAU Erlangen-Nürnberg</span>
@@ -973,7 +1004,11 @@
           Sep 2019
         
       </time>
-      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert">Development of scripts for processing optical satellite images and TanDEM-X data in R and Shell, in the context of glaciology. Georeferencing of glacier outlines in QGIS.</div>
+      <div class="mb-4 text-base font-normal text-gray-500 dark:text-gray-300 text-wrap prose prose-slate dark:prose-invert"><ul>
+<li>Processed optical satellite and TanDEM-X datasets using R and Shell, enhancing geospatial research workflows.</li>
+<li>Georeferenced glaciers with precision in QGIS and ArcGIS, supporting climate change studies.</li>
+</ul>
+</div>
 
       
 
@@ -1141,7 +1176,7 @@
 
 
 
-<section id="section-resume-skills" class="relative hbb-section blox-resume-skills  " style="padding: 5rem 0 5rem 0;" >
+<section id="section-resume-skills" class="relative hbb-section blox-resume-skills  " style="padding: 3rem 0 3rem 0;" >
  <div class="home-section-bg " >
    
  </div>
@@ -1405,20 +1440,6 @@
 
 
 
-
-  <p class="powered-by text-center">
-    
-    
-    
-      
-      
-      
-      
-      
-      
-      Published with <a href="https://hugoblox.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Hugo Blox Builder</a> — the free, <a href="https://github.com/HugoBlox/hugo-blox-builder" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
-    
-  </p>
 
 </footer>
 
