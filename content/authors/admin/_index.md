@@ -169,3 +169,15 @@ work:
 
 I’m a Data Scientist at [GfK Geomarketing](https://www.gfk.com/home), specializing in developing methodologies for international market analysis. Previously, I explored the intersection of machine learning, natural environments, and human behavior as part of the [Digital Health Geography research group](https://www.geography.nat.fau.eu/research/cultural-geography/wg-digital-health/).<br>
 This site showcases my personal projects, where I tackle geo-spatial challenges using R.
+<p style="text-align: center; margin-top: -10px;">
+  <a href="experience/" 
+     class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:outline-none focus:ring-gray-200 focus:text-primary-700 dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700" 
+     style="text-decoration: none;">
+    View CV
+  </a>
+</p>
+
+
+
+
+

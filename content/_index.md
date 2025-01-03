@@ -8,9 +8,9 @@ design:
 sections:
 - block: resume-biography-3
   content:
-    button:
-      text: Download CV
-      url: uploads/resume.pdf
+    # button:
+    #   text: Download CV
+    #   url: uploads/resume.pdf
     text: ""
     username: admin
 - block: collection
@@ -21,7 +21,6 @@ sections:
       folders:
       - post
     title: "<br><br>\U0001F4DA Recent Posts"
-    text: "[SEE ALL POSTS](post/)"
   design:
     spacing:
       padding:

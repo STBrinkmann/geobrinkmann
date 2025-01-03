@@ -2,155 +2,163 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:4321/</loc>
+    <loc>https://geobrinkmann.com/</loc>
     <lastmod>2025-01-01T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/accessibility/</loc>
+    <loc>https://geobrinkmann.com/tags/accessibility/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication_types/article-journal/</loc>
+    <loc>https://geobrinkmann.com/publication_types/article-journal/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication_types/</loc>
+    <loc>https://geobrinkmann.com/publication_types/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/</loc>
+    <loc>https://geobrinkmann.com/publication/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/digidem_2024/</loc>
+    <loc>https://geobrinkmann.com/publication/digidem_2024/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/</loc>
+    <loc>https://geobrinkmann.com/tags/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/urban-health/</loc>
+    <loc>https://geobrinkmann.com/tags/urban-health/</loc>
     <lastmod>2024-04-05T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/experience/</loc>
+    <loc>https://geobrinkmann.com/experience/</loc>
     <lastmod>2023-10-24T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/greenness-visibility/</loc>
+    <loc>https://geobrinkmann.com/tags/greenness-visibility/</loc>
     <lastmod>2022-06-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/brinkmann_2022/</loc>
+    <loc>https://geobrinkmann.com/publication/brinkmann_2022/</loc>
     <lastmod>2022-06-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/optimisation/</loc>
+    <loc>https://geobrinkmann.com/tags/optimisation/</loc>
     <lastmod>2022-06-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication_types/paper-conference/</loc>
+    <loc>https://geobrinkmann.com/publication_types/paper-conference/</loc>
     <lastmod>2022-06-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/viewshed-computation/</loc>
+    <loc>https://geobrinkmann.com/tags/viewshed-computation/</loc>
     <lastmod>2022-06-10T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/diabetes/</loc>
+    <loc>https://geobrinkmann.com/tags/diabetes/</loc>
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/gis/</loc>
+    <loc>https://geobrinkmann.com/tags/gis/</loc>
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/greenspace/</loc>
+    <loc>https://geobrinkmann.com/tags/greenspace/</loc>
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/indices/</loc>
+    <loc>https://geobrinkmann.com/tags/indices/</loc>
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/walker_2022/</loc>
+    <loc>https://geobrinkmann.com/publication/walker_2022/</loc>
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/socioeconomic-status/</loc>
+    <loc>https://geobrinkmann.com/tags/socioeconomic-status/</loc>
     <lastmod>2022-05-12T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/r/</loc>
+    <loc>https://geobrinkmann.com/tags/r/</loc>
     <lastmod>2021-12-16T11:14:11+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/spatlac-index-r-package/</loc>
+    <loc>https://geobrinkmann.com/publication/spatlac-index-r-package/</loc>
     <lastmod>2021-12-16T11:14:11+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/gvi-greenness-visibility-index-r-package/</loc>
+    <loc>https://geobrinkmann.com/publication/gvi-greenness-visibility-index-r-package/</loc>
     <lastmod>2021-07-05T11:14:11+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/health-geography/</loc>
+    <loc>https://geobrinkmann.com/tags/health-geography/</loc>
     <lastmod>2021-07-05T11:14:11+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/post/</loc>
+    <loc>https://geobrinkmann.com/post/</loc>
     <lastmod>2021-06-22T18:06:03+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/exploratory-spatial-data-analysis-esda/</loc>
+    <loc>https://geobrinkmann.com/tags/exploratory-spatial-data-analysis-esda/</loc>
     <lastmod>2021-06-22T18:06:03+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/post/visibility-sensitivity-analysis/</loc>
+    <loc>https://geobrinkmann.com/post/visibility-sensitivity-analysis/</loc>
     <lastmod>2021-06-22T18:06:03+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/</loc>
+    <loc>https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/</loc>
     <lastmod>2021-04-20T15:54:53+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/bayesian/</loc>
+    <loc>https://geobrinkmann.com/tags/bayesian/</loc>
     <lastmod>2021-04-20T15:54:53+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/covid-19/</loc>
+    <loc>https://geobrinkmann.com/tags/covid-19/</loc>
     <lastmod>2021-04-20T15:54:53+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/machine-learning/</loc>
+    <loc>https://geobrinkmann.com/tags/machine-learning/</loc>
     <lastmod>2021-04-20T15:54:53+02:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/publication/scarpone2020/</loc>
+    <loc>https://geobrinkmann.com/tags/lidar/</loc>
+    <lastmod>2021-03-15T18:43:26+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://geobrinkmann.com/post/visible-greenness-exposure/</loc>
+    <lastmod>2021-03-15T18:43:26+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+  </url><url>
+    <loc>https://geobrinkmann.com/publication/scarpone2020/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/built-environment/</loc>
+    <loc>https://geobrinkmann.com/tags/built-environment/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/infectious-disease/</loc>
+    <loc>https://geobrinkmann.com/tags/infectious-disease/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/sars-cov-2/</loc>
+    <loc>https://geobrinkmann.com/tags/sars-cov-2/</loc>
     <lastmod>2020-08-13T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/stm/</loc>
+    <loc>https://geobrinkmann.com/tags/stm/</loc>
     <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/tags/text-mining/</loc>
+    <loc>https://geobrinkmann.com/tags/text-mining/</loc>
     <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url><url>
-    <loc>http://localhost:4321/post/text-mining-belval/</loc>
+    <loc>https://geobrinkmann.com/post/text-mining-belval/</loc>
     <lastmod>2020-05-07T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
   </url>

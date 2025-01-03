@@ -1,9 +1,9 @@
 <!doctype html>
 <!-- This site was created with Hugo Blox. https://hugoblox.com -->
-<!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
+<!-- Last Published: January 3, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." />
 
   
-  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/post/visible-greenness-exposure/" />
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/post/visible-greenness-exposure/" />
 
   
   
@@ -130,6 +130,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -161,7 +200,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="http://localhost:4321/post/visible-greenness-exposure/" />
+  <link rel="canonical" href="https://geobrinkmann.com/post/visible-greenness-exposure/" />
 
   
   
@@ -183,10 +222,10 @@
   <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="http://localhost:4321/post/visible-greenness-exposure/" />
+  <meta property="og:url" content="https://geobrinkmann.com/post/visible-greenness-exposure/" />
   <meta property="og:title" content="Visible Greenness Exposure | GeoBrinkmann" />
-  <meta property="og:description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." /><meta property="og:image" content="http://localhost:4321/post/visible-greenness-exposure/featured.jpg" />
-    <meta property="twitter:image" content="http://localhost:4321/post/visible-greenness-exposure/featured.jpg" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="Exposure to residential greenness or green spaces such as parks or gardens are beneficial for multiple measures of health. One type of greenspace exposure is visibility, referring to the visual perception of greenness. In this post I will demonstrate, how to conduct a viewshed based visibility analysis." /><meta property="og:image" content="https://geobrinkmann.com/post/visible-greenness-exposure/featured.jpg" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/post/visible-greenness-exposure/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -232,6 +271,24 @@
 
 
   
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
     
       
       
@@ -565,8 +622,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
   ></script>
 
   
@@ -1056,8 +1113,8 @@
       
 
       <div class="prose prose-slate lg:prose-xl dark:prose-invert">
-        <script src="/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js"></script>
-<link href="/post/visible-greenness-exposure/index.en_files/lightable/lightable.css" rel="stylesheet" />
+        <script src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js"></script>
+<link href="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/lightable/lightable.css" rel="stylesheet" />
 <style>
 body {text-align: justify}
 </style>
@@ -1199,7 +1256,7 @@ Total visibility: 9.1%</p>
 </span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">                                  <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_1[[1]]</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png" width="1536" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png" width="1536" />
 <h4 id="3-resolution--2m">3. Resolution = 2m</h4>
 <p>Output-Raster-Cells: 90 000<br>
 Runtime: 27.12 milliseconds<br>
@@ -1210,7 +1267,7 @@ Total visibility: 11.5%</p>
 </span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">                                  <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_2[[1]]</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png" width="1536" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png" width="1536" />
 <h4 id="4-resolution--5m">4. Resolution = 5m</h4>
 <p>Output-Raster-Cells: 14 400<br>
 Runtime: 9.21 milliseconds<br>
@@ -1221,7 +1278,7 @@ Total visibility: 14.6%</p>
 </span></span><span class="line"><span class="cl">                                  <span class="n">max_distance</span> <span class="o">=</span> <span class="m">300</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">                                  <span class="n">observer_height</span> <span class="o">=</span> <span class="m">1.8</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">viewshed_3[[1]]</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png" width="1536" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png" width="1536" />
 <h2 id="network-visible-greenspace">Network Visible Greenspace</h2>
 <p>A practical use case for the viewshed algorithm is to calculate the visible greenness in a person’s neighborhood by examining visibility along roads and paths.</p>
 <h3 id="greenspace-mask">Greenspace Mask</h3>
@@ -1486,7 +1543,7 @@ Very bright pixels, that are not high-reflectance features from built-up areas.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="nf">st_coordinates</span><span class="p">(</span><span class="n">sf_start</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="nf">st_coordinates</span><span class="p">(</span><span class="n">sf_start</span><span class="p">)</span><span class="n">[2]</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">       <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;blue&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png" width="1536" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png" width="1536" />
 <h3 id="viewshed-greenness-visibility-index">Viewshed Greenness Visibility Index</h3>
 <p>The VGVI (Viewshed Greenness Visibility Index; (Labib, Huck, and Lindley 2021)) represents the proportion of visible greenspace to the total visible area. Its values range from 0 to 1, where 0 = no visible greenspace and 1 = all visible cells are green. Applying the <code>vgvi</code> function below to <code>viewshed_1</code> returns 0.91, meaning 91% of the visible area is vegetated.<br>
 In Labib, Huck, and Lindley (2021), the authors applied a distance-decay function to account for the decreasing visual prominence of an object with increasing distance from the observer. I will address distance-decay models in a future post.</p>
@@ -1513,7 +1570,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 </span></span><span class="line"><span class="cl">                                             <span class="n">speed</span> <span class="o">=</span> <span class="m">75</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">                                             <span class="n">isochrones_seq</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">1</span><span class="p">))</span>
 </span></span></code></pre></div><p>The figure below shows the isodistances with the red dot indicating the starting point. We will calculate the proportion of visible greenspace every 10 meters.</p>
-<img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg" width="960" />
+<img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg" width="960" />
 <p>To evaluate network visibility, we use the <code>vgvi</code> function from the <code>CGEI</code> package to calculate the VGVI along the road network. In this example, we sample points every 5 meters along the isodistances. A 2m resolution would be sufficient for a larger study because it does not differ much from 1m in practice—but here the total runtime at 1m resolution is still acceptable (only 4 seconds using 22 cores).</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">output</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">vgvi</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">aoi.isodistances</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">                     <span class="n">dsm_rast</span> <span class="o">=</span> <span class="n">dsm</span><span class="p">,</span>
@@ -1540,14 +1597,14 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 </span></span><span class="line"><span class="cl">                  <span class="n">legend.text.size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                  <span class="n">panel.show</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">                  <span class="n">frame</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg" width="960" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg" width="960" />
 <p>To determine the mean VGVI for the observer in the center, we simply take the average of all measurements. More sophisticated approaches might apply linear or logistic weighting to account for distance, as shown in our recent publication.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">round</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="n">output</span><span class="o">$</span><span class="n">VGVI</span><span class="p">),</span> <span class="m">2</span><span class="p">)</span>
 </span></span></code></pre></div><pre><code>## [1] 0.47
 </code></pre>
 <p>A mean value of 0.47 indicates that 47% of the visible area along the network is vegetated.</p>
 <p>One notable limitation of the viewshed algorithm is its inability to accurately account for eye-level visibility when the observer is under a tree. This is because the LiDAR-derived DSM blocks all lines of sight under the canopy.</p>
-<img src="/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg" width="480" />
+<img src="https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg" width="480" />
 <p>In the histogram above, many points have a GVI of 1. I have plotted the DSM and the GVI points along the route network in QGIS.<img src="GVI_bad.png" style="width:7.13in" /></p>
 <p>The image shows that these green points are located underneath trees, so no lines of sight extend beyond the canopy. As a result, all visible cells are green, leading to a GVI of 1.</p>
 <p>Although we can incorporate a distance-decay function or measure <em>actual</em> activity space rather than <em>potential</em> activity space, these are topics for future posts. Regardless, there is a clear variation in GVI values indicating areas with higher versus lower visible greenness.</p>
@@ -1618,7 +1675,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F&amp;text=Visible&#43;Greenness&#43;Exposure"
+    href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisible-greenness-exposure%2F&amp;text=Visible&#43;Greenness&#43;Exposure"
     title="X"
     aria-label="X"
     id="share-link-x"
@@ -1636,7 +1693,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F&amp;t=Visible&#43;Greenness&#43;Exposure"
+    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisible-greenness-exposure%2F&amp;t=Visible&#43;Greenness&#43;Exposure"
     title="Facebook"
     aria-label="Facebook"
     id="share-link-facebook"
@@ -1656,7 +1713,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="mailto:?subject=Visible%20Greenness%20Exposure&amp;body=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F"
+    href="mailto:?subject=Visible%20Greenness%20Exposure&amp;body=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisible-greenness-exposure%2F"
     title="Email"
     aria-label="Email"
     id="share-link-email"
@@ -1674,7 +1731,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F&amp;title=Visible&#43;Greenness&#43;Exposure"
+    href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisible-greenness-exposure%2F&amp;title=Visible&#43;Greenness&#43;Exposure"
     title="LinkedIn"
     aria-label="LinkedIn"
     id="share-link-linkedin"
@@ -1692,7 +1749,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="whatsapp://send?text=Visible&#43;Greenness&#43;Exposure%20http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fvisible-greenness-exposure%2F"
+    href="whatsapp://send?text=Visible&#43;Greenness&#43;Exposure%20https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fvisible-greenness-exposure%2F"
     title="WhatsApp"
     aria-label="WhatsApp"
     id="share-link-whatsapp"
@@ -1742,7 +1799,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
       Authors
     </div>
     <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
-      <a href="http://localhost:4321/" class="no-underline">
+      <a href="https://geobrinkmann.com/" class="no-underline">
       Sebastian Brinkmann
       </a>
     </div>

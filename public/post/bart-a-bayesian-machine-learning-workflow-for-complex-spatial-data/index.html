@@ -1,9 +1,9 @@
 <!doctype html>
 <!-- This site was created with Hugo Blox. https://hugoblox.com -->
-<!-- Last Published: January 2, 2025 --><html lang="en-us" dir="ltr"
+<!-- Last Published: January 3, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=4321&amp;path=livereload" data-no-instant defer></script>
+<head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -44,7 +44,7 @@
   <meta name="description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." />
 
   
-  <link rel="alternate" hreflang="en-us" href="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
 
   
   
@@ -130,6 +130,45 @@
 
 
 
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
 
 
 
@@ -161,7 +200,7 @@
   <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
   <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
 
-  <link rel="canonical" href="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
+  <link rel="canonical" href="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
 
   
   
@@ -183,10 +222,10 @@
   <meta property="twitter:card" content="summary_large_image" />
   
   <meta property="og:site_name" content="GeoBrinkmann" />
-  <meta property="og:url" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
+  <meta property="og:url" content="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/" />
   <meta property="og:title" content="BART - A Bayesian machine learning workflow for complex spatial data | GeoBrinkmann" />
-  <meta property="og:description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." /><meta property="og:image" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/featured.jpg" />
-    <meta property="twitter:image" content="http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/featured.jpg" /><meta property="og:locale" content="en-us" />
+  <meta property="og:description" content="In our recent publication from 2020 we analyzed COVID-19 incidence rates using a multimethod approach. In this post I will present BART - a Bayesian machine learning algorithm - to model COVID-19 incidence rates." /><meta property="og:image" content="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/featured.jpg" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
@@ -232,6 +271,24 @@
 
 
   
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
     
       
       
@@ -565,8 +622,8 @@
   
   <script
     defer
-    src="/js/hugo-blox-en.min.js"
-    integrity=""
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
   ></script>
 
   
@@ -1041,10 +1098,10 @@
       
 
       <div class="prose prose-slate lg:prose-xl dark:prose-invert">
-        <script src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js"></script>
-<link href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css" rel="stylesheet" />
-<script src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js"></script>
-<link href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css" rel="stylesheet" />
+        <script src="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js"></script>
+<link href="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css" rel="stylesheet" />
+<script src="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js"></script>
+<link href="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css" rel="stylesheet" />
 <style>
 body {
 text-align: justify}
@@ -8011,7 +8068,7 @@ Max
 </span></span><span class="line"><span class="cl">            <span class="n">legend.frame</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">            <span class="n">legend.outside</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">            <span class="n">bg.color</span> <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 <p>No clear geographical pattern emerges, suggesting no strong spatial clusters. For a formal test, we can compute <em>Moran’s I</em>. I will not explain Moran’s I in this post, but I would highly recommend these posts: <a href="https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#app8_3" target="_blank" rel="noopener">Intro to GIS and Spatial Analysis</a> and <a href="https://rpubs.com/quarcs-lab/spatial-autocorrelation" target="_blank" rel="noopener">Spatial autocorrelation analysis in R</a>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">spdep</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Define neighboring polygons</span>
@@ -8046,7 +8103,7 @@ Max
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">hist</span><span class="p">(</span><span class="n">bm_final</span><span class="o">$</span><span class="n">X</span><span class="o">$</span><span class="n">S_115</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> 
 </span></span><span class="line"><span class="cl">     <span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Histogram of the Regional Population Potential&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">     <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#34;Regional Population Potential&#34;</span><span class="p">)</span>
-</span></span></code></pre></div><img src="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-17-1.png" width="768" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-17-1.png" width="768" />
 <p><em>Regional population potential</em> measures the likelihood of direct human interactions in a region. This PDP suggests minimal marginal change in incidence at the lower end of the distribution, implying less chance of viral contagion in areas with fewer human interactions. The curve rises notably between the 20th and 80th percentiles (14,016 to 47,067), indicating a strong non-linear effect on incidence rates.</p>
 <p>To log-transform the x-axis for clarity, you would need a custom PDP function, since <code>pd_plot</code> does not support that directly. I wrote a variant that returns ggplot2 objects <a href="https://github.com/CHEST-Lab/BART_Covid-19/blob/master/pdPlotGG.R" target="_blank" rel="noopener">GitHub</a>), which lets you customize plots extensively.</p>
 <p>Below is a <em>multi-panel</em> PDP from our publication, showing the top 10 variables. You can see more details and interpretation of these variables <a href="https://ij-healthgeographics.biomedcentral.com/articles/10.1186/s12942-020-00225-1#Sec18" target="_blank" rel="noopener">here</a>.</p>
@@ -8147,7 +8204,7 @@ Max
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;text=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
+    href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;text=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
     title="X"
     aria-label="X"
     id="share-link-x"
@@ -8165,7 +8222,7 @@ Max
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;t=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
+    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;t=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
     title="Facebook"
     aria-label="Facebook"
     id="share-link-facebook"
@@ -8185,7 +8242,7 @@ Max
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="mailto:?subject=BART%20-%20A%20Bayesian%20machine%20learning%20workflow%20for%20complex%20spatial%20data&amp;body=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F"
+    href="mailto:?subject=BART%20-%20A%20Bayesian%20machine%20learning%20workflow%20for%20complex%20spatial%20data&amp;body=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F"
     title="Email"
     aria-label="Email"
     id="share-link-email"
@@ -8203,7 +8260,7 @@ Max
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="https://www.linkedin.com/shareArticle?url=http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;title=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
+    href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F&amp;title=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data"
     title="LinkedIn"
     aria-label="LinkedIn"
     id="share-link-linkedin"
@@ -8221,7 +8278,7 @@ Max
   <a
     target="_blank" rel="noopener"
     class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
-    href="whatsapp://send?text=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data%20http%3A%2F%2Flocalhost%3A4321%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F"
+    href="whatsapp://send?text=BART&#43;-&#43;A&#43;Bayesian&#43;machine&#43;learning&#43;workflow&#43;for&#43;complex&#43;spatial&#43;data%20https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fbart-a-bayesian-machine-learning-workflow-for-complex-spatial-data%2F"
     title="WhatsApp"
     aria-label="WhatsApp"
     id="share-link-whatsapp"
@@ -8271,7 +8328,7 @@ Max
       Authors
     </div>
     <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
-      <a href="http://localhost:4321/" class="no-underline">
+      <a href="https://geobrinkmann.com/" class="no-underline">
       Sebastian Brinkmann
       </a>
     </div>
