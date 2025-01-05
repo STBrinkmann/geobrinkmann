@@ -103,7 +103,6 @@
       "border-neutral-300",
       "border-s",
       "break-words",
-      "btn",
       "chroma",
       "container",
       "course",
@@ -521,6 +520,7 @@
       "blogposts",
       "conclusion",
       "data",
+      "data-collection",
       "data-download-and-pre-processing",
       "deviconAzuresqldatabase0",
       "deviconAzuresqldatabase1",
@@ -578,15 +578,15 @@
       "show-button",
       "site-header",
       "spatial-autocorrelation",
-      "structural-topic-model",
+      "structural-topic-model-stm",
       "sun",
-      "term-frequency-inverse-document-frequency",
+      "term-frequency-inverse-document-frequency-tf-idf",
       "top",
       "variable-selection",
       "viewshed",
       "viewshed-greenness-visibility-index",
       "visibility-analysis",
-      "wordcloud"
+      "wordcloud-analysis"
     ]
   }
 }

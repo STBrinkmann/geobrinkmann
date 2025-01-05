@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- This site was created with Hugo Blox. https://hugoblox.com -->
-<!-- Last Published: January 3, 2025 --><html lang="en-us" dir="ltr"
+<!-- Last Published: January 5, 2025 --><html lang="en-us" dir="ltr"
       data-wc-theme-default="white">
   
 <head>
@@ -271,24 +271,6 @@
 
 
   
-    
-      
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        
-        
-      
     
       
       
@@ -968,13 +950,19 @@
 
   <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
       <li class="my-2 scroll-my-6 scroll-py-6">
-        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#wordcloud">Wordcloud</a>
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#data-collection">Data Collection</a>
       </li>
       <li class="my-2 scroll-my-6 scroll-py-6">
-        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#term-frequency-inverse-document-frequency">Term Frequency-Inverse Document Frequency</a>
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#wordcloud-analysis">Wordcloud Analysis</a>
       </li>
       <li class="my-2 scroll-my-6 scroll-py-6">
-        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#structural-topic-model">Structural Topic Model</a>
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#term-frequency-inverse-document-frequency-tf-idf">Term Frequency-Inverse Document Frequency (TF-IDF)</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#structural-topic-model-stm">Structural Topic Model (STM)</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#conclusion">Conclusion</a>
       </li></ul>
 
   
@@ -1027,7 +1015,7 @@
         
         <span class="mx-1">·</span>
         <span class="mx-1">
-          3 min read
+          7 min read
         </span>
         
         </div>
@@ -1052,9 +1040,15 @@
       
 
       <div class="prose prose-slate lg:prose-xl dark:prose-invert">
-        <p>In 2001 a project has been created to transform the former steel production site in Belval,
-Luxembourg into the <a href="https://wwwde.uni.lu/fhse/belval_campus" target="_blank" rel="noopener">Cité des Sciences</a>.
-In <a href="https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-clin-doeil/" target="_blank" rel="noopener">2015</a> the new campus has been opened.
+        <p>In 2001, an extensive project was initiated to transform the former
+steel production site in Belval, Luxembourg, into the <a href="https://wwwde.uni.lu/fhse/belval_campus" target="_blank" rel="noopener">Cité des
+Sciences</a>. This transformation
+sought to revitalize a region historically characterized by heavy
+industry and to integrate research, education, and cultural activities
+within a single, modern complex. By
+<a href="https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-clin-doeil/" target="_blank" rel="noopener">2015</a>,
+the new campus opened, signifying a notable milestone in Luxembourg&rsquo;s
+shift from a traditionally industrial economy to a knowledge-based one.
 
 
 
@@ -1073,13 +1067,26 @@ In <a href="https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-clin-doe
 
 <figure  >
   <div class="flex justify-center	">
-    <div class="w-100" ><img src="https://www.uni.lu/wp-content/uploads/sites/9/2023/07/Esch-Belval_areal-view2_2014.jpg" alt="Campus Belval" loading="lazy" data-zoomable /></div>
+    <div class="w-100" ><img src="https://www.uni.lu/wp-content/uploads/sites/9/2023/07/Esch-Belval_areal-view2_2014.jpg" alt="Campus
+Belval" loading="lazy" data-zoomable /></div>
   </div></figure>
 </p>
-<p>In this analysis I want to explore how this topic is being represented in the news.</p>
-<p>Therefore I first collected the top 58 news articles from <a href="https://www.google.com/search?q=belval&#43;campus&#43;esch-sur-alzette&amp;client=firefox-b-d&amp;sxsrf=ALeKk0080OxF6oOpC3lb6hNxafFccNgYjA:1590592264605&amp;source=lnms&amp;tbm=nws&amp;sa=X&amp;ved=2ahUKEwi57Kf3qdTpAhU7ThUIHSw_CG0Q_AUoAXoECCwQAw&amp;biw=1920&amp;bih=966" target="_blank" rel="noopener">Google News</a>.
-The texts have been translated to English with <a href="https://www.deepl.com/en/translator" target="_blank" rel="noopener">DeepL</a> and structured
-in a .txt document like so:</p>
+<p>The architectural design of the campus preserves elements of the steel
+industry&mdash;such as the iconic blast furnaces&mdash;to visually connect
+Belval&rsquo;s industrial past with its current role as a center of higher
+education and research. In this post, I apply text mining techniques,
+including a <strong>Structural Topic Model (STM)</strong>, to analyze how the Belval
+Campus has been represented in news coverage over several years. This
+analysis reveals shifting themes of historical significance,
+transformation, and broader societal implications.</p>
+<h3 id="data-collection">Data Collection</h3>
+<p>The data for this analysis consists of 58 news articles obtained from
+<a href="https://www.google.com/search?q=belval&#43;campus&#43;esch-sur-alzette&amp;client=firefox-b-d&amp;sxsrf=ALeKk0080OxF6oOpC3lb6hNxafFccNgYjA:1590592264605&amp;source=lnms&amp;tbm=nws&amp;sa=X&amp;ved=2ahUKEwi57Kf3qdTpAhU7ThUIHSw_CG0Q_AUoAXoECCwQAw&amp;biw=1920&amp;bih=966" target="_blank" rel="noopener">Google
+News</a>.
+Since the articles were published in multiple languages, they were
+translated into English using
+<a href="https://www.deepl.com/en/translator" target="_blank" rel="noopener">DeepL</a> to establish a uniform
+corpus for analysis. The text files were then standardized as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Title: Title_Name
 </span></span><span class="line"><span class="cl">DATE: dd.mm.yyyy
 </span></span><span class="line"><span class="cl">.
@@ -1090,26 +1097,291 @@ in a .txt document like so:</p>
 </span></span><span class="line"><span class="cl">.
 </span></span><span class="line"><span class="cl">. Text
 </span></span><span class="line"><span class="cl">.
-</span></span></code></pre></div><h3 id="wordcloud">Wordcloud</h3>
-<p>Next a Wordcloud with the word frequency of the whole corpus has been created:
-<img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/wordcloud.svg?sanitize=true">
-We can already see that the new campus is of high importance. But also, the look into the future (&ldquo;2022&rdquo;, &ldquo;future&rdquo;),
-and the acknowledgement of its history (&ldquo;furnace&rdquo;, &ldquo;steel&rdquo;, &ldquo;industrial&rdquo;&hellip;) are often thematised.</p>
-<h3 id="term-frequency-inverse-document-frequency">Term Frequency-Inverse Document Frequency</h3>
-<p>At this point the corpus does not contain many articles for 2014 and 2015.
-Therefore these articles have been combined for the further analysis. The next figure shows the number of articles per year:
-<img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/Articles_Count.svg?sanitize=true"></p>
-<p>With the wordcloud we explored the word frequency of the whole corpus. To analyse the keywords of each year, a <a href="http://www.tfidf.com/" target="_blank" rel="noopener">term frequency-inverse document frequency</a> has been conducted:
-<img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/tf_idf.svg?sanitize=true"></p>
-<h3 id="structural-topic-model">Structural Topic Model</h3>
-<p>Next a <a href="https://www.structuraltopicmodel.com/" target="_blank" rel="noopener">Structural Topic Model (STM)</a> has been applied on the data set. From the previous steps we already have gained an understanding of the complexity of the coverage of reports about Belval. Therefore, we knew that there are not that many different topics. After an iterative process of setting the parameter K (number of topics) and interpreting the results, I set K = 6. These 6 topics have been labeled manually.
-<img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/stm.svg?sanitize=true">
-To evaluate the importance and the change over time of these topics, the topic of each article within the corpus has been predicted. The result is shown in the final figure:
-<img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/timeseries.svg?sanitize=true">
-The most frequent articles are those that deal with the university campus in Belval itself. The second most frequent type of article is the one dealing with structural change, i.e. the transformation from a former steel industry location to the Cité des Sciences, the city of science. It should be emphasized that articles on this topic predominantly highlight the positive implementation of structural change. This is followed by articles on the topic of culture, although it is clearly visible here that there has been increased reporting on this area since 2019. This is due to the fact that this year Belval was admitted to the Capital of Culture 2022. This analysis was complemented by a qualitative interview with a partner from the University of Luxembourg about the Belval project.<br>
-<br>
-<br>
-The code is available on <a href="https://github.com/STBrinkmann/Text_Mining_Belval" target="_blank" rel="noopener">GitHub</a>.</p>
+</span></span></code></pre></div><p>This standardized format ensures that all articles could be processed
+systematically.</p>
+<h3 id="wordcloud-analysis">Wordcloud Analysis</h3>
+<p>The purpose of creating a wordcloud was to visualize the frequency of
+terms in the corpus, providing an initial overview of recurring
+concepts. Words displayed with larger fonts appear more frequently.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/wordcloud.svg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>The figure above presents a wordcloud generated from the combined news
+corpus. Notably, terms such as <strong>&ldquo;university&rdquo;</strong>, <strong>&ldquo;student&rdquo;</strong>,
+<strong>&ldquo;building&rdquo;,</strong> and <strong>&ldquo;campus&rdquo;</strong> appear in larger fonts, indicating
+their prominence and reflecting the central role of academia in the
+Belval transformation. Concurrently, words such as <strong>&ldquo;furnace&rdquo;,</strong>
+<strong>&ldquo;steel&rdquo;,</strong> and <strong>&ldquo;industrial&rdquo;</strong> acknowledge the site&rsquo;s heritage as a
+former steel production hub, highlighting the juxtaposition of
+historical infrastructure with contemporary educational facilities.
+Additional references to <strong>&ldquo;restaurant&rdquo;,</strong> <strong>&ldquo;project&rdquo;,</strong> and <strong>&ldquo;2022&rdquo;</strong>
+suggest a broader scope of local development efforts, including dining
+amenities and preparations for major cultural events. Overall, the
+wordcloud underscores the importance of the university environment while
+also emphasizing the ongoing transition from an industrial past to a
+diverse, forward-looking district.</p>
+<h3 id="term-frequency-inverse-document-frequency-tf-idf">Term Frequency-Inverse Document Frequency (TF-IDF)</h3>
+<p>To identify terms that were particularly distinctive in each year, a
+two-step approach was adopted. First, the <strong>number of articles published
+between 2015 and 2020</strong> was examined (see the first figure below),
+revealing variations in media attention over time. Notably, 2019 stands
+out with the highest number of articles, suggesting heightened public
+interest in Belval&rsquo;s development during that year.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/Articles_Count.svg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>Second, a <strong>TF-IDF analysis</strong> was conducted to determine which words
+were most characteristic of each year (see the figure below). <strong>TF-IDF</strong>
+stands for <em>term frequency&ndash;inverse document frequency</em> and is a widely
+used text-mining method that measures how important a word is within a
+specific subset of documents compared to its usage in the overall
+corpus. Words that appear frequently in a small number of documents but
+rarely across all documents receive a higher score, highlighting their
+uniqueness.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/tf_idf.svg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<ul>
+<li>
+<p><strong>2015</strong>: Terms such as <em>&ldquo;listener&rdquo;, &ldquo;canteen&rdquo;,</em> and <em>&ldquo;restopolis&rdquo;</em>
+suggest early-stage coverage focusing on student facilities and
+everyday campus life, highlighting Belval&rsquo;s emerging university
+environment.</p>
+</li>
+<li>
+<p><strong>2016</strong>: Words like <em>&ldquo;monaco&rdquo;, &ldquo;burger&rdquo;, &ldquo;fashion&rdquo;,</em> and
+<em>&ldquo;shopping&rdquo;</em> hint at expanding commercial and leisure offerings,
+reflecting growing public interest in new retail spaces.</p>
+</li>
+<li>
+<p><strong>2017</strong>: The prominence of <em>&ldquo;evening&rdquo;, &ldquo;glow&rdquo;, &ldquo;performance&rdquo;,
+&ldquo;furnace&rdquo;,</em> and <em>&ldquo;blast&rdquo;</em> indicates the significance of nighttime
+cultural events and the steel industry&rsquo;s legacy as a focal point for
+tourism and artistic performances.</p>
+</li>
+<li>
+<p><strong>2018</strong>: References to <em>&ldquo;tram&rdquo;, &ldquo;lab&rdquo;, &ldquo;challenges&rdquo;,</em> and
+<em>&ldquo;tudiants&rdquo;</em> (students) point to discussions surrounding
+transportation infrastructure, academic growth, and the obstacles
+faced during Belval&rsquo;s continued expansion.</p>
+</li>
+<li>
+<p><strong>2019</strong>: Terms such as <em>&ldquo;beach&rdquo;, &ldquo;interview&rdquo;, &ldquo;shooting&rdquo;,
+&ldquo;soldier&rdquo;,</em> and <em>&ldquo;residences&rdquo;</em> illustrate a broader range of social
+and cultural themes, reflecting a surge in reporting as Belval
+prepared for major events such as the 2022 European Capital of
+Culture.</p>
+</li>
+<li>
+<p><strong>2020</strong>: Words including <em>&ldquo;committee&rdquo;, &ldquo;discus&rdquo;, &ldquo;financing&rdquo;,
+&ldquo;planning&rdquo;, and &ldquo;parliamentary&rdquo;</em> suggest a shift toward policy
+considerations, funding mechanisms, and formal decision-making
+processes governing Belval&rsquo;s future development.</p>
+</li>
+</ul>
+<p>Collectively, these TF-IDF outcomes demonstrate how media attention
+moved from campus-focused reporting to a more diverse discussion of
+Belval&rsquo;s evolving social, cultural, and infrastructural landscape. This
+shift illustrates the campus&rsquo;s growing impact on the region&rsquo;s identity,
+transitioning from an industrial brownfield to a multifaceted center of
+education, innovation, and cultural engagement.</p>
+<h3 id="structural-topic-model-stm">Structural Topic Model (STM)</h3>
+<p>In order to identify coherent themes within the corpus and track their
+evolution over time, a <strong>Structural Topic Model (STM)</strong> was applied.
+Unlike simpler topic modeling methods (e.g., Latent Dirichlet
+Allocation), the STM can incorporate metadata&mdash;in this case,
+publication year&mdash;into the modeling process. This approach not only
+reveals the latent topics but also how each topic&rsquo;s prevalence shifts
+from one year to the next.</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/stm.svg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>The figure above presents the six extracted topics along with their most
+salient terms. Each topic was manually labeled based on these terms and
+the broader context of the articles:</p>
+<ul>
+<li>
+<p><strong>Campus Belval</strong>: Emphasizes the university setting, featuring
+words such as &ldquo;university&rdquo;, &ldquo;student&rdquo;, and &ldquo;campus&rdquo;.</p>
+</li>
+<li>
+<p><strong>Events</strong>: Centers on cultural or entertainment happenings, with
+notable keywords like &ldquo;beach&rdquo;, &ldquo;concert&rdquo;, and &ldquo;party&rdquo;.</p>
+</li>
+<li>
+<p><strong>Gastronomie</strong>: Reflects discussions of food and dining options,
+including &ldquo;restaurant&rdquo;, &ldquo;canteen&rdquo;, and &ldquo;restopolis&rdquo;.</p>
+</li>
+<li>
+<p><strong>Kultur/Zukunft, Esch 2022</strong>: Highlights cultural projects and
+future-oriented planning, especially related to Esch-sur-Alzette&rsquo;s
+role as European Capital of Culture 2022 (terms such as &ldquo;culture&rdquo;,
+&ldquo;capital&rdquo;, &ldquo;planning&rdquo;).</p>
+</li>
+<li>
+<p><strong>Stadtentwicklung</strong>: Focuses on urban development, covering
+infrastructure (e.g., &ldquo;tram&rdquo;, &ldquo;city&rdquo;, &ldquo;park&rdquo;), transportation, and
+city planning.</p>
+</li>
+<li>
+<p><strong>Strukturwandel</strong>: Captures narratives around
+industrial-to-knowledge transformation, featuring references to the
+&ldquo;furnace&rdquo;, &ldquo;blast&rdquo;, and &ldquo;industrial&rdquo; past alongside &ldquo;university&rdquo; and
+&ldquo;city&rdquo;.</p>
+</li>
+</ul>
+<p>The second figure illustrates how these topics are distributed across
+the years:</p>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="flex justify-center	">
+    <div class="w-100" ><img src="https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/timeseries.svg" alt="" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+<p>Several observations emerge:</p>
+<ol>
+<li>
+<p><strong>Early Years (2015&ndash;2016):</strong><br>
+Articles often concentrated on <strong>Campus Belval</strong> and
+<strong>Strukturwandel</strong>, reflecting public interest in the new
+university&rsquo;s establishment and the ongoing shift away from the steel
+industry.</p>
+</li>
+<li>
+<p><strong>Increasing Variety (2017&ndash;2018):</strong><br>
+<strong>Stadtentwicklung</strong> gains more attention, indicating growing
+discussions about infrastructure projects such as new tram lines and
+urban amenities. <strong>Gastronomie</strong> also appears more frequently,
+suggesting that an expanding dining scene and student life began to
+shape public discourse.</p>
+</li>
+<li>
+<p><strong>Peak in 2019:</strong><br>
+A clear spike in <strong>Events</strong> and <strong>Kultur/Zukunft, Esch 2022</strong>
+coincides with preparations for the European Capital of Culture,
+driving media coverage that centered on cultural programs,
+festivals, and large-scale community initiatives.</p>
+</li>
+<li>
+<p><strong>Recent Trends (2020):</strong><br>
+Focus on <strong>Campus Belval</strong> remains, but <strong>Stadtentwicklung</strong> topics
+persist, reflecting sustained interest in policies and planning
+efforts that continue to shape Belval&rsquo;s evolution as both a research
+hub and a culturally vibrant district.</p>
+</li>
+</ol>
+<p>Overall, the STM reveals that while Belval&rsquo;s transformation was
+originally framed as an industrial redevelopment story, subsequent
+coverage expanded to highlight student life, cultural events,
+gastronomic offerings, and broader urban planning. This transition
+underscores Belval&rsquo;s emergence as a multi-faceted site where historical
+legacy, academic innovation, and cultural aspirations converge.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>This text mining analysis demonstrates how news coverage of the Belval
+Campus has evolved over time, transitioning from early discussions
+centered on the feasibility of repurposing a steel production site to
+more diverse topics reflecting cultural initiatives, gastronomic
+developments, and the broader evolution of the campus as a hub for
+research and innovation. Although structural transformation and
+industrial heritage were initially focal points, subsequent coverage
+highlights the growth of student life, the emergence of cultural events,
+and ongoing urban planning efforts. As such, Belval has come to embody a
+multifaceted model of regional renewal in Luxembourg - one that bridges
+historical identity with contemporary academic, cultural, and
+infrastructural advancement.</p>
+<p>For readers interested in replicating or extending this research, the
+complete code is available on
+<a href="https://github.com/STBrinkmann/Text_Mining_Belval" target="_blank" rel="noopener">GitHub</a>. The
+repository provides the necessary scripts and instructions for data
+collection, preprocessing, and analysis, offering a foundation for
+further investigations into text mining and topic modeling.</p>
 
       </div>
 

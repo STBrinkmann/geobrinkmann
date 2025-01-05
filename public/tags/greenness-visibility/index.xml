@@ -2,37 +2,37 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Greenness Visibility | GeoBrinkmann</title>
-    <link>http://localhost:4321/tags/greenness-visibility/</link>
-      <atom:link href="http://localhost:4321/tags/greenness-visibility/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geobrinkmann.com/tags/greenness-visibility/</link>
+      <atom:link href="https://geobrinkmann.com/tags/greenness-visibility/index.xml" rel="self" type="application/rss+xml" />
     <description>Greenness Visibility</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 10 Jun 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:4321/media/icon_hu11167265919780470973.png</url>
+      <url>https://geobrinkmann.com/media/icon_hu11167265919780470973.png</url>
       <title>Greenness Visibility</title>
-      <link>http://localhost:4321/tags/greenness-visibility/</link>
+      <link>https://geobrinkmann.com/tags/greenness-visibility/</link>
     </image>
     
     <item>
       <title>Modelling eye-level visibility of urban green space: Optimising city-wide point-based viewshed computations through prototyping</title>
-      <link>http://localhost:4321/publication/brinkmann_2022/</link>
+      <link>https://geobrinkmann.com/publication/brinkmann_2022/</link>
       <pubDate>Fri, 10 Jun 2022 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/publication/brinkmann_2022/</guid>
+      <guid>https://geobrinkmann.com/publication/brinkmann_2022/</guid>
       <description></description>
     </item>
     
     <item>
       <title>GVI: Greenness Visibility Index R package</title>
-      <link>http://localhost:4321/publication/gvi-greenness-visibility-index-r-package/</link>
+      <link>https://geobrinkmann.com/publication/gvi-greenness-visibility-index-r-package/</link>
       <pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/publication/gvi-greenness-visibility-index-r-package/</guid>
+      <guid>https://geobrinkmann.com/publication/gvi-greenness-visibility-index-r-package/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Visibility - Sensitivity Analysis</title>
-      <link>http://localhost:4321/post/visibility-sensitivity-analysis/</link>
+      <link>https://geobrinkmann.com/post/visibility-sensitivity-analysis/</link>
       <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/post/visibility-sensitivity-analysis/</guid>
+      <guid>https://geobrinkmann.com/post/visibility-sensitivity-analysis/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Visibility analyses are powerful tools in spatial research that help us understand what can be seen from a particular point in the landscape. For my Bachelor Thesis, I am investigating how visible green- and bluespaces influence mental health, using data from a medical study in Vancouver. The study area includes Vancouver City, Burnaby, and Surrey. Specifically, I use the &lt;a href=&#34;https://doi.org/10.1016/j.scitotenv.2020.143050&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Viewshed Greenness Visibility Index (VGVI)&lt;/a&gt; to capture the proportion of visible greenness within a particular viewshed.&lt;/p&gt;
 &lt;p&gt;However, an important challenge arises when scaling visibility analyses to cover large areas or many points: &lt;strong&gt;computational&lt;/strong&gt; cost. High-resolution rasters and large viewing distances dramatically increase the number of cells to check, resulting in lengthy processing times. In such scenarios, running a &lt;strong&gt;sensitivity analysis&lt;/strong&gt; is beneficial to understand how certain parameters — especially maximum distance and raster resolution — affect both accuracy and computational load. By doing this, we can:&lt;/p&gt;
@@ -41,7 +41,7 @@
 &lt;li&gt;Capture visibility in a way that is meaningful for understanding the local geography (e.g., typical line-of-sight distances in the urban environment of your study area).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Below, I explain how to systematically evaluate the influence of different distances and resolutions on viewshed calculations and why this step is critical for large-scale studies like the one I am conducting in Vancouver.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;To analyze the effect of visible greenness, I&amp;rsquo;ll be using the VGVI. This index expresses the proportion of visible greenness to the total visible area based on a viewshed. VGVI values range from 0 to 1, with 0 indicating that no green cells are visible and 1 meaning all visible cells are green. A detailed example of how to calculate the VGVI can be found in a recent &lt;a href=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;post&lt;/a&gt; and in my &lt;a href=&#34;https://github.com/STBrinkmann/CGEI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CGEI R package&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Because VGVI relies on a viewshed, the analysis requires a Digital Surface Model (DSM), a Digital Terrain Model (DTM), and the observer location. Conceptually, the &lt;em&gt;viewshed&lt;/em&gt; function checks every point within a defined radius (the &lt;em&gt;maximum distance&lt;/em&gt;) to determine if it is visible from the observer’s vantage point.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Load libraries&lt;/span&gt;
@@ -64,7 +64,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;250&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_1[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;Above, the left plot shows the DSM for a local area, and the right plot highlights visibility in green (visible) and yellow (not visible). The observer (marked as a red dot) has an extensive view toward the west but limited visibility to the east.&lt;/p&gt;
 &lt;p&gt;Next, the VGVI calculation typically follows by overlaying a greenspace mask on the viewshed. This post, however, focuses on understanding two crucial parameters for viewshed calculations: &lt;strong&gt;distance&lt;/strong&gt; (the radius around each point to be considered) and &lt;strong&gt;resolution&lt;/strong&gt; (the level of spatial detail in the raster data).&lt;/p&gt;
 &lt;h2 id=&#34;sensitivity-analysis&#34;&gt;Sensitivity Analysis&lt;/h2&gt;
@@ -85,7 +85,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## ── tmap v3 code detected ───────────────────────────────────────────────────────
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## [v3-&amp;gt;v4] `tm_dots()`: use `fill_alpha` instead of `alpha`.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h3 id=&#34;distance&#34;&gt;Distance&lt;/h3&gt;
 &lt;p&gt;In a previous example, a 250 m distance was used. What happens if we increase the &lt;em&gt;maximum distance&lt;/em&gt; to 800 m?&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Compute Viewshed&lt;/span&gt;
@@ -93,7 +93,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;800&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_2[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;Here, increasing the distance to 800 m doesn’t reveal much more visible area for this particular observer location compared to 250 m. In other words, beyond 250 m, there isn’t significant new visibility to be gained. But the computation time dropped from around ~1200 ms to ~80 ms!&lt;/p&gt;
 &lt;p&gt;This illustrates that maximum distance is not just a random choice—it must be guided by the real-world context. For instance, if you expect most relevant visibility influences (e.g., green spaces) to be within a few hundred meters, using very large radii might not add detail but will consume a lot more compute resources. In urban planning and health studies, visibility beyond a certain threshold can be less relevant because the eye-level environment that truly impacts people often lies closer.&lt;/p&gt;
 &lt;p&gt;Below is a function to quantify the proportion of visible area for each distance value in the viewshed:&lt;/p&gt;
@@ -194,12 +194,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;this_dist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The following plot shows how visibility generally decreases with increasing distance. Notably, there are local “bumps” at around 250 m and 500 m, possibly due to Vancouver’s urban planning and distribution of parks.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;Given these findings, I have chosen a distance threshold of &lt;strong&gt;550 meters&lt;/strong&gt; — a point that appears to capture most of the visibility in this study area without incurring the full computational cost of an 800 m radius. In real-world terms, 550 m can be considered a reasonable walking distance within an urban environment, aligning with the idea that this radius covers the bulk of directly perceptible green space around a person.&lt;/p&gt;
 &lt;h3 id=&#34;resolution&#34;&gt;Resolution&lt;/h3&gt;
 &lt;p&gt;The &lt;em&gt;resolution&lt;/em&gt; parameter determines how coarsely or finely the DSM and DTM are aggregated. Higher resolutions (e.g., 1 m) produce more precise visibility maps but also mean more cells to process. Conversely, coarser resolutions (e.g., 10 m) involve significantly fewer cells—thus less computation time—but come at the cost of spatial detail.&lt;/p&gt;
 &lt;p&gt;For instance, at a 1 m resolution within a 550 m radius, you would have ~1,210,000 cells and might spend 0.5 seconds per viewshed. At 10 m resolution, there are only ~12,100 cells, and it might take just 0.01 seconds to compute. Below is a direct visualization of 1 m vs. 10 m resolution at a 250 m distance radius:&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;To quantify these differences, I compare visibility grids of various resolutions to the 1 m baseline:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;compare_resolution&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm_path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm_path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;viewshed_tbl&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;lapply&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FUN&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -232,7 +232,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kr&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The boxplots below show that similarity decreases as resolution gets coarser. Meanwhile, computation time greatly benefits from lower resolutions. On average, the mean computation time for 1 m, 2 m, 5 m, and 10 m resolutions is approximately 4.80s, 1.05s, 0.85s, and 0.75s, respectively. A 2 m resolution offers a good balance for this analysis — about ~75% similarity to the baseline but only about 1/5 of the computation time.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Conducting large-scale viewshed analyses — like computing the VGVI for an entire metropolitan region — can quickly become &lt;em&gt;computationally expensive&lt;/em&gt;, so &lt;strong&gt;optimally choosing distance and resolution&lt;/strong&gt; is essential. A sensitivity analysis helps pinpoint thresholds that capture the real-world visibility context while managing processing times.&lt;/p&gt;
 &lt;p&gt;In this study, evaluating Vancouver’s diverse landscapes showed that beyond ~550 m, little additional visibility is gained, so 550 m became the selected maximum distance. For raster resolution, 2 m appeared to balance reasonable similarity to a 1 m baseline with a fivefold decrease in runtime.&lt;/p&gt;
@@ -247,11 +247,11 @@
     
     <item>
       <title>Visible Greenness Exposure</title>
-      <link>http://localhost:4321/post/visible-greenness-exposure/</link>
+      <link>https://geobrinkmann.com/post/visible-greenness-exposure/</link>
       <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/post/visible-greenness-exposure/</guid>
-      <description>&lt;script src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+      <guid>https://geobrinkmann.com/post/visible-greenness-exposure/</guid>
+      <description>&lt;script src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;style&gt;
 body {text-align: justify}
 &lt;/style&gt;
@@ -371,7 +371,7 @@ The animation below demonstrates how the &lt;code&gt;viewshed&lt;/code&gt; funct
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34;
-           src=&#34;http://localhost:4321/post/visible-greenness-exposure/LoS.gif&#34;
+           src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/LoS.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;!-- --&gt;&lt;/p&gt;
@@ -393,7 +393,7 @@ Total visibility: 9.1%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_1[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h4 id=&#34;3-resolution--2m&#34;&gt;3. Resolution = 2m&lt;/h4&gt;
 &lt;p&gt;Output-Raster-Cells: 90 000&lt;br&gt;
 Runtime: 27.12 milliseconds&lt;br&gt;
@@ -404,7 +404,7 @@ Total visibility: 11.5%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_2[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h4 id=&#34;4-resolution--5m&#34;&gt;4. Resolution = 5m&lt;/h4&gt;
 &lt;p&gt;Output-Raster-Cells: 14 400&lt;br&gt;
 Runtime: 9.21 milliseconds&lt;br&gt;
@@ -415,7 +415,7 @@ Total visibility: 14.6%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_3[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h2 id=&#34;network-visible-greenspace&#34;&gt;Network Visible Greenspace&lt;/h2&gt;
 &lt;p&gt;A practical use case for the viewshed algorithm is to calculate the visible greenness in a person’s neighborhood by examining visibility along roads and paths.&lt;/p&gt;
 &lt;h3 id=&#34;greenspace-mask&#34;&gt;Greenspace Mask&lt;/h3&gt;
@@ -680,7 +680,7 @@ Very bright pixels, that are not high-reflectance features from built-up areas.
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;points&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;st_coordinates&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sf_start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;[1]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;st_coordinates&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sf_start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;[2]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &lt;span class=&#34;n&#34;&gt;col&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h3 id=&#34;viewshed-greenness-visibility-index&#34;&gt;Viewshed Greenness Visibility Index&lt;/h3&gt;
 &lt;p&gt;The VGVI (Viewshed Greenness Visibility Index; (Labib, Huck, and Lindley 2021)) represents the proportion of visible greenspace to the total visible area. Its values range from 0 to 1, where 0 = no visible greenspace and 1 = all visible cells are green. Applying the &lt;code&gt;vgvi&lt;/code&gt; function below to &lt;code&gt;viewshed_1&lt;/code&gt; returns 0.91, meaning 91% of the visible area is vegetated.&lt;br&gt;
 In Labib, Huck, and Lindley (2021), the authors applied a distance-decay function to account for the decreasing visual prominence of an object with increasing distance from the observer. I will address distance-decay models in a future post.&lt;/p&gt;
@@ -707,7 +707,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                             &lt;span class=&#34;n&#34;&gt;speed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;75&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                             &lt;span class=&#34;n&#34;&gt;isochrones_seq&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The figure below shows the isodistances with the red dot indicating the starting point. We will calculate the proportion of visible greenspace every 10 meters.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg&#34; width=&#34;960&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg&#34; width=&#34;960&#34; /&gt;
 &lt;p&gt;To evaluate network visibility, we use the &lt;code&gt;vgvi&lt;/code&gt; function from the &lt;code&gt;CGEI&lt;/code&gt; package to calculate the VGVI along the road network. In this example, we sample points every 5 meters along the isodistances. A 2m resolution would be sufficient for a larger study because it does not differ much from 1m in practice—but here the total runtime at 1m resolution is still acceptable (only 4 seconds using 22 cores).&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CGEI&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;vgvi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;observer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;aoi.isodistances&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
@@ -734,14 +734,14 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  &lt;span class=&#34;n&#34;&gt;legend.text.size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  &lt;span class=&#34;n&#34;&gt;panel.show&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  &lt;span class=&#34;n&#34;&gt;frame&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg&#34; width=&#34;960&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg&#34; width=&#34;960&#34; /&gt;
 &lt;p&gt;To determine the mean VGVI for the observer in the center, we simply take the average of all measurements. More sophisticated approaches might apply linear or logistic weighting to account for distance, as shown in our recent publication.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VGVI&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## [1] 0.47
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A mean value of 0.47 indicates that 47% of the visible area along the network is vegetated.&lt;/p&gt;
 &lt;p&gt;One notable limitation of the viewshed algorithm is its inability to accurately account for eye-level visibility when the observer is under a tree. This is because the LiDAR-derived DSM blocks all lines of sight under the canopy.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg&#34; width=&#34;480&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg&#34; width=&#34;480&#34; /&gt;
 &lt;p&gt;In the histogram above, many points have a GVI of 1. I have plotted the DSM and the GVI points along the route network in QGIS.&lt;img src=&#34;GVI_bad.png&#34; style=&#34;width:7.13in&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The image shows that these green points are located underneath trees, so no lines of sight extend beyond the canopy. As a result, all visible cells are green, leading to a GVI of 1.&lt;/p&gt;
 &lt;p&gt;Although we can incorporate a distance-decay function or measure &lt;em&gt;actual&lt;/em&gt; activity space rather than &lt;em&gt;potential&lt;/em&gt; activity space, these are topics for future posts. Regardless, there is a clear variation in GVI values indicating areas with higher versus lower visible greenness.&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog | GeoBrinkmann</title>
-    <link>http://localhost:4321/post/</link>
-      <atom:link href="http://localhost:4321/post/index.xml" rel="self" type="application/rss+xml" />
+    <link>https://geobrinkmann.com/post/</link>
+      <atom:link href="https://geobrinkmann.com/post/index.xml" rel="self" type="application/rss+xml" />
     <description>Blog</description>
     <generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Tue, 22 Jun 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>http://localhost:4321/media/icon_hu11167265919780470973.png</url>
+      <url>https://geobrinkmann.com/media/icon_hu11167265919780470973.png</url>
       <title>Blog</title>
-      <link>http://localhost:4321/post/</link>
+      <link>https://geobrinkmann.com/post/</link>
     </image>
     
     <item>
       <title>Visibility - Sensitivity Analysis</title>
-      <link>http://localhost:4321/post/visibility-sensitivity-analysis/</link>
+      <link>https://geobrinkmann.com/post/visibility-sensitivity-analysis/</link>
       <pubDate>Tue, 22 Jun 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/post/visibility-sensitivity-analysis/</guid>
+      <guid>https://geobrinkmann.com/post/visibility-sensitivity-analysis/</guid>
       <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Visibility analyses are powerful tools in spatial research that help us understand what can be seen from a particular point in the landscape. For my Bachelor Thesis, I am investigating how visible green- and bluespaces influence mental health, using data from a medical study in Vancouver. The study area includes Vancouver City, Burnaby, and Surrey. Specifically, I use the &lt;a href=&#34;https://doi.org/10.1016/j.scitotenv.2020.143050&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Viewshed Greenness Visibility Index (VGVI)&lt;/a&gt; to capture the proportion of visible greenness within a particular viewshed.&lt;/p&gt;
 &lt;p&gt;However, an important challenge arises when scaling visibility analyses to cover large areas or many points: &lt;strong&gt;computational&lt;/strong&gt; cost. High-resolution rasters and large viewing distances dramatically increase the number of cells to check, resulting in lengthy processing times. In such scenarios, running a &lt;strong&gt;sensitivity analysis&lt;/strong&gt; is beneficial to understand how certain parameters — especially maximum distance and raster resolution — affect both accuracy and computational load. By doing this, we can:&lt;/p&gt;
@@ -25,7 +25,7 @@
 &lt;li&gt;Capture visibility in a way that is meaningful for understanding the local geography (e.g., typical line-of-sight distances in the urban environment of your study area).&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;Below, I explain how to systematically evaluate the influence of different distances and resolutions on viewshed calculations and why this step is critical for large-scale studies like the one I am conducting in Vancouver.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;To analyze the effect of visible greenness, I&amp;rsquo;ll be using the VGVI. This index expresses the proportion of visible greenness to the total visible area based on a viewshed. VGVI values range from 0 to 1, with 0 indicating that no green cells are visible and 1 meaning all visible cells are green. A detailed example of how to calculate the VGVI can be found in a recent &lt;a href=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;post&lt;/a&gt; and in my &lt;a href=&#34;https://github.com/STBrinkmann/CGEI&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CGEI R package&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Because VGVI relies on a viewshed, the analysis requires a Digital Surface Model (DSM), a Digital Terrain Model (DTM), and the observer location. Conceptually, the &lt;em&gt;viewshed&lt;/em&gt; function checks every point within a defined radius (the &lt;em&gt;maximum distance&lt;/em&gt;) to determine if it is visible from the observer’s vantage point.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Load libraries&lt;/span&gt;
@@ -48,7 +48,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;250&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_1[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;Above, the left plot shows the DSM for a local area, and the right plot highlights visibility in green (visible) and yellow (not visible). The observer (marked as a red dot) has an extensive view toward the west but limited visibility to the east.&lt;/p&gt;
 &lt;p&gt;Next, the VGVI calculation typically follows by overlaying a greenspace mask on the viewshed. This post, however, focuses on understanding two crucial parameters for viewshed calculations: &lt;strong&gt;distance&lt;/strong&gt; (the radius around each point to be considered) and &lt;strong&gt;resolution&lt;/strong&gt; (the level of spatial detail in the raster data).&lt;/p&gt;
 &lt;h2 id=&#34;sensitivity-analysis&#34;&gt;Sensitivity Analysis&lt;/h2&gt;
@@ -69,7 +69,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;## ── tmap v3 code detected ───────────────────────────────────────────────────────
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-mysql&#34; data-lang=&#34;mysql&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## [v3-&amp;gt;v4] `tm_dots()`: use `fill_alpha` instead of `alpha`.
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h3 id=&#34;distance&#34;&gt;Distance&lt;/h3&gt;
 &lt;p&gt;In a previous example, a 250 m distance was used. What happens if we increase the &lt;em&gt;maximum distance&lt;/em&gt; to 800 m?&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Compute Viewshed&lt;/span&gt;
@@ -77,7 +77,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;800&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_2[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;Here, increasing the distance to 800 m doesn’t reveal much more visible area for this particular observer location compared to 250 m. In other words, beyond 250 m, there isn’t significant new visibility to be gained. But the computation time dropped from around ~1200 ms to ~80 ms!&lt;/p&gt;
 &lt;p&gt;This illustrates that maximum distance is not just a random choice—it must be guided by the real-world context. For instance, if you expect most relevant visibility influences (e.g., green spaces) to be within a few hundred meters, using very large radii might not add detail but will consume a lot more compute resources. In urban planning and health studies, visibility beyond a certain threshold can be less relevant because the eye-level environment that truly impacts people often lies closer.&lt;/p&gt;
 &lt;p&gt;Below is a function to quantify the proportion of visible area for each distance value in the viewshed:&lt;/p&gt;
@@ -178,12 +178,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;out&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;rbind&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;out&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;this_dist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The following plot shows how visibility generally decreases with increasing distance. Notably, there are local “bumps” at around 250 m and 500 m, possibly due to Vancouver’s urban planning and distribution of parks.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;Given these findings, I have chosen a distance threshold of &lt;strong&gt;550 meters&lt;/strong&gt; — a point that appears to capture most of the visibility in this study area without incurring the full computational cost of an 800 m radius. In real-world terms, 550 m can be considered a reasonable walking distance within an urban environment, aligning with the idea that this radius covers the bulk of directly perceptible green space around a person.&lt;/p&gt;
 &lt;h3 id=&#34;resolution&#34;&gt;Resolution&lt;/h3&gt;
 &lt;p&gt;The &lt;em&gt;resolution&lt;/em&gt; parameter determines how coarsely or finely the DSM and DTM are aggregated. Higher resolutions (e.g., 1 m) produce more precise visibility maps but also mean more cells to process. Conversely, coarser resolutions (e.g., 10 m) involve significantly fewer cells—thus less computation time—but come at the cost of spatial detail.&lt;/p&gt;
 &lt;p&gt;For instance, at a 1 m resolution within a 550 m radius, you would have ~1,210,000 cells and might spend 0.5 seconds per viewshed. At 10 m resolution, there are only ~12,100 cells, and it might take just 0.01 seconds to compute. Below is a direct visualization of 1 m vs. 10 m resolution at a 250 m distance radius:&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;To quantify these differences, I compare visibility grids of various resolutions to the 1 m baseline:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;compare_resolution&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;observer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm_path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dtm_path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;n&#34;&gt;viewshed_tbl&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;lapply&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;FUN&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
@@ -216,7 +216,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;kr&#34;&gt;return&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The boxplots below show that similarity decreases as resolution gets coarser. Meanwhile, computation time greatly benefits from lower resolutions. On average, the mean computation time for 1 m, 2 m, 5 m, and 10 m resolutions is approximately 4.80s, 1.05s, 0.85s, and 0.75s, respectively. A 2 m resolution offers a good balance for this analysis — about ~75% similarity to the baseline but only about 1/5 of the computation time.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visibility-sensitivity-analysis/index.en_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
 &lt;p&gt;Conducting large-scale viewshed analyses — like computing the VGVI for an entire metropolitan region — can quickly become &lt;em&gt;computationally expensive&lt;/em&gt;, so &lt;strong&gt;optimally choosing distance and resolution&lt;/strong&gt; is essential. A sensitivity analysis helps pinpoint thresholds that capture the real-world visibility context while managing processing times.&lt;/p&gt;
 &lt;p&gt;In this study, evaluating Vancouver’s diverse landscapes showed that beyond ~550 m, little additional visibility is gained, so 550 m became the selected maximum distance. For raster resolution, 2 m appeared to balance reasonable similarity to a 1 m baseline with a fivefold decrease in runtime.&lt;/p&gt;
@@ -231,13 +231,13 @@
     
     <item>
       <title>BART - A Bayesian machine learning workflow for complex spatial data</title>
-      <link>http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/</link>
+      <link>https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/</link>
       <pubDate>Tue, 20 Apr 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/</guid>
-      <description>&lt;script src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
-&lt;script src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+      <guid>https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/</guid>
+      <description>&lt;script src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+&lt;script src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;style&gt;
 body {
 text-align: justify}
@@ -6989,7 +6989,7 @@ Max
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu12269356596323251249.webp 400w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu6900723206486711484.webp 760w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu310824325497122199.webp 1200w&#34;
-               src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu12269356596323251249.webp&#34;
+               src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption_hu12269356596323251249.webp&#34;
                width=&#34;760&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -7019,7 +7019,7 @@ Max
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu17583491945340938510.webp 400w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu5145276906781368730.webp 760w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu10044893994888527076.webp 1200w&#34;
-               src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu17583491945340938510.webp&#34;
+               src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat_hu17583491945340938510.webp&#34;
                width=&#34;760&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -7144,7 +7144,7 @@ Max
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu4644990556343871879.webp 400w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu6331346206649035652.webp 760w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu11101393665874843280.webp 1200w&#34;
-               src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu4644990556343871879.webp&#34;
+               src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/errorAssumption2_hu4644990556343871879.webp&#34;
                width=&#34;760&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -7173,7 +7173,7 @@ Max
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu2513165142461614508.webp 400w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu5328215665089232257.webp 760w,
                /post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu3541744112284214280.webp 1200w&#34;
-               src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu2513165142461614508.webp&#34;
+               src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/yVSyhat2_hu2513165142461614508.webp&#34;
                width=&#34;760&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -7204,7 +7204,7 @@ Max
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;legend.frame&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;legend.outside&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            &lt;span class=&#34;n&#34;&gt;bg.color&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;white&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-15-1.png&#34; width=&#34;672&#34; /&gt;
 &lt;p&gt;No clear geographical pattern emerges, suggesting no strong spatial clusters. For a formal test, we can compute &lt;em&gt;Moran’s I&lt;/em&gt;. I will not explain Moran’s I in this post, but I would highly recommend these posts: &lt;a href=&#34;https://mgimond.github.io/Spatial/spatial-autocorrelation-in-r.html#app8_3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Intro to GIS and Spatial Analysis&lt;/a&gt; and &lt;a href=&#34;https://rpubs.com/quarcs-lab/spatial-autocorrelation&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Spatial autocorrelation analysis in R&lt;/a&gt;.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;spdep&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Define neighboring polygons&lt;/span&gt;
@@ -7239,7 +7239,7 @@ Max
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;hist&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bm_final&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;X&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;S_115&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Histogram of the Regional Population Potential&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;     &lt;span class=&#34;n&#34;&gt;xlab&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Regional Population Potential&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;768&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/index.en_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;768&#34; /&gt;
 &lt;p&gt;&lt;em&gt;Regional population potential&lt;/em&gt; measures the likelihood of direct human interactions in a region. This PDP suggests minimal marginal change in incidence at the lower end of the distribution, implying less chance of viral contagion in areas with fewer human interactions. The curve rises notably between the 20th and 80th percentiles (14,016 to 47,067), indicating a strong non-linear effect on incidence rates.&lt;/p&gt;
 &lt;p&gt;To log-transform the x-axis for clarity, you would need a custom PDP function, since &lt;code&gt;pd_plot&lt;/code&gt; does not support that directly. I wrote a variant that returns ggplot2 objects &lt;a href=&#34;https://github.com/CHEST-Lab/BART_Covid-19/blob/master/pdPlotGG.R&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;), which lets you customize plots extensively.&lt;/p&gt;
 &lt;p&gt;Below is a &lt;em&gt;multi-panel&lt;/em&gt; PDP from our publication, showing the top 10 variables. You can see more details and interpretation of these variables &lt;a href=&#34;https://ij-healthgeographics.biomedcentral.com/articles/10.1186/s12942-020-00225-1#Sec18&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
@@ -7262,7 +7262,7 @@ Max
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Partial Dependence Plots (PDP) of the 10 most prevalent variables in the final Bayesian Additive Regression Tree (BART) model. Histograms are shown for the entire country (green), for only the low rates region (LRR, teal), and for only the high rates region (HRR, purple). The PDPs indicate marginal changes in the predicted (log-transformed, age-adjusted) incidence rate per 100,000 residents (upper y-axis) for different values of each independent variable (x-axis)&#34;
-           src=&#34;http://localhost:4321/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/WallOfShame.svg&#34;
+           src=&#34;https://geobrinkmann.com/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/WallOfShame.svg&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/a&gt;&lt;/p&gt;
@@ -7299,11 +7299,11 @@ Max
     
     <item>
       <title>Visible Greenness Exposure</title>
-      <link>http://localhost:4321/post/visible-greenness-exposure/</link>
+      <link>https://geobrinkmann.com/post/visible-greenness-exposure/</link>
       <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/post/visible-greenness-exposure/</guid>
-      <description>&lt;script src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
-&lt;link href=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
+      <guid>https://geobrinkmann.com/post/visible-greenness-exposure/</guid>
+      <description>&lt;script src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/kePrint/kePrint.js&#34;&gt;&lt;/script&gt;
+&lt;link href=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/lightable/lightable.css&#34; rel=&#34;stylesheet&#34; /&gt;
 &lt;style&gt;
 body {text-align: justify}
 &lt;/style&gt;
@@ -7423,7 +7423,7 @@ The animation below demonstrates how the &lt;code&gt;viewshed&lt;/code&gt; funct
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;&#34;
-           src=&#34;http://localhost:4321/post/visible-greenness-exposure/LoS.gif&#34;
+           src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/LoS.gif&#34;
            loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;!-- --&gt;&lt;/p&gt;
@@ -7445,7 +7445,7 @@ Total visibility: 9.1%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_1[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h4 id=&#34;3-resolution--2m&#34;&gt;3. Resolution = 2m&lt;/h4&gt;
 &lt;p&gt;Output-Raster-Cells: 90 000&lt;br&gt;
 Runtime: 27.12 milliseconds&lt;br&gt;
@@ -7456,7 +7456,7 @@ Total visibility: 11.5%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_2[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h4 id=&#34;4-resolution--5m&#34;&gt;4. Resolution = 5m&lt;/h4&gt;
 &lt;p&gt;Output-Raster-Cells: 14 400&lt;br&gt;
 Runtime: 9.21 milliseconds&lt;br&gt;
@@ -7467,7 +7467,7 @@ Total visibility: 14.6%&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;max_distance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;300&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                  &lt;span class=&#34;n&#34;&gt;observer_height&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;plot&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;viewshed_3[[1]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h2 id=&#34;network-visible-greenspace&#34;&gt;Network Visible Greenspace&lt;/h2&gt;
 &lt;p&gt;A practical use case for the viewshed algorithm is to calculate the visible greenness in a person’s neighborhood by examining visibility along roads and paths.&lt;/p&gt;
 &lt;h3 id=&#34;greenspace-mask&#34;&gt;Greenspace Mask&lt;/h3&gt;
@@ -7732,7 +7732,7 @@ Very bright pixels, that are not high-reflectance features from built-up areas.
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;points&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;st_coordinates&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sf_start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;[1]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;st_coordinates&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sf_start&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;[2]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;       &lt;span class=&#34;n&#34;&gt;col&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;blue&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;cex&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;20&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1536&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;1536&#34; /&gt;
 &lt;h3 id=&#34;viewshed-greenness-visibility-index&#34;&gt;Viewshed Greenness Visibility Index&lt;/h3&gt;
 &lt;p&gt;The VGVI (Viewshed Greenness Visibility Index; (Labib, Huck, and Lindley 2021)) represents the proportion of visible greenspace to the total visible area. Its values range from 0 to 1, where 0 = no visible greenspace and 1 = all visible cells are green. Applying the &lt;code&gt;vgvi&lt;/code&gt; function below to &lt;code&gt;viewshed_1&lt;/code&gt; returns 0.91, meaning 91% of the visible area is vegetated.&lt;br&gt;
 In Labib, Huck, and Lindley (2021), the authors applied a distance-decay function to account for the decreasing visual prominence of an object with increasing distance from the observer. I will address distance-decay models in a future post.&lt;/p&gt;
@@ -7759,7 +7759,7 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                             &lt;span class=&#34;n&#34;&gt;speed&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;75&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                                             &lt;span class=&#34;n&#34;&gt;isochrones_seq&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;seq&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;The figure below shows the isodistances with the red dot indicating the starting point. We will calculate the proportion of visible greenspace every 10 meters.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg&#34; width=&#34;960&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-15-1.svg&#34; width=&#34;960&#34; /&gt;
 &lt;p&gt;To evaluate network visibility, we use the &lt;code&gt;vgvi&lt;/code&gt; function from the &lt;code&gt;CGEI&lt;/code&gt; package to calculate the VGVI along the road network. In this example, we sample points every 5 meters along the isodistances. A 2m resolution would be sufficient for a larger study because it does not differ much from 1m in practice—but here the total runtime at 1m resolution is still acceptable (only 4 seconds using 22 cores).&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;CGEI&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;vgvi&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;observer&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;aoi.isodistances&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                     &lt;span class=&#34;n&#34;&gt;dsm_rast&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dsm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
@@ -7786,14 +7786,14 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  &lt;span class=&#34;n&#34;&gt;legend.text.size&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  &lt;span class=&#34;n&#34;&gt;panel.show&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;F&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                  &lt;span class=&#34;n&#34;&gt;frame&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;FALSE&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg&#34; width=&#34;960&#34; /&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-17-1.svg&#34; width=&#34;960&#34; /&gt;
 &lt;p&gt;To determine the mean VGVI for the observer in the center, we simply take the average of all measurements. More sophisticated approaches might apply linear or logistic weighting to account for distance, as shown in our recent publication.&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nf&#34;&gt;round&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;output&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;$&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;VGVI&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;pre&gt;&lt;code&gt;## [1] 0.47
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;A mean value of 0.47 indicates that 47% of the visible area along the network is vegetated.&lt;/p&gt;
 &lt;p&gt;One notable limitation of the viewshed algorithm is its inability to accurately account for eye-level visibility when the observer is under a tree. This is because the LiDAR-derived DSM blocks all lines of sight under the canopy.&lt;/p&gt;
-&lt;img src=&#34;http://localhost:4321/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg&#34; width=&#34;480&#34; /&gt;
+&lt;img src=&#34;https://geobrinkmann.com/post/visible-greenness-exposure/index.en_files/figure-html/unnamed-chunk-19-1.svg&#34; width=&#34;480&#34; /&gt;
 &lt;p&gt;In the histogram above, many points have a GVI of 1. I have plotted the DSM and the GVI points along the route network in QGIS.&lt;img src=&#34;GVI_bad.png&#34; style=&#34;width:7.13in&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The image shows that these green points are located underneath trees, so no lines of sight extend beyond the canopy. As a result, all visible cells are green, leading to a GVI of 1.&lt;/p&gt;
 &lt;p&gt;Although we can incorporate a distance-decay function or measure &lt;em&gt;actual&lt;/em&gt; activity space rather than &lt;em&gt;potential&lt;/em&gt; activity space, these are topics for future posts. Regardless, there is a clear variation in GVI values indicating areas with higher versus lower visible greenness.&lt;/p&gt;
@@ -7825,12 +7825,18 @@ In Labib, Huck, and Lindley (2021), the authors applied a distance-decay functio
     
     <item>
       <title>Text Mining - Belval Campus</title>
-      <link>http://localhost:4321/post/text-mining-belval/</link>
+      <link>https://geobrinkmann.com/post/text-mining-belval/</link>
       <pubDate>Thu, 07 May 2020 00:00:00 +0000</pubDate>
-      <guid>http://localhost:4321/post/text-mining-belval/</guid>
-      <description>&lt;p&gt;In 2001 a project has been created to transform the former steel production site in Belval,
-Luxembourg into the &lt;a href=&#34;https://wwwde.uni.lu/fhse/belval_campus&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cité des Sciences&lt;/a&gt;.
-In &lt;a href=&#34;https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-clin-doeil/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;2015&lt;/a&gt; the new campus has been opened.
+      <guid>https://geobrinkmann.com/post/text-mining-belval/</guid>
+      <description>&lt;p&gt;In 2001, an extensive project was initiated to transform the former
+steel production site in Belval, Luxembourg, into the &lt;a href=&#34;https://wwwde.uni.lu/fhse/belval_campus&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Cité des
+Sciences&lt;/a&gt;. This transformation
+sought to revitalize a region historically characterized by heavy
+industry and to integrate research, education, and cultural activities
+within a single, modern complex. By
+&lt;a href=&#34;https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-clin-doeil/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;2015&lt;/a&gt;,
+the new campus opened, signifying a notable milestone in Luxembourg&amp;rsquo;s
+shift from a traditionally industrial economy to a knowledge-based one.
 
 
 
@@ -7849,13 +7855,26 @@ In &lt;a href=&#34;https://lequotidien.lu/luxembourg/le-campus-de-belval-en-un-c
 
 &lt;figure  &gt;
   &lt;div class=&#34;flex justify-center	&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://www.uni.lu/wp-content/uploads/sites/9/2023/07/Esch-Belval_areal-view2_2014.jpg&#34; alt=&#34;Campus Belval&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://www.uni.lu/wp-content/uploads/sites/9/2023/07/Esch-Belval_areal-view2_2014.jpg&#34; alt=&#34;Campus
+Belval&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;/figure&gt;
 &lt;/p&gt;
-&lt;p&gt;In this analysis I want to explore how this topic is being represented in the news.&lt;/p&gt;
-&lt;p&gt;Therefore I first collected the top 58 news articles from &lt;a href=&#34;https://www.google.com/search?q=belval&amp;#43;campus&amp;#43;esch-sur-alzette&amp;amp;client=firefox-b-d&amp;amp;sxsrf=ALeKk0080OxF6oOpC3lb6hNxafFccNgYjA:1590592264605&amp;amp;source=lnms&amp;amp;tbm=nws&amp;amp;sa=X&amp;amp;ved=2ahUKEwi57Kf3qdTpAhU7ThUIHSw_CG0Q_AUoAXoECCwQAw&amp;amp;biw=1920&amp;amp;bih=966&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google News&lt;/a&gt;.
-The texts have been translated to English with &lt;a href=&#34;https://www.deepl.com/en/translator&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DeepL&lt;/a&gt; and structured
-in a .txt document like so:&lt;/p&gt;
+&lt;p&gt;The architectural design of the campus preserves elements of the steel
+industry&amp;mdash;such as the iconic blast furnaces&amp;mdash;to visually connect
+Belval&amp;rsquo;s industrial past with its current role as a center of higher
+education and research. In this post, I apply text mining techniques,
+including a &lt;strong&gt;Structural Topic Model (STM)&lt;/strong&gt;, to analyze how the Belval
+Campus has been represented in news coverage over several years. This
+analysis reveals shifting themes of historical significance,
+transformation, and broader societal implications.&lt;/p&gt;
+&lt;h3 id=&#34;data-collection&#34;&gt;Data Collection&lt;/h3&gt;
+&lt;p&gt;The data for this analysis consists of 58 news articles obtained from
+&lt;a href=&#34;https://www.google.com/search?q=belval&amp;#43;campus&amp;#43;esch-sur-alzette&amp;amp;client=firefox-b-d&amp;amp;sxsrf=ALeKk0080OxF6oOpC3lb6hNxafFccNgYjA:1590592264605&amp;amp;source=lnms&amp;amp;tbm=nws&amp;amp;sa=X&amp;amp;ved=2ahUKEwi57Kf3qdTpAhU7ThUIHSw_CG0Q_AUoAXoECCwQAw&amp;amp;biw=1920&amp;amp;bih=966&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Google
+News&lt;/a&gt;.
+Since the articles were published in multiple languages, they were
+translated into English using
+&lt;a href=&#34;https://www.deepl.com/en/translator&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;DeepL&lt;/a&gt; to establish a uniform
+corpus for analysis. The text files were then standardized as follows:&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;Title: Title_Name
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DATE: dd.mm.yyyy
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
@@ -7866,26 +7885,291 @@ in a .txt document like so:&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;. Text
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;.
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;wordcloud&#34;&gt;Wordcloud&lt;/h3&gt;
-&lt;p&gt;Next a Wordcloud with the word frequency of the whole corpus has been created:
-&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/wordcloud.svg?sanitize=true&#34;&gt;
-We can already see that the new campus is of high importance. But also, the look into the future (&amp;ldquo;2022&amp;rdquo;, &amp;ldquo;future&amp;rdquo;),
-and the acknowledgement of its history (&amp;ldquo;furnace&amp;rdquo;, &amp;ldquo;steel&amp;rdquo;, &amp;ldquo;industrial&amp;rdquo;&amp;hellip;) are often thematised.&lt;/p&gt;
-&lt;h3 id=&#34;term-frequency-inverse-document-frequency&#34;&gt;Term Frequency-Inverse Document Frequency&lt;/h3&gt;
-&lt;p&gt;At this point the corpus does not contain many articles for 2014 and 2015.
-Therefore these articles have been combined for the further analysis. The next figure shows the number of articles per year:
-&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/Articles_Count.svg?sanitize=true&#34;&gt;&lt;/p&gt;
-&lt;p&gt;With the wordcloud we explored the word frequency of the whole corpus. To analyse the keywords of each year, a &lt;a href=&#34;http://www.tfidf.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;term frequency-inverse document frequency&lt;/a&gt; has been conducted:
-&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/tf_idf.svg?sanitize=true&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;structural-topic-model&#34;&gt;Structural Topic Model&lt;/h3&gt;
-&lt;p&gt;Next a &lt;a href=&#34;https://www.structuraltopicmodel.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Structural Topic Model (STM)&lt;/a&gt; has been applied on the data set. From the previous steps we already have gained an understanding of the complexity of the coverage of reports about Belval. Therefore, we knew that there are not that many different topics. After an iterative process of setting the parameter K (number of topics) and interpreting the results, I set K = 6. These 6 topics have been labeled manually.
-&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/stm.svg?sanitize=true&#34;&gt;
-To evaluate the importance and the change over time of these topics, the topic of each article within the corpus has been predicted. The result is shown in the final figure:
-&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/timeseries.svg?sanitize=true&#34;&gt;
-The most frequent articles are those that deal with the university campus in Belval itself. The second most frequent type of article is the one dealing with structural change, i.e. the transformation from a former steel industry location to the Cité des Sciences, the city of science. It should be emphasized that articles on this topic predominantly highlight the positive implementation of structural change. This is followed by articles on the topic of culture, although it is clearly visible here that there has been increased reporting on this area since 2019. This is due to the fact that this year Belval was admitted to the Capital of Culture 2022. This analysis was complemented by a qualitative interview with a partner from the University of Luxembourg about the Belval project.&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-The code is available on &lt;a href=&#34;https://github.com/STBrinkmann/Text_Mining_Belval&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This standardized format ensures that all articles could be processed
+systematically.&lt;/p&gt;
+&lt;h3 id=&#34;wordcloud-analysis&#34;&gt;Wordcloud Analysis&lt;/h3&gt;
+&lt;p&gt;The purpose of creating a wordcloud was to visualize the frequency of
+terms in the corpus, providing an initial overview of recurring
+concepts. Words displayed with larger fonts appear more frequently.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/wordcloud.svg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;The figure above presents a wordcloud generated from the combined news
+corpus. Notably, terms such as &lt;strong&gt;&amp;ldquo;university&amp;rdquo;&lt;/strong&gt;, &lt;strong&gt;&amp;ldquo;student&amp;rdquo;&lt;/strong&gt;,
+&lt;strong&gt;&amp;ldquo;building&amp;rdquo;,&lt;/strong&gt; and &lt;strong&gt;&amp;ldquo;campus&amp;rdquo;&lt;/strong&gt; appear in larger fonts, indicating
+their prominence and reflecting the central role of academia in the
+Belval transformation. Concurrently, words such as &lt;strong&gt;&amp;ldquo;furnace&amp;rdquo;,&lt;/strong&gt;
+&lt;strong&gt;&amp;ldquo;steel&amp;rdquo;,&lt;/strong&gt; and &lt;strong&gt;&amp;ldquo;industrial&amp;rdquo;&lt;/strong&gt; acknowledge the site&amp;rsquo;s heritage as a
+former steel production hub, highlighting the juxtaposition of
+historical infrastructure with contemporary educational facilities.
+Additional references to &lt;strong&gt;&amp;ldquo;restaurant&amp;rdquo;,&lt;/strong&gt; &lt;strong&gt;&amp;ldquo;project&amp;rdquo;,&lt;/strong&gt; and &lt;strong&gt;&amp;ldquo;2022&amp;rdquo;&lt;/strong&gt;
+suggest a broader scope of local development efforts, including dining
+amenities and preparations for major cultural events. Overall, the
+wordcloud underscores the importance of the university environment while
+also emphasizing the ongoing transition from an industrial past to a
+diverse, forward-looking district.&lt;/p&gt;
+&lt;h3 id=&#34;term-frequency-inverse-document-frequency-tf-idf&#34;&gt;Term Frequency-Inverse Document Frequency (TF-IDF)&lt;/h3&gt;
+&lt;p&gt;To identify terms that were particularly distinctive in each year, a
+two-step approach was adopted. First, the &lt;strong&gt;number of articles published
+between 2015 and 2020&lt;/strong&gt; was examined (see the first figure below),
+revealing variations in media attention over time. Notably, 2019 stands
+out with the highest number of articles, suggesting heightened public
+interest in Belval&amp;rsquo;s development during that year.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/Articles_Count.svg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Second, a &lt;strong&gt;TF-IDF analysis&lt;/strong&gt; was conducted to determine which words
+were most characteristic of each year (see the figure below). &lt;strong&gt;TF-IDF&lt;/strong&gt;
+stands for &lt;em&gt;term frequency&amp;ndash;inverse document frequency&lt;/em&gt; and is a widely
+used text-mining method that measures how important a word is within a
+specific subset of documents compared to its usage in the overall
+corpus. Words that appear frequently in a small number of documents but
+rarely across all documents receive a higher score, highlighting their
+uniqueness.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/tf_idf.svg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2015&lt;/strong&gt;: Terms such as &lt;em&gt;&amp;ldquo;listener&amp;rdquo;, &amp;ldquo;canteen&amp;rdquo;,&lt;/em&gt; and &lt;em&gt;&amp;ldquo;restopolis&amp;rdquo;&lt;/em&gt;
+suggest early-stage coverage focusing on student facilities and
+everyday campus life, highlighting Belval&amp;rsquo;s emerging university
+environment.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2016&lt;/strong&gt;: Words like &lt;em&gt;&amp;ldquo;monaco&amp;rdquo;, &amp;ldquo;burger&amp;rdquo;, &amp;ldquo;fashion&amp;rdquo;,&lt;/em&gt; and
+&lt;em&gt;&amp;ldquo;shopping&amp;rdquo;&lt;/em&gt; hint at expanding commercial and leisure offerings,
+reflecting growing public interest in new retail spaces.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2017&lt;/strong&gt;: The prominence of &lt;em&gt;&amp;ldquo;evening&amp;rdquo;, &amp;ldquo;glow&amp;rdquo;, &amp;ldquo;performance&amp;rdquo;,
+&amp;ldquo;furnace&amp;rdquo;,&lt;/em&gt; and &lt;em&gt;&amp;ldquo;blast&amp;rdquo;&lt;/em&gt; indicates the significance of nighttime
+cultural events and the steel industry&amp;rsquo;s legacy as a focal point for
+tourism and artistic performances.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2018&lt;/strong&gt;: References to &lt;em&gt;&amp;ldquo;tram&amp;rdquo;, &amp;ldquo;lab&amp;rdquo;, &amp;ldquo;challenges&amp;rdquo;,&lt;/em&gt; and
+&lt;em&gt;&amp;ldquo;tudiants&amp;rdquo;&lt;/em&gt; (students) point to discussions surrounding
+transportation infrastructure, academic growth, and the obstacles
+faced during Belval&amp;rsquo;s continued expansion.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2019&lt;/strong&gt;: Terms such as &lt;em&gt;&amp;ldquo;beach&amp;rdquo;, &amp;ldquo;interview&amp;rdquo;, &amp;ldquo;shooting&amp;rdquo;,
+&amp;ldquo;soldier&amp;rdquo;,&lt;/em&gt; and &lt;em&gt;&amp;ldquo;residences&amp;rdquo;&lt;/em&gt; illustrate a broader range of social
+and cultural themes, reflecting a surge in reporting as Belval
+prepared for major events such as the 2022 European Capital of
+Culture.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;2020&lt;/strong&gt;: Words including &lt;em&gt;&amp;ldquo;committee&amp;rdquo;, &amp;ldquo;discus&amp;rdquo;, &amp;ldquo;financing&amp;rdquo;,
+&amp;ldquo;planning&amp;rdquo;, and &amp;ldquo;parliamentary&amp;rdquo;&lt;/em&gt; suggest a shift toward policy
+considerations, funding mechanisms, and formal decision-making
+processes governing Belval&amp;rsquo;s future development.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Collectively, these TF-IDF outcomes demonstrate how media attention
+moved from campus-focused reporting to a more diverse discussion of
+Belval&amp;rsquo;s evolving social, cultural, and infrastructural landscape. This
+shift illustrates the campus&amp;rsquo;s growing impact on the region&amp;rsquo;s identity,
+transitioning from an industrial brownfield to a multifaceted center of
+education, innovation, and cultural engagement.&lt;/p&gt;
+&lt;h3 id=&#34;structural-topic-model-stm&#34;&gt;Structural Topic Model (STM)&lt;/h3&gt;
+&lt;p&gt;In order to identify coherent themes within the corpus and track their
+evolution over time, a &lt;strong&gt;Structural Topic Model (STM)&lt;/strong&gt; was applied.
+Unlike simpler topic modeling methods (e.g., Latent Dirichlet
+Allocation), the STM can incorporate metadata&amp;mdash;in this case,
+publication year&amp;mdash;into the modeling process. This approach not only
+reveals the latent topics but also how each topic&amp;rsquo;s prevalence shifts
+from one year to the next.&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/stm.svg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;The figure above presents the six extracted topics along with their most
+salient terms. Each topic was manually labeled based on these terms and
+the broader context of the articles:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Campus Belval&lt;/strong&gt;: Emphasizes the university setting, featuring
+words such as &amp;ldquo;university&amp;rdquo;, &amp;ldquo;student&amp;rdquo;, and &amp;ldquo;campus&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Events&lt;/strong&gt;: Centers on cultural or entertainment happenings, with
+notable keywords like &amp;ldquo;beach&amp;rdquo;, &amp;ldquo;concert&amp;rdquo;, and &amp;ldquo;party&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gastronomie&lt;/strong&gt;: Reflects discussions of food and dining options,
+including &amp;ldquo;restaurant&amp;rdquo;, &amp;ldquo;canteen&amp;rdquo;, and &amp;ldquo;restopolis&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Kultur/Zukunft, Esch 2022&lt;/strong&gt;: Highlights cultural projects and
+future-oriented planning, especially related to Esch-sur-Alzette&amp;rsquo;s
+role as European Capital of Culture 2022 (terms such as &amp;ldquo;culture&amp;rdquo;,
+&amp;ldquo;capital&amp;rdquo;, &amp;ldquo;planning&amp;rdquo;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Stadtentwicklung&lt;/strong&gt;: Focuses on urban development, covering
+infrastructure (e.g., &amp;ldquo;tram&amp;rdquo;, &amp;ldquo;city&amp;rdquo;, &amp;ldquo;park&amp;rdquo;), transportation, and
+city planning.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Strukturwandel&lt;/strong&gt;: Captures narratives around
+industrial-to-knowledge transformation, featuring references to the
+&amp;ldquo;furnace&amp;rdquo;, &amp;ldquo;blast&amp;rdquo;, and &amp;ldquo;industrial&amp;rdquo; past alongside &amp;ldquo;university&amp;rdquo; and
+&amp;ldquo;city&amp;rdquo;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The second figure illustrates how these topics are distributed across
+the years:&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;flex justify-center	&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;https://raw.githubusercontent.com/STBrinkmann/Text_Mining_Belval/master/Plots/timeseries.svg&#34; alt=&#34;&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;Several observations emerge:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Early Years (2015&amp;ndash;2016):&lt;/strong&gt;&lt;br&gt;
+Articles often concentrated on &lt;strong&gt;Campus Belval&lt;/strong&gt; and
+&lt;strong&gt;Strukturwandel&lt;/strong&gt;, reflecting public interest in the new
+university&amp;rsquo;s establishment and the ongoing shift away from the steel
+industry.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Increasing Variety (2017&amp;ndash;2018):&lt;/strong&gt;&lt;br&gt;
+&lt;strong&gt;Stadtentwicklung&lt;/strong&gt; gains more attention, indicating growing
+discussions about infrastructure projects such as new tram lines and
+urban amenities. &lt;strong&gt;Gastronomie&lt;/strong&gt; also appears more frequently,
+suggesting that an expanding dining scene and student life began to
+shape public discourse.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Peak in 2019:&lt;/strong&gt;&lt;br&gt;
+A clear spike in &lt;strong&gt;Events&lt;/strong&gt; and &lt;strong&gt;Kultur/Zukunft, Esch 2022&lt;/strong&gt;
+coincides with preparations for the European Capital of Culture,
+driving media coverage that centered on cultural programs,
+festivals, and large-scale community initiatives.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Recent Trends (2020):&lt;/strong&gt;&lt;br&gt;
+Focus on &lt;strong&gt;Campus Belval&lt;/strong&gt; remains, but &lt;strong&gt;Stadtentwicklung&lt;/strong&gt; topics
+persist, reflecting sustained interest in policies and planning
+efforts that continue to shape Belval&amp;rsquo;s evolution as both a research
+hub and a culturally vibrant district.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Overall, the STM reveals that while Belval&amp;rsquo;s transformation was
+originally framed as an industrial redevelopment story, subsequent
+coverage expanded to highlight student life, cultural events,
+gastronomic offerings, and broader urban planning. This transition
+underscores Belval&amp;rsquo;s emergence as a multi-faceted site where historical
+legacy, academic innovation, and cultural aspirations converge.&lt;/p&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;This text mining analysis demonstrates how news coverage of the Belval
+Campus has evolved over time, transitioning from early discussions
+centered on the feasibility of repurposing a steel production site to
+more diverse topics reflecting cultural initiatives, gastronomic
+developments, and the broader evolution of the campus as a hub for
+research and innovation. Although structural transformation and
+industrial heritage were initially focal points, subsequent coverage
+highlights the growth of student life, the emergence of cultural events,
+and ongoing urban planning efforts. As such, Belval has come to embody a
+multifaceted model of regional renewal in Luxembourg - one that bridges
+historical identity with contemporary academic, cultural, and
+infrastructural advancement.&lt;/p&gt;
+&lt;p&gt;For readers interested in replicating or extending this research, the
+complete code is available on
+&lt;a href=&#34;https://github.com/STBrinkmann/Text_Mining_Belval&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;GitHub&lt;/a&gt;. The
+repository provides the necessary scripts and instructions for data
+collection, preprocessing, and analysis, offering a foundation for
+further investigations into text mining and topic modeling.&lt;/p&gt;
 </description>
     </item>
     
