@@ -46,7 +46,19 @@ sections:
   content:
     title: Contact
     text: |
-      <form name="contact" netlify style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
+      <form 
+        name="contact" 
+        method="POST" 
+        netlify 
+        netlify-honeypot="bot-field" 
+        data-netlify="true" 
+        style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;"
+      >
+        <!-- Honeypot Field -->
+        <p style="display: none;">
+          <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+        </p>
+        
         <p style="margin-bottom: 1em;">
           <label style="display: block; font-weight: bold; margin-bottom: 0.5em;">Name:</label>
           <input type="text" name="name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" />
