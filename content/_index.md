@@ -55,7 +55,7 @@ sections:
         style="max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;"
       >
         <!-- Honeypot Field -->
-        <p style="display: none;">
+        <p style="margin-bottom: 1em;">
           <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
         </p>
         
