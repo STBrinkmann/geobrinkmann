@@ -188,8 +188,8 @@ mf_inset_off()
 
 # 3. Credits and scale bar
 mf_credits(txt = paste("Sources", 
-                           "www.statistik.nuernberg.de", 
                            "geoportal.bayern.de", 
+                           "www.statistik.nuernberg.de", 
                            "Own calculations", 
                            sep = "\n"),
            cex = 0.8)
@@ -355,8 +355,8 @@ mf_inset_off()
 
 # 3. Credits and scale bar
 mf_credits(txt = paste("Sources", 
-                           "www.statistik.nuernberg.de", 
                            "geoportal.bayern.de", 
+                           "www.statistik.nuernberg.de", 
                            "Own calculations", 
                            sep = "\n"),
            cex = 0.8)
