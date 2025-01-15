@@ -144,6 +144,8 @@ Overall, this view-dependent approach highlights not only *where* greenspace is 
 
 <img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="768" />
 
+## References
+
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 
 <div id="ref-brinkmann2022_agile" class="csl-entry">

@@ -362,3 +362,6 @@ mf_credits(txt = paste("Sources",
            cex = 0.8)
 mf_scale(size = 5, cex = 0.8, pos = c(653880, 5466356))
 ```
+
+## References
+
