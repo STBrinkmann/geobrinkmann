@@ -1,0 +1,1630 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: January 15, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="white">
+  
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.3.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Sebastian Brinkmann" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="By combining binary greenspace data with DSM/DTM viewshed analysis, the Visibility-based Greenspace Index (VGVI) captures how much vegetation is actually seen from a ground-level perspective—offering a more user-centered and comprehensive measure of urban greenery." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/themes/cyan.min.css" />
+  
+
+  
+  
+    
+    <link href="/dist/wc.min.40d365a5c94bd94585e708f7c92e5782e00a8d8eefc348f5d2f21a80bb7783c8.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
+
+  <link rel="canonical" href="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="GeoBrinkmann" />
+  <meta property="og:url" content="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/" />
+  <meta property="og:title" content="Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI) | GeoBrinkmann" />
+  <meta property="og:description" content="By combining binary greenspace data with DSM/DTM viewshed analysis, the Visibility-based Greenspace Index (VGVI) captures how much vegetation is actually seen from a ground-level perspective—offering a more user-centered and comprehensive measure of urban greenery." /><meta property="og:image" content="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/featured.png" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2025-01-13T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2025-01-13T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  <title>Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI) | GeoBrinkmann</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link type="text/css" rel="stylesheet" href="/dist/lib/katex/katex.min.505d5f829022bb7b4f24dfee0aa1141cd7bba67afe411d1240335f820960b5c3.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr&#43;QR0SQDNfgglgtcM=" />
+  
+  
+  <script defer src="/dist/lib/katex/katex.min.dc84b296ec3e884de093158f760fd9d45b6c7abe58b5381557f4e138f46a58ae.js" integrity="sha256-3ISyluw&#43;iE3gkxWPdg/Z1Ftser5YtTgVV/ThOPRqWK4="></script>
+  
+  
+  
+  
+  <script defer src="/js/katex-renderer.6579ec9683211cfb952064aedf3a3baea5eeb17a061775b32b70917474637c80.js" integrity="sha256-ZXnsloMhHPuVIGSu3zo7rqXusXoGF3WzK3CRdHRjfIA="></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+        
+        
+        
+          <header id="site-header" class="header">
+  <nav class="navbar px-3 flex justify-left">
+    <div class="order-0 h-100">
+      
+      <a class="navbar-brand" href="/" title="GeoBrinkmann">
+            
+            
+              
+              <img
+                fetchpriority="high"
+                decoding="async"
+                class=""
+                width="36"
+                height="36"
+                src="/media/icon_hu1615250596747404985.webp"
+                alt="GeoBrinkmann" />
+            
+          
+        
+        GeoBrinkmann
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Open Menu</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Close Menu</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-left
+      ">
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/"
+        >Home</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/post/"
+        >Posts</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/publication/"
+        >Papers</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/experience/"
+        >Experience</a
+        >
+      </li>
+      
+      
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+
+      
+      
+      
+
+      
+      
+      <div class="px-3 text-black hover:text-primary-700 dark:text-white dark:hover:text-primary-300
+            [&.active]:font-bold [&.active]:text-black/90 dark:[&.active]:text-white">
+        <button class="theme-toggle mt-1" accesskey="t" title="appearance">
+          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class="dark:hidden">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class=" dark:block [&:not(dark)]:hidden">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+      
+
+      
+      
+
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+
+        
+      
+    </div>
+    <div class="page-body  my-10">
+      
+
+
+
+
+
+<div class="mx-auto flex max-w-screen-xl">
+  
+
+
+
+<aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] lg:hidden xl:block">
+  
+  <div class="px-4 pt-4 lg:hidden">
+    
+    
+  </div>
+  <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
+    <ul class="flex flex-col gap-1 lg:hidden">
+      
+      
+        <li class="open"><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/"
+    
+  >Blog
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/nuernberg-greenspace-availability-index/"
+    
+  >Nürnberg - 2. Greenspace Availability Index (GAVI)
+    </a>
+              
+            </li><li class="flex flex-col open"><a
+    class="hb-sidebar-custom-link
+      sidebar-active-item bg-primary-100 font-semibold text-primary-800 dark:bg-primary-300 dark:text-primary-900"
+    href="/post/nuernberg-viewshed-greenness-visibility-index/"
+    
+  >Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI)
+    </a>
+  
+    <ul class="hb-sidebar-mobile-toc"><li>
+              <a
+                href="#introduction"
+                class="hb-docs-link"
+              >Introduction</a>
+            </li>
+          <li>
+              <a
+                href="#data"
+                class="hb-docs-link"
+              >Data</a>
+            </li>
+          <li>
+              <a
+                href="#vgvi"
+                class="hb-docs-link"
+              >VGVI</a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visibility-sensitivity-analysis/"
+    
+  >Visibility - Sensitivity Analysis
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/"
+    
+  >BART - A Bayesian machine learning workflow for complex spatial data
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visible-greenness-exposure/"
+    
+  >Visible Greenness Exposure
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/text-mining-belval/"
+    
+  >Text Mining - Belval Campus
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/"
+    
+  >Publications
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/digidem_2024/"
+    
+  >Räumliche Erreichbarkeit von Gedächtnisambulanzen – Eine geographische Analyse im Rahmen von digiDEM Bayern
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/brinkmann_2022/"
+    
+  >Modelling eye-level visibility of urban green space: Optimising city-wide point-based viewshed computations through prototyping
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/walker_2022/"
+    
+  >Neighborhood Greenspace and Socioeconomic Risk are Associated with Diabetes Risk at the Sub-neighborhood Scale: Results from the Prospective Urban and Rural Epidemiology (PURE) Study
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/spatlac-index-r-package/"
+    
+  >spatLac: Spatial Lacunarity
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/gvi-greenness-visibility-index-r-package/"
+    
+  >GVI: Greenness Visibility Index R package
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/scarpone2020/"
+    
+  >A multimethod approach for county-scale geospatial analysis of emerging infectious diseases. A cross-sectional case study of COVID-19 incidence in Germany
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/experience/"
+    
+  >Experience
+    </a></li>
+    </ul>
+
+    <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
+
+</aside>
+  
+
+<nav class="hb-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#introduction">Introduction</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#data">Data</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#vgvi">VGVI</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#1-defining-observer-locations">1. Defining Observer Locations</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#2-calculating-the-vgvi">2. Calculating the VGVI</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#3-interpolating-vgvi-to-a-continuous-surface">3. Interpolating VGVI to a Continuous Surface</a>
+      </li></ul>
+
+  
+  
+    
+    
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </nav>
+
+
+  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+    <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
+
+      
+
+      <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI)</h1>
+
+      <div class="mt-4 mb-16">
+      <div class="text-gray-500 dark:text-gray-300 text-sm flex items-center flex-wrap gap-y-2"><span class="mr-1">Jan 13, 2025</span>
+        
+
+        
+        <span class="mx-1">·</span>
+        <span class="mx-1">
+          7 min read
+        </span>
+        
+        </div>
+
+        <div class="mt-3">
+          
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+      
+      
+      
+
+      
+      
+
+      <div class="prose prose-slate lg:prose-xl dark:prose-invert">
+        <h2 id="introduction">Introduction</h2>
+<p>The <strong>visibility of greenspace</strong> is crucial for understanding how urban environments influence mental health and well-being. In contrast to simple 2D buffer analyses, visibility focuses on the <strong>eye-level perspective</strong>: how much greenery a person sees from their usual vantage point. One way to estimate this is by using street-view (SV) images (e.g., from Google Street View or Baidu Street View). However, SV-based methods are often limited by seasonal inconsistencies and coverage gaps on roads inaccessible by car (Li et al. 2015). A promising alternative is <strong>viewshed analysis</strong> within a GIS framework, which can accurately simulate what a person can see from specific locations. Recent studies at city-wide scales show this approach yields highly accurate visibility estimates, without depending on SV image availability (Tabrizian et al. 2020; Labib, Huck, and Lindley 2021; Cimburova and Blumentrath 2022). Improved computation times now allow large-scale assessments of visible greenspace with relatively little effort (Brinkmann, Kremer, and Walker 2022). This measure of greenspace visibility is especially relevant for the restoration pathway, where greenery supports mental recovery (Markevych et al. 2017).</p>
+<p>Ample evidence suggests that <strong>exposure to green spaces can significantly lower stress and restore cognitive function</strong>. According to the stress reduction theory, natural environments promote stress relief by providing visual cues perceived as safe havens in evolutionary terms (Ulrich 1981; Ulrich et al. 1991). Meanwhile, the <strong>attention restoration</strong> theory posits that nature helps the mind recover from “attention fatigue” by engaging involuntary attention, thus giving directed attention a chance to rest (Kaplan and Kaplan 1989). Both theories underscore the importance of simply seeing natural elements for psychological benefits. As a result, the inclusion of visibility metrics - from either street-view imagery or GIS-based viewshed analysis - can add vital insights into how greenspace fosters restoration and supports better mental health outcomes (Dadvand et al. 2016).</p>
+<h2 id="data">Data</h2>
+<p>The relevant spatial datasets have been uploaded on Zenodo: administrative boundaries (AOI), DTM and DSM rasters, and a binary land-cover raster for greenspace analysis. All raster data is available at 1m resolution.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">CGEI</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">zenodo_url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://zenodo.org/records/14633167/files/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># AOI</span>
+</span></span><span class="line"><span class="cl"><span class="n">aoi</span> <span class="o">&lt;-</span> <span class="nf">read_sf</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">zenodo_url</span><span class="p">,</span> <span class="s">&#34;01_Nbg_Bezirke.gpkg&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">code_bez</span> <span class="o">!=</span> <span class="s">&#34;97&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1"># This is not available in the GAVI</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">code_bez</span><span class="p">,</span> <span class="n">name_bez</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ungroup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># DSM</span>
+</span></span><span class="line"><span class="cl"><span class="n">dsm</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">zenodo_url</span><span class="p">,</span> <span class="s">&#34;03_dsm_1m.tif&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># DTM</span>
+</span></span><span class="line"><span class="cl"><span class="n">dtm</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">zenodo_url</span><span class="p">,</span> <span class="s">&#34;03_dtm_1m.tif&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Greenspace (binary)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lulc</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">zenodo_url</span><span class="p">,</span> <span class="s">&#34;03_ndvi_01_1m.tif&#34;</span><span class="p">))</span>
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/index.en_files/figure-html/unnamed-chunk-4-1.png" width="960" />
+<p>Nürnberg, shown on the left in grey, is divided into 86 administrative districts. Mögeldorf has been highlighted in orange to provide examples of the three key greenness metrics on the right:</p>
+<ol>
+<li>
+<p><strong>DTM</strong> - The Digital Terrain Model illustrates the bare earth’s surface elevation, excluding buildings and vegetation. In the map, higher terrain is depicted in brownish colors, transitioning to green in lower-lying areas.</p>
+</li>
+<li>
+<p><strong>DSM</strong> - The Digital Surface Model includes all features above ground (e.g., buildings, trees). The green and yellow shades indicate varying heights, reflecting how built-up areas and vegetation rise above the terrain.</p>
+</li>
+<li>
+<p><strong>LULC</strong> - The land-use/land-cover map distinguishes vegetated (green) from non-vegetated (red) areas, making it easy to spot where greenery dominates versus dense urban structures.</p>
+</li>
+</ol>
+<h2 id="vgvi">VGVI</h2>
+<p>A key measure of <strong>eye-level</strong> greenspace exposure is the Viewshed Greenness Visibility Index (<strong>VGVI</strong>) (Labib, Huck, and Lindley 2021). This metric quantifies how much greenery (based on a binary LULC layer) is visible from a given point when accounting for local surface elevations (DSM) and terrain elevations (DTM).</p>
+<h3 id="1-defining-observer-locations">1. Defining Observer Locations</h3>
+<p>To simulate where an individual might stand, we first identify valid observer points at a 5 m resolution, excluding areas where buildings or other tall structures exceed the observer’s eye height (e.g., 2.2 m above ground). The code below shows how we aggregate DSM and DTM to 5 m, filter for valid points <code>(dsm5 &lt;= dtm5 + 2.2)</code>, and convert these locations into an SF object:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># First we need all valid cells in a 5x5m grid. These are where the DSM is not</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># higher than 1.8m + DTM</span>
+</span></span><span class="line"><span class="cl"><span class="n">dsm5</span> <span class="o">&lt;-</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dsm</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dtm5</span> <span class="o">&lt;-</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">dtm</span><span class="p">,</span> <span class="m">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">obs</span> <span class="o">&lt;-</span> <span class="n">dsm5</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">dtm5</span> <span class="o">+</span> <span class="m">2.2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">obs</span> <span class="o">&lt;-</span> <span class="n">obs</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">crop</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mask</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">obs_vals</span> <span class="o">&lt;-</span> <span class="nf">values</span><span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">obs_vals</span> <span class="o">&lt;-</span> <span class="nf">which</span><span class="p">(</span><span class="nf">as.vector</span><span class="p">(</span><span class="n">obs_vals</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Convert the cell coordinates as an SF</span>
+</span></span><span class="line"><span class="cl"><span class="n">obs_sf</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="o">::</span><span class="nf">xyFromCell</span><span class="p">(</span><span class="n">obs</span><span class="p">,</span> <span class="n">obs_vals</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">obs_sf</span> <span class="o">&lt;-</span> <span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">as_tibble</span><span class="p">(</span><span class="n">obs_sf</span><span class="p">),</span> <span class="n">coords</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;x&#34;</span><span class="p">,</span> <span class="s">&#34;y&#34;</span><span class="p">),</span> <span class="n">crs</span> <span class="o">=</span> <span class="nf">crs</span><span class="p">(</span><span class="n">dsm</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">n</span><span class="p">())</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">relocate</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="2-calculating-the-vgvi">2. Calculating the VGVI</h3>
+<p>With all potential observer locations defined, we compute the <strong>VGVI</strong> using a <strong>viewshed</strong> approach. In brief:</p>
+<ul>
+<li>
+<p>The observer’s eye height (2.2 m) is placed atop the DTM, and any obstacles (e.g., buildings, trees) in the DSM are considered.</p>
+</li>
+<li>
+<p>Each visible line-of-sight cell in a viewshed is checked against the binary greenspace raster (LULC).</p>
+</li>
+<li>
+<p>A distance decay function reduces the weight of objects further away (e.g., <strong>exponential</strong> with m=1m and b=3).</p>
+</li>
+</ul>
+<p>Below is the <code>vgvi()</code> function call from the <a href="https://github.com/STBrinkmann/CGEI/" target="_blank" rel="noopener"><strong>CGEI</strong></a> R package that performs these steps in parallel:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Calculate VGVI</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_sf</span> <span class="o">&lt;-</span> <span class="nf">vgvi</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">obs_sf</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">dsm_rast</span> <span class="o">=</span> <span class="n">dsm</span><span class="p">,</span> <span class="n">dtm_rast</span> <span class="o">=</span> <span class="n">dtm</span><span class="p">,</span> <span class="n">greenspace_rast</span> <span class="o">=</span> <span class="n">lulc</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">max_distance</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span> <span class="n">observer_height</span> <span class="o">=</span> <span class="m">2.2</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">                <span class="n">m</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">mode</span> <span class="o">=</span> <span class="s">&#34;exponential&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cores</span> <span class="o">=</span> <span class="m">22</span><span class="p">,</span> <span class="n">progress</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="3-interpolating-vgvi-to-a-continuous-surface">3. Interpolating VGVI to a Continuous Surface</h3>
+<p>Finally, the point-based VGVI results (one value per observer location) are interpolated to a continuous 10 m resolution raster using <strong>Inverse Distance Weighting (IDW)</strong>. IDW assumes nearby values are more similar than distant ones, so each unknown cell’s VGVI is a distance-weighted average of its nearest neighbors (Hartmann, Krois, and Waske 2018). Relevant parameters (e.g., number of neighbors, distance threshold) can be fine-tuned based on sensitivity analysis.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Now rasterize the VGVI</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_sf</span> <span class="o">&lt;-</span> <span class="n">vgvi_sf[aoi</span><span class="p">,</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_rast_05</span> <span class="o">&lt;-</span> <span class="nf">sf_interpolat_IDW</span><span class="p">(</span><span class="n">observer</span> <span class="o">=</span> <span class="n">vgvi_sf</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">v</span> <span class="o">=</span> <span class="s">&#34;VGVI&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">aoi</span> <span class="o">=</span> <span class="n">aoi</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">raster_res</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">beta</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">max_distance</span> <span class="o">=</span> <span class="m">500</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">na_only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                  <span class="n">cores</span> <span class="o">=</span> <span class="m">22</span><span class="p">,</span> <span class="n">progress</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Bring to 10m resolution</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_rast_10</span> <span class="o">&lt;-</span> <span class="nf">aggregate</span><span class="p">(</span><span class="n">vgvi_rast_05</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_rast_10</span> <span class="o">&lt;-</span> <span class="n">vgvi_rast_10</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">crop</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mask</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+</span></span></code></pre></div><p>Finally, the <strong>VGVI</strong> raster can be classified using <strong>Jenks natural breaks</strong> to highlight different visibility classes.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Classify the VGVI using Jenks natural breaks - N=9</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_rast_10</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">:::</span><span class="nf">reclassify_jenks</span><span class="p">(</span><span class="n">vgvi_rast_10</span><span class="p">,</span> <span class="m">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">vgvi_rast_10</span> <span class="o">&lt;-</span> <span class="nf">as.int</span><span class="p">(</span><span class="n">vgvi_rast_10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">vgvi_rast_10</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&#34;VGVI&#34;</span>
+</span></span></code></pre></div><p>Below is the <strong>final VGVI map</strong> for Nürnberg, showing how much greenspace is visible from an eye-level perspective at each location. Areas in <strong>red</strong> represent lower greenness visibility, whereas <strong>green</strong> areas indicate higher greenness visibility. As expected, more <strong>densely built-up</strong> districts near the city center display lower VGVI values, while <strong>peripheral areas</strong> - which often have less building coverage and more open space - reveal higher VGVI values.</p>
+<p>Overall, this view-dependent approach highlights not only <em>where</em> greenspace is located, but also <em>how much</em> of it is actually visible to an individual walking through the city - critical information for urban design, mental health research, and ecological planning.</p>
+<img src="https://geobrinkmann.com/post/nuernberg-viewshed-greenness-visibility-index/index.en_files/figure-html/unnamed-chunk-10-1.png" width="768" />
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-brinkmann2022_agile" class="csl-entry">
+<p>Brinkmann, Sebastian T., Dominik Kremer, and Blake Byron Walker. 2022. “Modelling Eye-Level Visibility of Urban Green Space: Optimising City-Wide Point-Based Viewshed Computations Through Prototyping.” <em>AGILE: GIScience Series</em> 3 (June): 1–7. <a href="https://doi.org/10.5194/agile-giss-3-27-2022" target="_blank" rel="noopener">https://doi.org/10.5194/agile-giss-3-27-2022</a>.</p>
+</div>
+<div id="ref-cimburova2022" class="csl-entry">
+<p>Cimburova, Zofie, and Stefan Blumentrath. 2022. “Viewshed-Based Modelling of Visual Exposure to Urban Greenery An Efficient GIS Tool for Practical Planning Applications.” <em>Landscape and Urban Planning</em> 222 (June): 104395. <a href="https://doi.org/10.1016/j.landurbplan.2022.104395" target="_blank" rel="noopener">https://doi.org/10.1016/j.landurbplan.2022.104395</a>.</p>
+</div>
+<div id="ref-dadvand2016" class="csl-entry">
+<p>Dadvand, Payam, Xavier Bartoll, Xavier Basagaña, Albert Dalmau-Bueno, David Martinez, Albert Ambros, Marta Cirach, et al. 2016. “Green Spaces and General Health: Roles of Mental Health Status, Social Support, and Physical Activity.” <em>Environment International</em> 91 (May): 161–67. <a href="https://doi.org/10.1016/j.envint.2016.02.029" target="_blank" rel="noopener">https://doi.org/10.1016/j.envint.2016.02.029</a>.</p>
+</div>
+<div id="ref-hartmann2018" class="csl-entry">
+<p>Hartmann, K., J. Krois, and B. Waske. 2018. “E-Learning Project SOGA: Statistics and Geospatial Data Analysis.” <em>Department of Geographiy, University of Kansas Occasional Paper</em>. <a href="https://www.geo.fu-berlin.de/en/v/soga/Geodata-analysis/geostatistics/index.html" target="_blank" rel="noopener">https://www.geo.fu-berlin.de/en/v/soga/Geodata-analysis/geostatistics/index.html</a>.</p>
+</div>
+<div id="ref-kaplan1989" class="csl-entry">
+<p>Kaplan, R., and S. Kaplan. 1989. “The Experience of Nature: A Psychological Perspective.” <em>New York: Cambridge University Press</em>.</p>
+</div>
+<div id="ref-labib2021a_visibility" class="csl-entry">
+<p>Labib, S. M., Jonny J. Huck, and Sarah Lindley. 2021. “Modelling and Mapping Eye-Level Greenness Visibility Exposure Using Multi-Source Data at High Spatial Resolutions.” <em>Science of The Total Environment</em> 755 (February): 143050. <a href="https://doi.org/10.1016/j.scitotenv.2020.143050" target="_blank" rel="noopener">https://doi.org/10.1016/j.scitotenv.2020.143050</a>.</p>
+</div>
+<div id="ref-li2015" class="csl-entry">
+<p>Li, Xiaojiang, Chuanrong Zhang, Weidong Li, Robert Ricard, Qingyan Meng, and Weixing Zhang. 2015. “Assessing Street-Level Urban Greenery Using Google Street View and a Modified Green View Index.” <em>Urban Forestry &amp; Urban Greening</em> 14 (3): 675–85. <a href="https://doi.org/10.1016/j.ufug.2015.06.006" target="_blank" rel="noopener">https://doi.org/10.1016/j.ufug.2015.06.006</a>.</p>
+</div>
+<div id="ref-markevych2017" class="csl-entry">
+<p>Markevych, Iana, Julia Schoierer, Terry Hartig, Alexandra Chudnovsky, Perry Hystad, Angel M. Dzhambov, Sjerp de Vries, et al. 2017. “Exploring Pathways Linking Greenspace to Health: Theoretical and Methodological Guidance.” <em>Environmental Research</em> 158 (October): 301–17. <a href="https://doi.org/10.1016/j.envres.2017.06.028" target="_blank" rel="noopener">https://doi.org/10.1016/j.envres.2017.06.028</a>.</p>
+</div>
+<div id="ref-tabrizian2020" class="csl-entry">
+<p>Tabrizian, Payam, Perver K. Baran, Derek Van Berkel, Helena Mitasova, and Ross Meentemeyer. 2020. “Modeling Restorative Potential of Urban Environments by Coupling Viewscape Analysis of Lidar Data with Experiments in Immersive Virtual Environments.” <em>Landscape and Urban Planning</em> 195 (March): 103704. <a href="https://doi.org/10.1016/j.landurbplan.2019.103704" target="_blank" rel="noopener">https://doi.org/10.1016/j.landurbplan.2019.103704</a>.</p>
+</div>
+<div id="ref-ulrich1981" class="csl-entry">
+<p>Ulrich, Roger S. 1981. “Natural Versus Urban Scenes.” <em>Environment and Behavior</em> 13 (5): 523–56. <a href="https://doi.org/10.1177/0013916581135001" target="_blank" rel="noopener">https://doi.org/10.1177/0013916581135001</a>.</p>
+</div>
+<div id="ref-ulrich1991" class="csl-entry">
+<p>Ulrich, Roger S., Robert F. Simons, Barbara D. Losito, Evelyn Fiorito, Mark A. Miles, and Michael Zelson. 1991. “Stress Recovery During Exposure to Natural and Urban Environments.” <em>Journal of Environmental Psychology</em> 11 (3): 201–30. <a href="https://doi.org/10.1016/s0272-4944%2805%2980184-7" target="_blank" rel="noopener">https://doi.org/10.1016/s0272-4944(05)80184-7</a>.</p>
+</div>
+</div>
+
+      </div>
+
+      
+  <time class="mt-12 mb-8 block text-xs text-gray-500 ltr:text-right rtl:text-left dark:text-gray-400" datetime="2025-01-13T00:00:00.000Z">
+    <span>Last updated on</span>
+    Jan 13, 2025</time>
+
+      <div class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert mt-5">
+        
+        <div class="max-w-prose print:hidden">
+  
+  
+
+  
+
+<div class="flex justify-center">
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/nurnberg/">Nürnberg</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/vgvi/">VGVI</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/r/">R</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenness-visibility/">Greenness Visibility</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenspace/">Greenspace</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/cgei/">CGEI</a>
+  
+</div>
+
+
+  
+<section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-viewshed-greenness-visibility-index%2F&amp;text=N%C3%BCrnberg&#43;-&#43;1.&#43;Viewshed&#43;Greenness&#43;Visibility&#43;Index&#43;%28VGVI%29"
+    title="X"
+    aria-label="X"
+    id="share-link-x"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-viewshed-greenness-visibility-index%2F&amp;t=N%C3%BCrnberg&#43;-&#43;1.&#43;Viewshed&#43;Greenness&#43;Visibility&#43;Index&#43;%28VGVI%29"
+    title="Facebook"
+    aria-label="Facebook"
+    id="share-link-facebook"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+    
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="mailto:?subject=N%C3%BCrnberg%20-%201.%20Viewshed%20Greenness%20Visibility%20Index%20%28VGVI%29&amp;body=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-viewshed-greenness-visibility-index%2F"
+    title="Email"
+    aria-label="Email"
+    id="share-link-email"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-viewshed-greenness-visibility-index%2F&amp;title=N%C3%BCrnberg&#43;-&#43;1.&#43;Viewshed&#43;Greenness&#43;Visibility&#43;Index&#43;%28VGVI%29"
+    title="LinkedIn"
+    aria-label="LinkedIn"
+    id="share-link-linkedin"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="whatsapp://send?text=N%C3%BCrnberg&#43;-&#43;1.&#43;Viewshed&#43;Greenness&#43;Visibility&#43;Index&#43;%28VGVI%29%20https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-viewshed-greenness-visibility-index%2F"
+    title="WhatsApp"
+    aria-label="WhatsApp"
+    id="share-link-whatsapp"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="m187.58 144.84-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40 88.1 88.1 0 0 0 88 88 40 40 0 0 0 40-40 8 8 0 0 0-4.42-7.16ZM152 176a72.08 72.08 0 0 1-72-72 24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51 56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155l14.61-9.74 23 11.48A24 24 0 0 1 152 176ZM128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81 8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+  </a>
+  
+</section>
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+
+<div class="flex pt-12 pb-4">
+  
+  
+  <img
+    class="mr-4 h-24 w-24 rounded-full"
+    width="96"
+    height="96"
+    alt="Sebastian Brinkmann"
+  src="/author/sebastian-brinkmann/avatar_hu12292808825799653284.jpg"
+  loading="lazy"
+  />
+  
+  <div class="place-self-center">
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Authors
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      <a href="https://geobrinkmann.com/" class="no-underline">
+      Sebastian Brinkmann
+      </a>
+    </div>
+
+    
+    <div class="text-sm font-bold text-neutral-700 dark:text-neutral-300">
+    Data Scientist
+    </div>
+    
+
+
+    
+
+    <div class="text-2xl sm:text-lg pt-1">
+
+      
+<div class="flex flex-wrap text-neutral-500 dark:text-neutral-300">
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="/#contact"
+      
+      aria-label="At-Symbol"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://github.com/STBrinkmann"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Github"
+    ><svg style="height: 1em;" fill="currentColor" viewBox="3 3 18 18"><path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://www.linkedin.com/in/sebastian-t-brinkmann/"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Linkedin"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://orcid.org/0000-0001-9835-7347"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Academicons/Orcid"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M336.62 194.538c-7.13-3.328-13.866-5.56-20.253-6.614c-6.365-1.095-16.574-1.612-30.71-1.612h-36.704v152.747h37.634c14.673 0 26.081-1.013 34.224-3.017c8.142-2.004 14.921-4.526 20.356-7.626a69.448 69.448 0 0 0 14.942-11.388c14.488-14.714 21.742-33.273 21.742-55.717c0-22.052-7.44-40.052-22.341-53.982c-5.498-5.166-11.822-9.444-18.89-12.793zM256 8C119.022 8 8 119.042 8 256s111.022 248 248 248s248-111.042 248-248S392.978 8 256 8Zm-82.336 357.513h-29.389V160.148h29.389zM158.95 138.696c-11.14 0-20.213-9.01-20.213-20.212c0-11.118 9.052-20.191 20.213-20.191c11.18 0 20.232 9.052 20.232 20.191a20.194 20.194 0 0 1-20.232 20.212zm241.386 163.597c-5.29 12.545-12.834 23.581-22.65 33.088c-9.982 9.837-21.597 17.194-34.844 22.196c-7.75 3.017-14.839 5.063-21.307 6.117c-6.49 1.013-18.828 1.509-37.076 1.509h-64.956V160.148h69.233c27.962 0 50.034 4.154 66.32 12.545c16.265 8.37 29.181 20.728 38.792 36.972c9.61 16.265 14.425 34.018 14.425 53.196c.023 13.765-2.666 26.908-7.936 39.432z"/></svg></a>
+  
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+    
+<div class="pt-1 no-prose w-full">
+  <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+  <div class="flex flex-col md:flex-row flex-nowrap justify-between gap-5 pt-2">
+    <div class="">
+      
+        <a class="group flex no-underline" href="/post/nuernberg-greenspace-availability-index/">
+          <span
+            class="mt-[-0.3rem] me-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline rtl:hidden">&larr;</span></span>
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Nürnberg - 2. Greenspace Availability Index (GAVI)</span>
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jan 14, 2025
+              
+            </span>
+          </span>
+        </a>
+      
+    </div>
+    <div class="">
+      
+        <a class="group flex text-right no-underline" href="/post/visibility-sensitivity-analysis/">
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Visibility - Sensitivity Analysis</span
+            >
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jun 22, 2021
+              
+            </span>
+          </span>
+          <span
+            class="mt-[-0.3rem] ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline">&rarr;</span></span>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  
+
+
+
+</div>
+
+      </div>
+
+    </main>
+  </article>
+</div>
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by text-center">
+    © 2025 geobrinkmann.com. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

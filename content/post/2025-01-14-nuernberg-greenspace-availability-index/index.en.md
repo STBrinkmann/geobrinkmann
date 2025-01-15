@@ -21,7 +21,7 @@ Urban areas are often associated with elevated levels of air pollution, heat, an
 
 ## Data
 
-We first load key R packages, define a URL to retrieve data files from Zenodo, and then import the relevant spatial datasets: administrative boundaries (AOI), NDVI and LAI rasters, and a binary land-cover raster for greenspace analysis.
+The relevant spatial datasets have been uploaded on Zenodo: administrative boundaries (AOI), NDVI and LAI rasters, and a binary land-cover raster for greenspace analysis.
 
 ``` r
 library(sf)
@@ -48,7 +48,7 @@ lai <- rast(paste0(zenodo_url, "03_lai_10m.tif"))
 lulc <- rast(paste0(zenodo_url, "03_lulc_10m.tif"))
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-3-1.png" width="960" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="960" />
 
 Nürnberg, shown on the left in grey, is divided into 86 administrative districts. Mögeldorf has been highlighted in orange to provide examples of the three key greenness metrics on the right:
 
@@ -60,11 +60,11 @@ Nürnberg, shown on the left in grey, is divided into 86 administrative district
 
 ## Lacunarity
 
-Lacunarity is a key measure of spatial heterogeneity - often described as the “gappiness” of a pattern—making it especially useful for characterizing how vegetation is distributed across landscapes (Labib, Lindley, and Huck 2020b; Hoechstetter, Walz, and Thinh 2011). While other measures simply aggregate the amount of greenspace, lacunarity captures differences in the **structure** of that greenspace. For instance, a continuous patch of trees will exhibit lower lacunarity than an area of fragmented green spots, even if both have the same total leaf cover.
+Lacunarity is a key measure of spatial heterogeneity - often described as the “gappiness” of a pattern - making it especially useful for characterizing how vegetation is distributed across landscapes (Labib, Lindley, and Huck 2020b; Hoechstetter, Walz, and Thinh 2011). While other measures simply aggregate the amount of greenspace, lacunarity captures differences in the **structure** of that greenspace. For instance, a continuous patch of trees will exhibit lower lacunarity than an area of fragmented green spots, even if both have the same total leaf cover.
 
 This insight is critically important in urban contexts, where the spatial arrangement of vegetation affects microclimate regulation, air pollution buffering, and recreational opportunities. Moreover, lacunarity helps address the **modifiable areal unit problem (MAUP)** by examining multiple scales simultaneously. Smaller scales might capture local vegetation buffers (e.g., shrubs along roadways), while larger scales reflect broader landscape connectivity and potential for recreational use.
 
-In practice, lacunarity is calculated by sliding a square window of varying sizes across a raster (e.g., NDVI, LAI, or LULC), then quantifying how homogeneous or heterogeneous each neighborhood is at each scale. The result is a scale-dependent measure of pattern variation. Below is an example of how lacunarity can be computed at five buffer distances (50, 100, 200, 300, and 400 meters) using the [**CGEI**](https://github.com/STBrinkmann/CGEI/) R package:
+In practice, lacunarity is calculated by sliding a square window of varying buffer sizes across a raster (e.g., NDVI, LAI, or LULC), then quantifying how homogeneous or heterogeneous each neighborhood is at each scale. The result is a scale-dependent measure of pattern variation. Below is an example of how lacunarity can be computed at five buffer distances (50, 100, 200, 300, and 400 meters) using the [**CGEI**](https://github.com/STBrinkmann/CGEI/) R package:
 
 ``` r
 # Combine rasters
@@ -94,13 +94,14 @@ By assigning individual weights for each metric and scale (based on how patchy t
 ``` r
 # Calculate GAVI
 gavi_nbg <- gavi(x = rast_vec, lac_nbg, cores = 22)
+names(gavi_nbg) <- "GAVI"
 ```
 
 Below is the **final Greenspace Availability Index (GAVI) map** for Nürnberg, derived by combining NDVI, LAI, and LULC across five spatial scales (50 m to 400 m) using **lacunarity-based weights**. The map highlights where greenspace is low (red shades, corresponding to lower GAVI values) and high (green shades, corresponding to higher GAVI values). Unsurprisingly, dense urban areas toward the city center show lower greenspace availability, while more peripheral or park-rich districts exhibit higher levels of greenery.
 
 By capturing both the amount and the spatial arrangement of vegetation at multiple neighborhood scales, this multi-scale, multi-metric approach provides a **more nuanced picture** of greenspace availability - valuable for urban planning, public health, and environmental management.
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 
 ## References
 

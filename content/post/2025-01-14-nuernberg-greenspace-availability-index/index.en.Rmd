@@ -25,15 +25,40 @@ Urban areas are often associated with elevated levels of air pollution, heat, an
 
 ## Data
 
-We first load key R packages, define a URL to retrieve data files from Zenodo, and then import the relevant spatial datasets: administrative boundaries (AOI), NDVI and LAI rasters, and a binary land-cover raster for greenspace analysis.
+The relevant spatial datasets have been uploaded on Zenodo: administrative boundaries (AOI), NDVI and LAI rasters, and a binary land-cover raster for greenspace analysis.
 
-```{r message=FALSE, warning=FALSE}
+```{r eval=FALSE}
 library(sf)
 library(dplyr)
 library(terra)
 library(CGEI)
 
 zenodo_url <- "https://zenodo.org/records/14633167/files/"
+
+# AOI
+aoi <- read_sf(paste0(zenodo_url, "01_Nbg_Bezirke.gpkg")) %>%
+  filter(code_bez != "97") %>% # This is not available in the GAVI
+  group_by(code_bez, name_bez) %>%
+  summarise() %>%
+  ungroup()
+
+# NDVI
+ndvi <- rast(paste0(zenodo_url, "03_ndvi_10m.tif"))
+
+# LAI
+lai <- rast(paste0(zenodo_url, "03_lai_10m.tif"))
+
+# Greenspace (binary)
+lulc <- rast(paste0(zenodo_url, "03_lulc_10m.tif"))
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(sf)
+library(dplyr)
+library(terra)
+library(CGEI)
+
+zenodo_url <- "../../../../SpatData_Nbg/01_analysis/0102_data/02_processed/"
 
 # AOI
 aoi <- read_sf(paste0(zenodo_url, "01_Nbg_Bezirke.gpkg")) %>%
@@ -155,7 +180,13 @@ box()
 mf_inset_off()
 
 # 3. Credits and scale bar
-mf_credits(txt = "www.statistik.nuernberg.de", cex = 0.8)
+mf_credits(txt = paste("Sources", 
+                           "geoportal.bayern.de", 
+                           "www.statistik.nuernberg.de", 
+                           "Modified Copernicus Sentinel data [2024]/Sentinel Hub", 
+                           "Own calculations", 
+                           sep = "\n"),
+           cex = 0.8)
 mf_scale(size = 5, cex = 0.8, pos = c(653880, 5466356))
 ```
 
@@ -169,11 +200,11 @@ Nürnberg, shown on the left in grey, is divided into 86 administrative district
 
 ## Lacunarity
 
-Lacunarity is a key measure of spatial heterogeneity - often described as the “gappiness” of a pattern—making it especially useful for characterizing how vegetation is distributed across landscapes [@labib2020a_lacunarity; @hoechstetter2011]. While other measures simply aggregate the amount of greenspace, lacunarity captures differences in the **structure** of that greenspace. For instance, a continuous patch of trees will exhibit lower lacunarity than an area of fragmented green spots, even if both have the same total leaf cover.
+Lacunarity is a key measure of spatial heterogeneity - often described as the “gappiness” of a pattern - making it especially useful for characterizing how vegetation is distributed across landscapes [@labib2020a_lacunarity; @hoechstetter2011]. While other measures simply aggregate the amount of greenspace, lacunarity captures differences in the **structure** of that greenspace. For instance, a continuous patch of trees will exhibit lower lacunarity than an area of fragmented green spots, even if both have the same total leaf cover.
 
 This insight is critically important in urban contexts, where the spatial arrangement of vegetation affects microclimate regulation, air pollution buffering, and recreational opportunities. Moreover, lacunarity helps address the **modifiable areal unit problem (MAUP)** by examining multiple scales simultaneously. Smaller scales might capture local vegetation buffers (e.g., shrubs along roadways), while larger scales reflect broader landscape connectivity and potential for recreational use.
 
-In practice, lacunarity is calculated by sliding a square window of varying sizes across a raster (e.g., NDVI, LAI, or LULC), then quantifying how homogeneous or heterogeneous each neighborhood is at each scale. The result is a scale-dependent measure of pattern variation. Below is an example of how lacunarity can be computed at five buffer distances (50, 100, 200, 300, and 400 meters) using the [**CGEI**](https://github.com/STBrinkmann/CGEI/) R package:
+In practice, lacunarity is calculated by sliding a square window of varying buffer sizes across a raster (e.g., NDVI, LAI, or LULC), then quantifying how homogeneous or heterogeneous each neighborhood is at each scale. The result is a scale-dependent measure of pattern variation. Below is an example of how lacunarity can be computed at five buffer distances (50, 100, 200, 300, and 400 meters) using the [**CGEI**](https://github.com/STBrinkmann/CGEI/) R package:
 
 ```{r}
 # Combine rasters
@@ -200,9 +231,16 @@ By assigning individual weights for each metric and scale (based on how patchy t
 
 ## GAVI
 
-```{r message=FALSE, warning=FALSE}
+```{r eval=FALSE}
 # Calculate GAVI
 gavi_nbg <- gavi(x = rast_vec, lac_nbg, cores = 22)
+names(gavi_nbg) <- "GAVI"
+```
+```{r echo=FALSE}
+gavi_nbg <- rast("../../../../CGEI_Nuernberg/01_analysis/0101_data/01_gavi.tif") %>% 
+  crop(aoi) %>% 
+  mask(aoi)
+names(gavi_nbg) <- "GAVI"
 ```
 
 Below is the **final Greenspace Availability Index (GAVI) map** for Nürnberg, derived by combining NDVI, LAI, and LULC across five spatial scales (50 m to 400 m) using **lacunarity-based weights**. The map highlights where greenspace is low (red shades, corresponding to lower GAVI values) and high (green shades, corresponding to higher GAVI values). Unsurprisingly, dense urban areas toward the city center show lower greenspace availability, while more peripheral or park-rich districts exhibit higher levels of greenery.
@@ -210,8 +248,6 @@ Below is the **final Greenspace Availability Index (GAVI) map** for Nürnberg, d
 By capturing both the amount and the spatial arrangement of vegetation at multiple neighborhood scales, this multi-scale, multi-metric approach provides a **more nuanced picture** of greenspace availability - valuable for urban planning, public health, and environmental management.
 
 ```{r echo=FALSE, fig.height=8, fig.width=8}
-names(gavi_nbg) <- "GAVI"
-
 gavi_moegeldorf <- gavi_nbg %>% 
   crop(moegeldorf) %>% 
   mask(moegeldorf)
@@ -269,7 +305,13 @@ box()
 mf_inset_off()
 
 # 3. Credits and scale bar
-mf_credits(txt = "www.statistik.nuernberg.de", cex = 0.8)
+mf_credits(txt = paste("Sources", 
+                           "geoportal.bayern.de", 
+                           "www.statistik.nuernberg.de", 
+                           "Modified Copernicus Sentinel data [2024]/Sentinel Hub", 
+                           "Own calculations", 
+                           sep = "\n"),
+           cex = 0.8)
 mf_scale(size = 5, cex = 0.8, pos = c(653880, 5466356))
 ```
 

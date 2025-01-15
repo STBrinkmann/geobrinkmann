@@ -279,90 +279,6 @@
   
   
   
-    
-      
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        
-        
-      
-    
-      
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        
-        
-      
-    
-      
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        
-        
-      
-    
-      
-      
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-        
-        
-      
-    
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
   
   
@@ -403,7 +319,93 @@
         
       
     
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
   
   
   
@@ -866,6 +868,14 @@
             </li><li class="flex flex-col "><a
     class="hb-sidebar-custom-link
       text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/nuernberg-viewshed-greenness-visibility-index/"
+    
+  >Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI)
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
     href="/post/visibility-sensitivity-analysis/"
     
   >Visibility - Sensitivity Analysis
@@ -1069,7 +1079,7 @@
 <p>Greenspace availability plays a critical role in understanding the impact of urban environments on human health and well-being. One common approach to measuring greenspace availability is through simple 2D buffer analyses around residential or workplace locations using remote sensing data, such as the Normalized Difference Vegetation Index (NDVI) or land-use/land-cover (LULC) maps (Labib, Lindley, and Huck 2020a). These indices help quantify photosynthetically active vegetation and the proportion of green land cover. Moreover, to address seasonal variations and different qualities of greenspace, researchers recommend using multiple remote sensing products at various scales (Markevych et al. 2017; Labib, Lindley, and Huck 2020b). Beyond its general relevance for urban public health, greenspace availability is especially vital for mitigating environmental stressors - an important aspect of reducing harm in cities (Markevych et al. 2017).</p>
 <p>Urban areas are often associated with elevated levels of air pollution, heat, and noise - factors that can negatively impact mental and physical health (Dadvand and Nieuwenhuijsen 2019). Studies indicate that higher concentrations of greenspace help reduce traffic-related air pollution through plant uptake and deposition on leaf surfaces (Givoni 1991; Paoletti et al. 2011; Nowak et al. 2014). Consequently, air pollutant concentrations are generally lower in greener areas, and exposure to greenspace near schools and residential districts can mitigate adverse effects such as depression and cognitive deficits in children (Su et al. 2011; Dadvand et al. 2012, 2015; Ali and Khoja 2019). Furthermore, the urban heat island effect, mainly caused by the replacement of vegetation with built-up infrastructure like concrete and high-rise buildings, exacerbates local temperatures and reduces wind flow (Voogt and Oke 2003; Phelan et al. 2015; Heaviside, Macintyre, and Vardoulakis 2017). Exposure to high temperatures is linked to increased hospital admissions and mortality (Basu 2009; D’Ippoliti et al. 2010), and there is emerging evidence of elevated mental health risks during extreme heat events (Nori-Sarma et al. 2022). Together, these findings underscore the importance of incorporating greenspace into urban planning to mitigate environmental stressors and safeguard public health - key considerations for the development of indices such as the GAVI (Greenspace Availability Index).</p>
 <h2 id="data">Data</h2>
-<p>We first load key R packages, define a URL to retrieve data files from Zenodo, and then import the relevant spatial datasets: administrative boundaries (AOI), NDVI and LAI rasters, and a binary land-cover raster for greenspace analysis.</p>
+<p>The relevant spatial datasets have been uploaded on Zenodo: administrative boundaries (AOI), NDVI and LAI rasters, and a binary land-cover raster for greenspace analysis.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
@@ -1092,7 +1102,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># Greenspace (binary)</span>
 </span></span><span class="line"><span class="cl"><span class="n">lulc</span> <span class="o">&lt;-</span> <span class="nf">rast</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">zenodo_url</span><span class="p">,</span> <span class="s">&#34;03_lulc_10m.tif&#34;</span><span class="p">))</span>
-</span></span></code></pre></div><img src="https://geobrinkmann.com/post/nuernberg-greenspace-availability-index/index.en_files/figure-html/unnamed-chunk-3-1.png" width="960" />
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/nuernberg-greenspace-availability-index/index.en_files/figure-html/unnamed-chunk-4-1.png" width="960" />
 <p>Nürnberg, shown on the left in grey, is divided into 86 administrative districts. Mögeldorf has been highlighted in orange to provide examples of the three key greenness metrics on the right:</p>
 <ol>
 <li>
@@ -1106,9 +1116,9 @@
 </li>
 </ol>
 <h2 id="lacunarity">Lacunarity</h2>
-<p>Lacunarity is a key measure of spatial heterogeneity - often described as the “gappiness” of a pattern—making it especially useful for characterizing how vegetation is distributed across landscapes (Labib, Lindley, and Huck 2020b; Hoechstetter, Walz, and Thinh 2011). While other measures simply aggregate the amount of greenspace, lacunarity captures differences in the <strong>structure</strong> of that greenspace. For instance, a continuous patch of trees will exhibit lower lacunarity than an area of fragmented green spots, even if both have the same total leaf cover.</p>
+<p>Lacunarity is a key measure of spatial heterogeneity - often described as the “gappiness” of a pattern - making it especially useful for characterizing how vegetation is distributed across landscapes (Labib, Lindley, and Huck 2020b; Hoechstetter, Walz, and Thinh 2011). While other measures simply aggregate the amount of greenspace, lacunarity captures differences in the <strong>structure</strong> of that greenspace. For instance, a continuous patch of trees will exhibit lower lacunarity than an area of fragmented green spots, even if both have the same total leaf cover.</p>
 <p>This insight is critically important in urban contexts, where the spatial arrangement of vegetation affects microclimate regulation, air pollution buffering, and recreational opportunities. Moreover, lacunarity helps address the <strong>modifiable areal unit problem (MAUP)</strong> by examining multiple scales simultaneously. Smaller scales might capture local vegetation buffers (e.g., shrubs along roadways), while larger scales reflect broader landscape connectivity and potential for recreational use.</p>
-<p>In practice, lacunarity is calculated by sliding a square window of varying sizes across a raster (e.g., NDVI, LAI, or LULC), then quantifying how homogeneous or heterogeneous each neighborhood is at each scale. The result is a scale-dependent measure of pattern variation. Below is an example of how lacunarity can be computed at five buffer distances (50, 100, 200, 300, and 400 meters) using the <a href="https://github.com/STBrinkmann/CGEI/" target="_blank" rel="noopener"><strong>CGEI</strong></a> R package:</p>
+<p>In practice, lacunarity is calculated by sliding a square window of varying buffer sizes across a raster (e.g., NDVI, LAI, or LULC), then quantifying how homogeneous or heterogeneous each neighborhood is at each scale. The result is a scale-dependent measure of pattern variation. Below is an example of how lacunarity can be computed at five buffer distances (50, 100, 200, 300, and 400 meters) using the <a href="https://github.com/STBrinkmann/CGEI/" target="_blank" rel="noopener"><strong>CGEI</strong></a> R package:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Combine rasters</span>
 </span></span><span class="line"><span class="cl"><span class="n">rast_vec</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">ndvi</span><span class="p">,</span> <span class="n">lai</span><span class="p">,</span> <span class="n">lulc</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
@@ -1128,9 +1138,10 @@
 <h2 id="gavi">GAVI</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Calculate GAVI</span>
 </span></span><span class="line"><span class="cl"><span class="n">gavi_nbg</span> <span class="o">&lt;-</span> <span class="nf">gavi</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">rast_vec</span><span class="p">,</span> <span class="n">lac_nbg</span><span class="p">,</span> <span class="n">cores</span> <span class="o">=</span> <span class="m">22</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">gavi_nbg</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&#34;GAVI&#34;</span>
 </span></span></code></pre></div><p>Below is the <strong>final Greenspace Availability Index (GAVI) map</strong> for Nürnberg, derived by combining NDVI, LAI, and LULC across five spatial scales (50 m to 400 m) using <strong>lacunarity-based weights</strong>. The map highlights where greenspace is low (red shades, corresponding to lower GAVI values) and high (green shades, corresponding to higher GAVI values). Unsurprisingly, dense urban areas toward the city center show lower greenspace availability, while more peripheral or park-rich districts exhibit higher levels of greenery.</p>
 <p>By capturing both the amount and the spatial arrangement of vegetation at multiple neighborhood scales, this multi-scale, multi-metric approach provides a <strong>more nuanced picture</strong> of greenspace availability - valuable for urban planning, public health, and environmental management.</p>
-<img src="https://geobrinkmann.com/post/nuernberg-greenspace-availability-index/index.en_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<img src="https://geobrinkmann.com/post/nuernberg-greenspace-availability-index/index.en_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 <h2 id="references">References</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-ali2019" class="csl-entry">
@@ -1461,15 +1472,15 @@
     </div>
     <div class="">
       
-        <a class="group flex text-right no-underline" href="/post/visibility-sensitivity-analysis/">
+        <a class="group flex text-right no-underline" href="/post/nuernberg-viewshed-greenness-visibility-index/">
           <span class="flex flex-col">
             <span
               class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
-            >Visibility - Sensitivity Analysis</span
+            >Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI)</span
             >
             <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
               
-                Jun 22, 2021
+                Jan 13, 2025
               
             </span>
           </span>
