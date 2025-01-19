@@ -49,7 +49,7 @@ lulc <- rast(paste0(zenodo_url, "03_ndvi_01_1m.tif"))
 
 <img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-4-1.png" width="960" />
 
-Nürnberg, shown on the left in grey, is divided into 86 administrative districts. Mögeldorf has been highlighted in orange to provide examples of the three key greenness metrics on the right:
+Nürnberg, shown on the left in grey, is divided into 86 administrative districts. Mögeldorf has been highlighted in orange to provide examples of the three raster datasets on the right:
 
 1.  **DTM** - The Digital Terrain Model illustrates the bare earth’s surface elevation, excluding buildings and vegetation. In the map, higher terrain is depicted in brownish colors, transitioning to green in lower-lying areas.
 

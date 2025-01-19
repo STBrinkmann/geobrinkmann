@@ -1,0 +1,1822 @@
+<!doctype html>
+<!-- This site was created with Hugo Blox. https://hugoblox.com -->
+<!-- Last Published: January 19, 2025 --><html lang="en-us" dir="ltr"
+      data-wc-theme-default="white">
+  
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="generator" content="Hugo Blox Builder 0.3.1" />
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Sebastian Brinkmann" />
+
+  
+  
+  
+    
+  
+  <meta name="description" content="By integrating realistic walking routes and park size weighting, the Greenspace Accessibility Index (GACI) offers a more practical and community-focused measure of how easily residents can reach quality public parks." />
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/" />
+
+  
+  
+  
+  
+    
+    <link rel="stylesheet" href="/css/themes/cyan.min.css" />
+  
+
+  
+  
+    
+    <link href="/dist/wc.min.40d365a5c94bd94585e708f7c92e5782e00a8d8eefc348f5d2f21a80bb7783c8.css" rel="stylesheet" />
+  
+
+  
+  
+  
+
+  
+
+  <script>
+     
+    window.hbb = {
+       defaultTheme: document.documentElement.dataset.wcThemeDefault,
+       setDarkTheme: () => {
+        document.documentElement.classList.add("dark");
+        document.documentElement.style.colorScheme = "dark";
+      },
+       setLightTheme: () => {
+        document.documentElement.classList.remove("dark");
+        document.documentElement.style.colorScheme = "light";
+      }
+    }
+
+    console.debug(`Default Hugo Blox Builder theme is ${window.hbb.defaultTheme}`);
+
+    if ("wc-color-theme" in localStorage) {
+      localStorage.getItem("wc-color-theme") === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+    } else {
+      window.hbb.defaultTheme === "dark" ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      if (window.hbb.defaultTheme === "system") {
+        window.matchMedia("(prefers-color-scheme: dark)").matches ? window.hbb.setDarkTheme() : window.hbb.setLightTheme();
+      }
+    }
+  </script>
+
+  <script>
+    
+    document.addEventListener('DOMContentLoaded', function () {
+      
+      let checkboxes = document.querySelectorAll('li input[type=\'checkbox\'][disabled]');
+      checkboxes.forEach(e => {
+        e.parentElement.parentElement.classList.add('task-list');
+      });
+
+      
+      const liNodes = document.querySelectorAll('.task-list li');
+      liNodes.forEach(nodes => {
+        let textNodes = Array.from(nodes.childNodes).filter(node => node.nodeType === 3 && node.textContent.trim().length > 1);
+        if (textNodes.length > 0) {
+          const span = document.createElement('label');
+          textNodes[0].after(span);  
+          span.appendChild(nodes.querySelector('input[type=\'checkbox\']'));
+          span.appendChild(textNodes[0]);
+        }
+      });
+    });
+  </script>
+
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-42WCHZHZNS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+      dataLayer.push(arguments);
+  }
+
+  function trackOutboundLink(url, target) {
+    gtag('event', 'click', {
+         'event_category': 'outbound',
+         'event_label': url,
+         'transport_type': 'beacon',
+         'event_callback': function () {
+           if (target !== '_blank') {
+             document.location = url;
+           }
+         }
+    });
+    console.debug("Outbound link clicked: " + url);
+  }
+
+  function onClickCallback(event) {
+    if ((event.target.tagName !== 'A') || (event.target.host === window.location.host)) {
+      return;
+    }
+    trackOutboundLink(event.target, event.target.getAttribute('target'));  
+  }
+
+  gtag('js', new Date());
+  gtag('config', 'G-42WCHZHZNS', {});
+  gtag('set', {'cookie_flags': 'SameSite=None;Secure'});
+
+  
+  document.addEventListener('click', onClickCallback, false);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+  <link rel="icon" type="image/png" href="/media/icon_hu9364617615327763220.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu14814900079650807085.png" />
+
+  <link rel="canonical" href="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/" />
+
+  
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+
+  
+  
+    
+    
+  
+  <meta property="twitter:card" content="summary_large_image" />
+  
+  <meta property="og:site_name" content="GeoBrinkmann" />
+  <meta property="og:url" content="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/" />
+  <meta property="og:title" content="Nürnberg - 3. Greenness Accessibility Index (GACI) | GeoBrinkmann" />
+  <meta property="og:description" content="By integrating realistic walking routes and park size weighting, the Greenspace Accessibility Index (GACI) offers a more practical and community-focused measure of how easily residents can reach quality public parks." /><meta property="og:image" content="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/featured.png" />
+    <meta property="twitter:image" content="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/featured.png" /><meta property="og:locale" content="en-us" />
+  
+    
+      <meta
+        property="article:published_time"
+        content="2025-01-15T00:00:00&#43;00:00"
+      />
+    
+    <meta property="article:modified_time" content="2025-01-15T00:00:00&#43;00:00">
+  
+
+  
+
+
+
+  
+
+
+  <title>Nürnberg - 3. Greenness Accessibility Index (GACI) | GeoBrinkmann</title>
+
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <style>
+    @font-face {
+      font-family: 'Inter var';
+      font-style: normal;
+      font-weight: 100 900;
+      font-display: swap;
+      src: url(/dist/font/Inter.var.woff2) format(woff2);
+    }
+  </style>
+
+  
+
+  
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+      
+      
+        
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+        
+        
+      
+    
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link type="text/css" rel="stylesheet" href="/dist/lib/katex/katex.min.505d5f829022bb7b4f24dfee0aa1141cd7bba67afe411d1240335f820960b5c3.css" integrity="sha256-UF1fgpAiu3tPJN/uCqEUHNe7pnr&#43;QR0SQDNfgglgtcM=" />
+  
+  
+  <script defer src="/dist/lib/katex/katex.min.dc84b296ec3e884de093158f760fd9d45b6c7abe58b5381557f4e138f46a58ae.js" integrity="sha256-3ISyluw&#43;iE3gkxWPdg/Z1Ftser5YtTgVV/ThOPRqWK4="></script>
+  
+  
+  
+  
+  <script defer src="/js/katex-renderer.6579ec9683211cfb952064aedf3a3baea5eeb17a061775b32b70917474637c80.js" integrity="sha256-ZXnsloMhHPuVIGSu3zo7rqXusXoGF3WzK3CRdHRjfIA="></script>
+  
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+    
+  
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  <script
+    defer
+    src="/js/hugo-blox-en.min.8c8ea06bd0420f5067e52fa727b9f92303757322ba4431774153d59a9735eadb.js"
+    integrity="sha256-jI6ga9BCD1Bn5S&#43;nJ7n5IwN1cyK6RDF3QVPVmpc16ts="
+  ></script>
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+  <body class="dark:bg-hb-dark dark:text-white page-wrapper" id="top">
+    <div id="page-bg"></div>
+    <div class="page-header sticky top-0 z-30">
+      
+      
+      
+        
+        
+        
+          <header id="site-header" class="header">
+  <nav class="navbar px-3 flex justify-left">
+    <div class="order-0 h-100">
+      
+      <a class="navbar-brand" href="/" title="GeoBrinkmann">
+            
+            
+              
+              <img
+                fetchpriority="high"
+                decoding="async"
+                class=""
+                width="36"
+                height="36"
+                src="/media/icon_hu1615250596747404985.webp"
+                alt="GeoBrinkmann" />
+            
+          
+        
+        GeoBrinkmann
+      </a>
+    </div>
+    
+    <input id="nav-toggle" type="checkbox" class="hidden" />
+    <label
+      for="nav-toggle"
+      class="order-3 cursor-pointer flex items-center lg:hidden text-dark dark:text-white lg:order-1">
+      <svg id="show-button" class="h-6 fill-current block" viewBox="0 0 20 20">
+        <title>Open Menu</title>
+        <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+      </svg>
+      <svg id="hide-button" class="h-6 fill-current hidden" viewBox="0 0 20 20">
+        <title>Close Menu</title>
+        <polygon
+          points="11 9 22 9 22 11 11 11 11 22 9 22 9 11 -2 11 -2 9 9 9 9 -2 11 -2"
+          transform="rotate(45 10 10)"></polygon>
+      </svg>
+    </label>
+    
+
+    
+    
+    <ul
+      id="nav-menu"
+      class="navbar-nav order-3 hidden lg:flex w-full pb-6 lg:order-1 lg:w-auto lg:space-x-2 lg:pb-0 xl:space-x-8 justify-left
+      ">
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/"
+        >Home</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/post/"
+        >Posts</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/publication/"
+        >Papers</a
+        >
+      </li>
+      
+      
+      
+      
+      
+      
+      <li class="nav-item">
+        <a
+          class="nav-link "
+          
+          href="/experience/"
+        >Experience</a
+        >
+      </li>
+      
+      
+      
+    </ul>
+
+    <div class="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+
+      
+      
+      
+
+      
+      
+      <div class="px-3 text-black hover:text-primary-700 dark:text-white dark:hover:text-primary-300
+            [&.active]:font-bold [&.active]:text-black/90 dark:[&.active]:text-white">
+        <button class="theme-toggle mt-1" accesskey="t" title="appearance">
+          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class="dark:hidden">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+               stroke-linejoin="round" class=" dark:block [&:not(dark)]:hidden">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </button>
+      </div>
+      
+
+      
+      
+
+      
+      
+    </div>
+  </nav>
+</header>
+
+
+
+        
+      
+    </div>
+    <div class="page-body  my-10">
+      
+
+
+
+
+
+<div class="mx-auto flex max-w-screen-xl">
+  
+
+
+
+<aside class="hb-sidebar-container max-lg:[transform:translate3d(0,-100%,0)] lg:hidden xl:block">
+  
+  <div class="px-4 pt-4 lg:hidden">
+    
+    
+  </div>
+  <div class="hb-scrollbar lg:h-[calc(100vh-var(--navbar-height))]">
+    <ul class="flex flex-col gap-1 lg:hidden">
+      
+      
+        <li class="open"><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/"
+    
+  >Blog
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col open"><a
+    class="hb-sidebar-custom-link
+      sidebar-active-item bg-primary-100 font-semibold text-primary-800 dark:bg-primary-300 dark:text-primary-900"
+    href="/post/nuernberg-greenness-accessibility-index/"
+    
+  >Nürnberg - 3. Greenness Accessibility Index (GACI)
+    </a>
+  
+    <ul class="hb-sidebar-mobile-toc"><li>
+              <a
+                href="#introduction"
+                class="hb-docs-link"
+              >Introduction</a>
+            </li>
+          <li>
+              <a
+                href="#data"
+                class="hb-docs-link"
+              >Data</a>
+            </li>
+          <li>
+              <a
+                href="#gaci"
+                class="hb-docs-link"
+              >GACI</a>
+            </li>
+          <li>
+              <a
+                href="#references"
+                class="hb-docs-link"
+              >References</a>
+            </li>
+          </ul>
+  
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/nuernberg-greenspace-availability-index/"
+    
+  >Nürnberg - 2. Greenspace Availability Index (GAVI)
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/nuernberg-viewshed-greenness-visibility-index/"
+    
+  >Nürnberg - 1. Viewshed Greenness Visibility Index (VGVI)
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visibility-sensitivity-analysis/"
+    
+  >Visibility - Sensitivity Analysis
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/bart-a-bayesian-machine-learning-workflow-for-complex-spatial-data/"
+    
+  >BART - A Bayesian machine learning workflow for complex spatial data
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/visible-greenness-exposure/"
+    
+  >Visible Greenness Exposure
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/post/text-mining-belval/"
+    
+  >Text Mining - Belval Campus
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/"
+    
+  >Publications
+        <span data-hb-sidebar-toggle>
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-[18px] min-w-[18px] rounded-sm p-0.5 hover:bg-gray-800/5 dark:hover:bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="origin-center transition-transform rtl:-rotate-180"></path></svg>
+        </span>
+    </a><div class="ltr:pr-0 overflow-hidden">
+        <ul class="hb-sidebar-list"><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/digidem_2024/"
+    
+  >Räumliche Erreichbarkeit von Gedächtnisambulanzen – Eine geographische Analyse im Rahmen von digiDEM Bayern
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/brinkmann_2022/"
+    
+  >Modelling eye-level visibility of urban green space: Optimising city-wide point-based viewshed computations through prototyping
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/walker_2022/"
+    
+  >Neighborhood Greenspace and Socioeconomic Risk are Associated with Diabetes Risk at the Sub-neighborhood Scale: Results from the Prospective Urban and Rural Epidemiology (PURE) Study
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/spatlac-index-r-package/"
+    
+  >spatLac: Spatial Lacunarity
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/gvi-greenness-visibility-index-r-package/"
+    
+  >GVI: Greenness Visibility Index R package
+    </a>
+              
+            </li><li class="flex flex-col "><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/publication/scarpone2020/"
+    
+  >A multimethod approach for county-scale geospatial analysis of emerging infectious diseases. A cross-sectional case study of COVID-19 incidence in Germany
+    </a>
+              
+            </li></ul>
+      </div></li>
+        <li class=""><a
+    class="hb-sidebar-custom-link
+      text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-primary-800 dark:hover:text-gray-50"
+    href="/experience/"
+    
+  >Experience
+    </a></li>
+    </ul>
+
+    <div class="max-xl:hidden h-0 w-64 shrink-0"></div></div>
+
+</aside>
+  
+
+<nav class="hb-toc order-last hidden w-64 shrink-0 xl:block print:hidden px-4" aria-label="table of contents">
+  
+
+
+
+
+
+
+
+
+
+
+
+  <div class="hb-scrollbar text-sm [hyphens:auto] sticky top-16 overflow-y-auto pr-4 pt-6 max-h-[calc(100vh-var(--navbar-height)-env(safe-area-inset-bottom))] -mr-4 rtl:-ml-4"><p class="mb-4 font-semibold tracking-tight">On this page</p><ul>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#introduction">Introduction</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#data">Data</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#gaci">GACI</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#1-identifying-park-access-points">1. Identifying Park Access Points</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#2-preparing-observer-locations">2. Preparing Observer Locations</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#3-calculating-network-based-distance-using-osrm">3. Calculating Network-Based Distance Using OSRM</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="pl-4 rtl:pr-4 inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#4-generating-the-gaci-raster">4. Generating the GACI Raster</a>
+      </li>
+      <li class="my-2 scroll-my-6 scroll-py-6">
+        <a class="font-semibold inline-block text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-300 w-full break-words" href="#references">References</a>
+      </li></ul>
+
+  
+  
+    
+    
+  
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+  </nav>
+
+
+  <article class="w-full break-words flex min-h-[calc(100vh-var(--navbar-height))] min-w-0 justify-center pb-8 pr-[calc(env(safe-area-inset-right)-1.5rem)]">
+    <main class="w-full min-w-0 max-w-6xl px-6 pt-4 md:px-12">
+
+      
+
+      <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Nürnberg - 3. Greenness Accessibility Index (GACI)</h1>
+
+      <div class="mt-4 mb-16">
+      <div class="text-gray-500 dark:text-gray-300 text-sm flex items-center flex-wrap gap-y-2"><span class="mr-1">Jan 15, 2025</span>
+        
+
+        
+        <span class="mx-1">·</span>
+        <span class="mx-1">
+          11 min read
+        </span>
+        
+        </div>
+
+        <div class="mt-3">
+          
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+      
+      
+      
+
+      
+      
+
+      <div class="prose prose-slate lg:prose-xl dark:prose-invert">
+        <h2 id="introduction">Introduction</h2>
+<p>The <strong>accessibility of greenspace</strong> is a critical factor for urban health and well-being, focusing on how easily people can physically or legally reach parks, community gardens, or forests. Scholars typically assess accessibility by measuring walking or driving distance to the nearest park - a process that can rely on either <strong>Euclidean</strong> or <strong>road network</strong> analyses. However, information on structural or legal access to these areas is not always readily available, particularly at larger geographic scales (Labib, Lindley, and Huck 2020). Despite these challenges, greenspace accessibility is highly relevant for both <strong>instoration</strong> (building capacities) and <strong>restoration</strong> (restoring capacities) (Markevych et al. 2017).</p>
+<p>Research indicates that <strong>access to green areas</strong> can foster <strong>social cohesion</strong>, described as a sense of belonging and mutual respect among neighbors (Holtan, Dieterlen, and Sullivan 2014; Weinstein et al. 2015). Greater social cohesion has in turn been linked to <strong>improved mental health outcomes</strong> and enhanced well-being (Fone et al. 2014; Williams et al. 2020), potentially moderating the impacts of stressful life events (Kingsbury et al. 2019). Alongside these social benefits, accessible greenspaces also promote <strong>physical activity</strong> - an important tool for managing mental health conditions and boosting overall health (Lachowycz and Jones 2011; Duncan et al. 2014; McGrath, Hopkins, and Hinckson 2015). Studies suggest that “green exercise” yields higher psychological gains than similar activities in less vegetated environments (Pretty et al. 2005; Mitchell 2013).</p>
+<p>Nonetheless, not all greenspaces are equally beneficial for social interaction or physical activity. A <strong>large public park</strong> with amenities to support community gatherings, for instance, may offer different health benefits compared to a <strong>small patch of roadside greenery</strong> (Markevych et al. 2017). Therefore, refined measures of greenspace accessibility - such as location-specific amenities, park size, and the presence of safe walkable routes - are needed to understand how and why some spaces provide stronger instoration and restoration benefits than others (Giles-Corti et al. 2005).</p>
+<h2 id="data">Data</h2>
+<p>The relevant spatial datasets have been uploaded on GitHub: administrative boundaries (AOI), parks and water mask shapefiles.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">terra</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">CGEI</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">data_repo</span> <span class="o">&lt;-</span> <span class="s">&#34;https://github.com/STBrinkmann/SpatData_Nbg/raw/refs/heads/master/01_analysis/0102_data/02_processed/&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># AOI</span>
+</span></span><span class="line"><span class="cl"><span class="n">aoi</span> <span class="o">&lt;-</span> <span class="nf">read_sf</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">data_repo</span><span class="p">,</span> <span class="s">&#34;01_Nbg_Bezirke.gpkg&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">code_bez</span> <span class="o">!=</span> <span class="s">&#34;97&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="c1"># This is not available in the GAVI</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">group_by</span><span class="p">(</span><span class="n">code_bez</span><span class="p">,</span> <span class="n">name_bez</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">summarise</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">ungroup</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Water mask</span>
+</span></span><span class="line"><span class="cl"><span class="n">water_mask</span> <span class="o">&lt;-</span> <span class="nf">read_sf</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">data_repo</span><span class="p">,</span> <span class="s">&#34;02_Nbg_Water.gpkg&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Parks (&gt;1ha)</span>
+</span></span><span class="line"><span class="cl"><span class="n">osm_parks</span> <span class="o">&lt;-</span> <span class="nf">read_sf</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">data_repo</span><span class="p">,</span> <span class="s">&#34;02_Nbg_Greenspace.gpkg&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">name</span> <span class="o">=</span> <span class="n">stringr</span><span class="o">::</span><span class="nf">str_pad</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">n</span><span class="p">(),</span> <span class="m">3</span><span class="p">,</span> <span class="n">pad</span> <span class="o">=</span> <span class="s">&#34;0&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">size_ha</span> <span class="o">=</span> <span class="nf">st_area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">           <span class="n">units</span><span class="o">::</span><span class="nf">set_units</span><span class="p">(</span><span class="n">value</span> <span class="o">=</span> <span class="n">ha</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">           <span class="nf">as.numeric</span><span class="p">())</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="n">size_ha</span> <span class="o">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">size_log</span> <span class="o">=</span> <span class="nf">log</span><span class="p">(</span><span class="n">size_ha</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">relocate</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">.after</span> <span class="o">=</span> <span class="nf">last_col</span><span class="p">())</span>
+</span></span></code></pre></div><img src="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/index.en_files/figure-html/unnamed-chunk-2-1.png" width="960" />
+<h2 id="gaci">GACI</h2>
+<p>The <strong>Greenspace Accessibility Index (GACI)</strong> (Labib, Lindley, and Huck 2021) quantifies the ease with which the public can access <strong>urban parks</strong>. Rather than relying solely on Euclidean distance, GACI explicitly incorporates:</p>
+<ol>
+<li>
+<p><strong>Park Access Points</strong><br>
+Identifiable entry sites - typically at the intersection of park boundaries with streets or footpaths - where users can legally and physically enter a park.</p>
+</li>
+<li>
+<p><strong>Network-Based Distance</strong><br>
+Walking distance is determined through road and footpath networks, capturing realistic travel times rather than simple straight-line distances.</p>
+</li>
+<li>
+<p><strong>Park Size Weighting</strong><br>
+Larger parks potentially attract users from a greater distance. Consequently, GACI considers both distance and the (log-transformed) size of the park.</p>
+</li>
+<li>
+<p><strong>Normalization and Classification</strong><br>
+Extreme values (e.g., very large distances) are trimmed to mitigate outliers, then final scores are <strong>reclassified</strong> - often via <strong>Jenks natural breaks</strong> - to yield an intuitive map of greenspace accessibility.</p>
+</li>
+</ol>
+<p>Together, these factors yield a spatial indicator that aligns more closely with <strong>real-world access</strong> than conventional 2D buffer analyses.</p>
+<h3 id="1-identifying-park-access-points">1. Identifying Park Access Points</h3>
+<p>Public parks are generally entered where roads or paths meet park boundaries. We <strong>intersect</strong> an OpenStreetMap (OSM)-based park polygon layer with an OSM road network. Where no intersection is found, park <strong>centroids</strong> serve as fallback access points. This step ensures each park has at least one feasible entry location.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># --- 1. Generate Road Network &amp; Park Access Points ---</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A. Create buffered AOI boundary to mitigate edge effects</span>
+</span></span><span class="line"><span class="cl"><span class="n">aoi_bbox</span> <span class="o">&lt;-</span> <span class="n">aoi</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_buffer</span><span class="p">(</span><span class="m">5000</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_transform</span><span class="p">(</span><span class="m">4326</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_bbox</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># B. Download and filter OSM road network for walkable paths</span>
+</span></span><span class="line"><span class="cl"><span class="n">osm_roads_raw</span> <span class="o">&lt;-</span> <span class="nf">opq</span><span class="p">(</span><span class="n">bbox</span> <span class="o">=</span> <span class="n">aoi_bbox</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">add_osm_feature</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="s">&#34;highway&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">osmdata_sf</span><span class="p">(</span><span class="n">quiet</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">osm_poly2line</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">osm_roads</span> <span class="o">&lt;-</span> <span class="n">osm_roads_raw</span><span class="o">$</span><span class="n">osm_lines</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">highway</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">filter</span><span class="p">(</span><span class="o">!</span><span class="n">highway</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;motorway&#34;</span><span class="p">,</span> <span class="s">&#34;motorway_link&#34;</span><span class="p">,</span> <span class="s">&#34;trunk&#34;</span><span class="p">,</span> <span class="s">&#34;trunk_link&#34;</span><span class="p">,</span> <span class="s">&#34;raceway&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_transform</span><span class="p">(</span><span class="nf">st_crs</span><span class="p">(</span><span class="n">aoi</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_intersection</span><span class="p">(</span><span class="nf">st_buffer</span><span class="p">(</span><span class="n">aoi</span><span class="p">,</span> <span class="m">5000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># C. Segment roads for higher intersection accuracy</span>
+</span></span><span class="line"><span class="cl"><span class="n">cores</span> <span class="o">&lt;-</span> <span class="m">12</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="p">(</span><span class="nf">Sys.info</span><span class="p">()</span><span class="n">[[</span><span class="s">&#34;sysname&#34;</span><span class="n">]]</span> <span class="o">==</span> <span class="s">&#34;Windows&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cl</span> <span class="o">&lt;-</span> <span class="n">parallel</span><span class="o">::</span><span class="nf">makeCluster</span><span class="p">(</span><span class="n">cores</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">osm_roads</span> <span class="o">&lt;-</span> <span class="nf">suppressWarnings</span><span class="p">(</span><span class="nf">split</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">,</span> <span class="nf">seq</span><span class="p">(</span><span class="n">from</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="m">200</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="n">osm_roads</span> <span class="o">&lt;-</span> <span class="n">parallel</span><span class="o">::</span><span class="nf">parLapply</span><span class="p">(</span><span class="n">cl</span><span class="p">,</span> <span class="n">osm_roads</span><span class="p">,</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">nngeo</span><span class="o">::</span><span class="nf">st_segments</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_cast</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#34;LINESTRING&#34;</span><span class="p">),</span> <span class="n">progress</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="n">parallel</span><span class="o">::</span><span class="nf">stopCluster</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="kr">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">osm_roads</span> <span class="o">&lt;-</span> <span class="nf">suppressWarnings</span><span class="p">(</span><span class="nf">split</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">,</span> <span class="nf">seq</span><span class="p">(</span><span class="n">from</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">to</span> <span class="o">=</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="m">200</span><span class="p">)))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="n">parallel</span><span class="o">::</span><span class="nf">mclapply</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="n">nngeo</span><span class="o">::</span><span class="nf">st_segments</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_cast</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="s">&#34;LINESTRING&#34;</span><span class="p">),</span> <span class="n">progress</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mc.cores</span> <span class="o">=</span> <span class="n">cores</span><span class="p">,</span> <span class="n">mc.preschedule</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">osm_roads</span> <span class="o">&lt;-</span> <span class="nf">st_as_sf</span><span class="p">(</span><span class="n">dplyr</span><span class="o">::</span><span class="nf">as_tibble</span><span class="p">(</span><span class="n">data.table</span><span class="o">::</span><span class="nf">rbindlist</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="n">osm_roads</span> <span class="o">&lt;-</span> <span class="nf">st_set_geometry</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">,</span> <span class="s">&#34;geom&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">st_geometry</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">st_geometry</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">lapply</span><span class="p">(</span><span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">round</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_sfc</span><span class="p">(</span><span class="n">crs</span> <span class="o">=</span> <span class="nf">st_crs</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># D. Derive park centroids and road intersections</span>
+</span></span><span class="line"><span class="cl"><span class="n">osm_park_centroids</span> <span class="o">&lt;-</span> <span class="n">osm_parks</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_centroid</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">size_ha</span><span class="p">,</span> <span class="n">size_log</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Helper function</span>
+</span></span><span class="line"><span class="cl"><span class="n">st_multipoint_to_point</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x.points</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="nf">[which</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_geometry_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;POINT&#34;</span><span class="p">),</span> <span class="n">]</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x.multipoints</span> <span class="o">&lt;-</span> <span class="n">x</span><span class="nf">[which</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_geometry_type</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="s">&#34;MULTIPOINT&#34;</span><span class="p">),</span> <span class="n">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">for</span> <span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">x.multipoints</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x.points</span> <span class="o">&lt;-</span> <span class="n">x.points</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">      <span class="n">dplyr</span><span class="o">::</span><span class="nf">add_row</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_cast</span><span class="p">(</span><span class="n">x.multipoints[i</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="s">&#34;POINT&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">x.points</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">osm_park_road_interesect</span> <span class="o">&lt;-</span> <span class="n">osm_parks</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_boundary</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_intersection</span><span class="p">(</span><span class="n">osm_roads</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">select</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">size_ha</span><span class="p">,</span> <span class="n">size_log</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_multipoint_to_point</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># E. Combine both into final access point layer</span>
+</span></span><span class="line"><span class="cl"><span class="n">park_accesspoints</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="n">osm_park_centroids</span><span class="p">,</span> <span class="n">osm_park_road_interesect</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="2-preparing-observer-locations">2. Preparing Observer Locations</h3>
+<p>To represent potential origins of park visitors, we use a <strong>10 m resolution grid</strong> covering the entire area of interest. Points located <strong>within parks</strong> inherently have optimal accessibility, thus are excluded from further computation. Similarly, we remove points in water bodies.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># --- 2. Prepare Observer Locations ---</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A. Create a regular grid (10m resolution)</span>
+</span></span><span class="line"><span class="cl"><span class="n">observer</span> <span class="o">&lt;-</span> <span class="nf">st_make_grid</span><span class="p">(</span><span class="n">aoi</span><span class="p">,</span> <span class="n">cellsize</span> <span class="o">=</span> <span class="m">50</span><span class="p">,</span> <span class="n">what</span> <span class="o">=</span> <span class="s">&#34;centers&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_as_sf</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">st_set_geometry</span><span class="p">(</span><span class="s">&#34;geom&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">observer</span> <span class="o">&lt;-</span> <span class="n">observer[aoi</span><span class="p">,</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">observer</span> <span class="o">&lt;-</span> <span class="n">observer</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mutate</span><span class="p">(</span><span class="n">id</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="nf">n</span><span class="p">())</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">relocate</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">.after</span> <span class="o">=</span> <span class="nf">last_col</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># B. Remove points inside parks</span>
+</span></span><span class="line"><span class="cl"><span class="n">obs_in_parks</span> <span class="o">&lt;-</span> <span class="n">observer[osm_parks</span><span class="p">,</span> <span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">observer</span> <span class="o">&lt;-</span> <span class="n">observer[</span><span class="o">-</span><span class="n">obs_in_parks</span><span class="o">$</span><span class="n">id</span><span class="p">,</span> <span class="n">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># C. Remove points in water bodies</span>
+</span></span><span class="line"><span class="cl"><span class="n">observer</span> <span class="o">&lt;-</span> <span class="n">observer[</span><span class="o">-</span><span class="p">(</span><span class="n">observer[water_mask</span><span class="p">,</span> <span class="n">]</span><span class="o">$</span><span class="n">id</span><span class="p">),</span> <span class="n">]</span>
+</span></span></code></pre></div><h3 id="3-calculating-network-based-distance-using-osrm">3. Calculating Network-Based Distance Using OSRM</h3>
+<p>We use the <strong>Open Source Routing Machine (OSRM)</strong> to derive walking distances via a <strong>road network</strong>. OSRM offers <strong>fast and efficient</strong> routing by pre-processing large OSM data sets and applying advanced routing algorithms (e.g., Multi-Level Dijkstra).</p>
+<p>Below is an example workflow for <strong>downloading</strong> the relevant OSM <code>.pbf</code> (protocol buffer) file (here, the Mittelfranken region of Germany) and <strong>running OSRM</strong> in a <strong>Docker</strong> container. Ensure Docker is installed beforehand (<a href="https://docs.docker.com/engine/install/ubuntu" target="_blank" rel="noopener">docs.docker.com/engine/install/ubuntu</a>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Download OSM data for your region of interest</span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span><span class="p">(</span><span class="o">!</span><span class="nf">file.exists</span><span class="p">(</span><span class="s">&#34;01_analysis/0101_data/osrm/mittelfranken-latest.osm.pbf&#34;</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">dir.create</span><span class="p">(</span><span class="s">&#34;01_analysis/0101_data/osrm/&#34;</span><span class="p">,</span> <span class="n">showWarnings</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">default_timeout</span> <span class="o">&lt;-</span> <span class="nf">getOption</span><span class="p">(</span><span class="s">&#34;timeout&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">options</span><span class="p">(</span><span class="n">timeout</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="m">600</span><span class="p">,</span> <span class="n">default_timeout</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">download.file</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">url</span> <span class="o">=</span> <span class="s">&#34;https://download.geofabrik.de/europe/germany/bayern/mittelfranken-latest.osm.pbf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">destfile</span> <span class="o">=</span> <span class="s">&#34;01_analysis/0101_data/osrm/mittelfranken-latest.osm.pbf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mode</span><span class="o">=</span><span class="s">&#34;wb&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">options</span><span class="p">(</span><span class="n">timeout</span> <span class="o">=</span> <span class="n">default_timeout</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># OSRM Docker commands:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1) Navigate to the appropriate folder:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    cd 01_analysis/0101_data/osrm/</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2) Extract, partition, and customize:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    sudo docker run -t -v &#34;${PWD}:/data&#34; osrm/osrm-backend osrm-extract -p /opt/foot.lua /data/mittelfranken-latest.osm.pbf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    sudo docker run -t -v &#34;${PWD}:/data&#34; osrm/osrm-backend osrm-partition /data/mittelfranken-latest.osrm</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    sudo docker run -t -v &#34;${PWD}:/data&#34; osrm/osrm-backend osrm-customize /data/mittelfranken-latest.osrm</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3) Run the OSRM server:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#    sudo docker run -t -i -p 5000:5000 -v &#34;${PWD}:/data&#34; osrm/osrm-backend osrm-routed --max-table-size=50000 --algorithm mld /data/mittelfranken-latest.osrm</span>
+</span></span></code></pre></div><p>After setting up OSRM, we retrieve walking distances for each <strong>observer location</strong> to the <strong>k nearest</strong> park access points, and compute the walking distance or time. These distance values are subsequently <strong>weighted</strong> by park size, recognizing that larger parks may attract users from farther afield (Giles-Corti et al. 2005).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># --- 3. Network Analysis with OSRM ---</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The OSRM server is run locally via Docker (setup described earlier).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">observer_park_duration</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">j</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># Identify k-nearest access points</span>
+</span></span><span class="line"><span class="cl">  <span class="n">knn_access</span> <span class="o">&lt;-</span> <span class="n">nngeo</span><span class="o">::</span><span class="nf">st_nn</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">observer[j</span><span class="p">,</span><span class="n">]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">park_accesspoints</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">k</span> <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="nf">round</span><span class="p">(</span><span class="nf">sqrt</span><span class="p">(</span><span class="nf">nrow</span><span class="p">(</span><span class="n">park_accesspoints</span><span class="p">))),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">progress</span> <span class="o">=</span> <span class="kc">FALSE</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">unlist</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Compute travel times using OSRM</span>
+</span></span><span class="line"><span class="cl">  <span class="n">duration_table</span> <span class="o">&lt;-</span> <span class="nf">osrmTable</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">src</span> <span class="o">=</span> <span class="n">observer[j</span><span class="p">,</span><span class="n">]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dst</span> <span class="o">=</span> <span class="n">park_accesspoints[knn_access</span><span class="p">,</span><span class="n">]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">osrm.server</span> <span class="o">=</span> <span class="s">&#34;http://0.0.0.0:5000/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">osrm.profile</span> <span class="o">=</span> <span class="s">&#34;foot&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1"># Select best match (close &amp; large)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">out</span> <span class="o">&lt;-</span> <span class="nf">tibble</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="n">id</span> <span class="o">=</span> <span class="n">observer[j</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dist</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">duration_table</span><span class="o">$</span><span class="n">durations</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size_ha</span> <span class="o">=</span> <span class="n">park_accesspoints[knn_access</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">size_ha</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">size_log</span> <span class="o">=</span> <span class="n">park_accesspoints[knn_access</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">size_log</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">name</span> <span class="o">=</span> <span class="n">park_accesspoints[knn_access</span><span class="p">,</span><span class="n">]</span><span class="o">$</span><span class="n">name</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">group_by</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">dist</span> <span class="o">==</span> <span class="nf">min</span><span class="p">(</span><span class="n">dist</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">distinct</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">ungroup</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Normalize distance &amp; size values</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">dist_01</span> <span class="o">=</span> <span class="n">dist</span> <span class="o">/</span> <span class="nf">mean</span><span class="p">(</span><span class="n">dist</span><span class="p">)</span> <span class="o">*</span> <span class="m">100</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">size_01</span> <span class="o">=</span> <span class="n">size_log</span> <span class="o">/</span> <span class="nf">mean</span><span class="p">(</span><span class="n">size_log</span><span class="p">)</span> <span class="o">*</span> <span class="m">100</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">dist_01</span> <span class="o">=</span> <span class="m">1</span> <span class="o">-</span> <span class="n">dist_01</span> <span class="o">/</span> <span class="nf">max</span><span class="p">(</span><span class="n">dist_01</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">           <span class="n">size_01</span> <span class="o">=</span> <span class="n">size_01</span> <span class="o">/</span> <span class="nf">max</span><span class="p">(</span><span class="n">size_01</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Weight by distance vs. park size</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">w</span> <span class="o">=</span> <span class="p">(</span><span class="m">1.91</span> <span class="o">/</span> <span class="m">0.85</span> <span class="o">*</span> <span class="n">dist_01</span> <span class="o">+</span> <span class="n">size_01</span><span class="p">)</span> <span class="o">/</span> <span class="m">2</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">w</span> <span class="o">==</span> <span class="nf">max</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">select</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="n">size_ha</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Split observer set into manageable chunks</span>
+</span></span><span class="line"><span class="cl"><span class="n">obs_seq</span> <span class="o">&lt;-</span> <span class="nf">split</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">observer</span><span class="p">),</span> <span class="nf">ceiling</span><span class="p">(</span><span class="nf">seq_along</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">observer</span><span class="p">))</span><span class="o">/</span><span class="m">250</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Initialize an output CSV</span>
+</span></span><span class="line"><span class="cl"><span class="nf">tibble</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">id</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">name</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dist</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">size_ha</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">w</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="n">readr</span><span class="o">::</span><span class="nf">write_csv</span><span class="p">(</span><span class="s">&#34;01_analysis/0101_data/osrm/access_table.csv&#34;</span><span class="p">,</span> <span class="n">col_names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Parallel loop over observer subsets</span>
+</span></span><span class="line"><span class="cl"><span class="n">pb</span> <span class="o">=</span> <span class="n">pbmcapply</span><span class="o">::</span><span class="nf">progressBar</span><span class="p">(</span><span class="n">min</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="nf">length</span><span class="p">(</span><span class="n">obs_seq</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">stepi</span> <span class="o">=</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">this_seq</span> <span class="kr">in</span> <span class="n">obs_seq</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dist_table</span> <span class="o">&lt;-</span> <span class="n">parallel</span><span class="o">::</span><span class="nf">mclapply</span><span class="p">(</span><span class="n">this_seq</span><span class="p">,</span> <span class="n">observer_park_duration</span><span class="p">,</span> <span class="n">mc.cores</span> <span class="o">=</span> <span class="m">18</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span> <span class="n">.)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">readr</span><span class="o">::</span><span class="nf">write_csv</span><span class="p">(</span><span class="n">dist_table</span><span class="p">,</span> <span class="s">&#34;01_analysis/0101_data/osrm/access_table.csv&#34;</span><span class="p">,</span> <span class="n">append</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">setTxtProgressBar</span><span class="p">(</span><span class="n">pb</span><span class="p">,</span> <span class="n">stepi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stepi</span> <span class="o">=</span> <span class="n">stepi</span> <span class="o">+</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">close</span><span class="p">(</span><span class="n">pb</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Merge distance results with the observer SF</span>
+</span></span><span class="line"><span class="cl"><span class="n">dist_table</span> <span class="o">&lt;-</span> <span class="n">readr</span><span class="o">::</span><span class="nf">read_csv</span><span class="p">(</span><span class="s">&#34;01_analysis/0101_data/osrm/access_table.csv&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">dist_sf</span> <span class="o">&lt;-</span> <span class="nf">inner_join</span><span class="p">(</span><span class="n">observer</span><span class="p">,</span> <span class="n">dist_table</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Terminate OSRM server and cleanup if desired</span>
+</span></span><span class="line"><span class="cl"><span class="nf">unlink</span><span class="p">(</span><span class="s">&#34;01_analysis/0101_data/osrm/&#34;</span><span class="p">,</span> <span class="n">recursive</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></div><h3 id="4-generating-the-gaci-raster">4. Generating the GACI Raster</h3>
+<p>Finally, the weighted accessibility values (<code>w</code>) are <strong>interpolated</strong> into a continuous <strong>10 m raster</strong> using an <strong>Inverse Distance Weighting (IDW)</strong> approach, capping extreme values and <strong>reclassifying</strong> with <strong>Jenks</strong> to facilitate map visualization. Areas with lowest travel times to largest parks receive the most favorable accessibility scores.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># --- 4. Convert Access Values to GACI Raster ---</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># A. Interpolate to 10m grid using IDW</span>
+</span></span><span class="line"><span class="cl"><span class="n">gaci_raw</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">::</span><span class="nf">sf_interpolat_IDW</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">observer</span> <span class="o">=</span> <span class="n">dist_sf</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">v</span> <span class="o">=</span> <span class="s">&#34;w&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">aoi</span> <span class="o">=</span> <span class="n">aoi</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">max_distance</span> <span class="o">=</span> <span class="kc">Inf</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">n</span> <span class="o">=</span> <span class="m">20</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">raster_res</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">na_only</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">cores</span> <span class="o">=</span> <span class="m">22</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">progress</span> <span class="o">=</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># B. Park cells: assign ideal accessibility</span>
+</span></span><span class="line"><span class="cl"><span class="n">park_cells</span> <span class="o">&lt;-</span> <span class="n">terra</span><span class="o">::</span><span class="nf">extract</span><span class="p">(</span><span class="n">gaci_raw</span><span class="p">,</span> <span class="n">osm_parks</span><span class="p">,</span> <span class="n">cells</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">ID</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span><span class="o">$</span><span class="n">cell</span>
+</span></span><span class="line"><span class="cl"><span class="n">gaci_raw[park_cells]</span> <span class="o">&lt;-</span> <span class="kc">NA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># C. Reclassify via Jenks for readability</span>
+</span></span><span class="line"><span class="cl"><span class="n">gaci</span> <span class="o">&lt;-</span> <span class="n">CGEI</span><span class="o">:::</span><span class="nf">reclassify_jenks</span><span class="p">(</span><span class="n">gaci_raw</span><span class="p">,</span> <span class="n">n_classes</span> <span class="o">=</span> <span class="m">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">gaci[park_cells]</span> <span class="o">&lt;-</span> <span class="m">9</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">gaci</span> <span class="o">&lt;-</span> <span class="n">gaci</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">crop</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">mask</span><span class="p">(</span><span class="n">aoi</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">names</span><span class="p">(</span><span class="n">gaci</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&#34;GACI&#34;</span>
+</span></span></code></pre></div><p>Below is the <strong>final GACI map</strong> for Nürnberg, indicating how readily residents can access public parks at each location. Areas in <strong>red</strong> reflect relatively low accessibility (longer walking distances to suitably large parks), whereas <strong>green</strong> signifies more favorable access. Unsurprisingly, the <strong>city center</strong> exhibits poorer scores, likely due to limited large parks and a denser built environment. By contrast, districts near the <strong>eastern greenbelt</strong> and forested zones (e.g., Reichswald) show stronger accessibility, thanks to extensive parkland and well-connected footpaths. Furthermore, the <strong>Wöhrder Wiese</strong> and <strong>Wöhrder See,</strong> as well as the <strong>Pegnitz</strong> in the west (close to the <em>Westfriedhof</em>) form a crucial green belt, ensuring many neighborhoods in densely populated areas benefit from relatively high accessibility.</p>
+<p>Overall, the GACI reveals not just <em>where</em> parks are lacking, but also <em>how easily</em> citizens can reach them - an essential insight for guiding equitable urban planning and public health initiatives.</p>
+<img src="https://geobrinkmann.com/post/nuernberg-greenness-accessibility-index/index.en_files/figure-html/unnamed-chunk-9-1.png" width="768" />
+<h2 id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
+<div id="ref-duncan2014" class="csl-entry">
+<p>Duncan, Michael, Neil Clarke, Samantha Birch, Jason Tallis, Joanne Hankey, Elizabeth Bryant, and Emma Eyre. 2014. “The Effect of Green Exercise on Blood Pressure, Heart Rate and Mood State in Primary School Children.” <em>International Journal of Environmental Research and Public Health</em> 11 (4): 3678–88. <a href="https://doi.org/10.3390/ijerph110403678" target="_blank" rel="noopener">https://doi.org/10.3390/ijerph110403678</a>.</p>
+</div>
+<div id="ref-fone2014" class="csl-entry">
+<p>Fone, D., J. White, D. Farewell, M. Kelly, G. John, K. Lloyd, G. Williams, and F. Dunstan. 2014. “Effect of Neighbourhood Deprivation and Social Cohesion on Mental Health Inequality: A Multilevel Population-Based Longitudinal Study.” <em>Psychological Medicine</em> 44 (11): 2449–60. <a href="https://doi.org/10.1017/s0033291713003255" target="_blank" rel="noopener">https://doi.org/10.1017/s0033291713003255</a>.</p>
+</div>
+<div id="ref-giles-corti2005" class="csl-entry">
+<p>Giles-Corti, Billie, Melissa H. Broomhall, Matthew Knuiman, Catherine Collins, Kate Douglas, Kevin Ng, Andrea Lange, and Robert J. Donovan. 2005. “Increasing Walking.” <em>American Journal of Preventive Medicine</em> 28 (2): 169–76. <a href="https://doi.org/10.1016/j.amepre.2004.10.018" target="_blank" rel="noopener">https://doi.org/10.1016/j.amepre.2004.10.018</a>.</p>
+</div>
+<div id="ref-holtan2014" class="csl-entry">
+<p>Holtan, Meghan T., Susan L. Dieterlen, and William C. Sullivan. 2014. “Social Life Under Cover.” <em>Environment and Behavior</em> 47 (5): 502–25. <a href="https://doi.org/10.1177/0013916513518064" target="_blank" rel="noopener">https://doi.org/10.1177/0013916513518064</a>.</p>
+</div>
+<div id="ref-kingsbury2019" class="csl-entry">
+<p>Kingsbury, Mila, Zahra Clayborne, Ian Colman, and James B. Kirkbride. 2019. “The Protective Effect of Neighbourhood Social Cohesion on Adolescent Mental Health Following Stressful Life Events.” <em>Psychological Medicine</em> 50 (8): 1292–99. <a href="https://doi.org/10.1017/s0033291719001235" target="_blank" rel="noopener">https://doi.org/10.1017/s0033291719001235</a>.</p>
+</div>
+<div id="ref-labib2020_review" class="csl-entry">
+<p>Labib, S. M., Sarah Lindley, and Jonny J. Huck. 2020. “Spatial Dimensions of the Influence of Urban Green-Blue Spaces on Human Health: A Systematic Review.” <em>Environmental Research</em> 180 (January): 108869. <a href="https://doi.org/10.1016/j.envres.2019.108869" target="_blank" rel="noopener">https://doi.org/10.1016/j.envres.2019.108869</a>.</p>
+</div>
+<div id="ref-labib2021_greenspaceExposure" class="csl-entry">
+<p>———. 2021. “Estimating Multiple Greenspace Exposure Types and Their Associations with Neighbourhood Premature Mortality: A Socioecological Study.” <em>Science of The Total Environment</em> 789 (October): 147919. <a href="https://doi.org/10.1016/j.scitotenv.2021.147919" target="_blank" rel="noopener">https://doi.org/10.1016/j.scitotenv.2021.147919</a>.</p>
+</div>
+<div id="ref-lachowycz2011" class="csl-entry">
+<p>Lachowycz, K., and A. P. Jones. 2011. “Greenspace and Obesity: A Systematic Review of the Evidence.” <em>Obesity Reviews</em> 12 (5): e183–89. <a href="https://doi.org/10.1111/j.1467-789x.2010.00827.x" target="_blank" rel="noopener">https://doi.org/10.1111/j.1467-789x.2010.00827.x</a>.</p>
+</div>
+<div id="ref-markevych2017" class="csl-entry">
+<p>Markevych, Iana, Julia Schoierer, Terry Hartig, Alexandra Chudnovsky, Perry Hystad, Angel M. Dzhambov, Sjerp de Vries, et al. 2017. “Exploring Pathways Linking Greenspace to Health: Theoretical and Methodological Guidance.” <em>Environmental Research</em> 158 (October): 301–17. <a href="https://doi.org/10.1016/j.envres.2017.06.028" target="_blank" rel="noopener">https://doi.org/10.1016/j.envres.2017.06.028</a>.</p>
+</div>
+<div id="ref-mcgrath2015" class="csl-entry">
+<p>McGrath, Leslie J., Will G. Hopkins, and Erica A. Hinckson. 2015. “Associations of Objectively Measured Built-Environment Attributes with Youth ModerateVigorous Physical Activity: A Systematic Review and Meta-Analysis.” <em>Sports Medicine</em> 45 (6): 841–65. <a href="https://doi.org/10.1007/s40279-015-0301-3" target="_blank" rel="noopener">https://doi.org/10.1007/s40279-015-0301-3</a>.</p>
+</div>
+<div id="ref-mitchell2013" class="csl-entry">
+<p>Mitchell, Richard. 2013. “Is Physical Activity in Natural Environments Better for Mental Health Than Physical Activity in Other Environments?” <em>Social Science &amp; Medicine</em> 91 (August): 130–34. <a href="https://doi.org/10.1016/j.socscimed.2012.04.012" target="_blank" rel="noopener">https://doi.org/10.1016/j.socscimed.2012.04.012</a>.</p>
+</div>
+<div id="ref-pretty2005" class="csl-entry">
+<p>Pretty, Jules, Jo Peacock, Martin Sellens, and Murray Griffin. 2005. “The Mental and Physical Health Outcomes of Green Exercise.” <em>International Journal of Environmental Health Research</em> 15 (5): 319–37. <a href="https://doi.org/10.1080/09603120500155963" target="_blank" rel="noopener">https://doi.org/10.1080/09603120500155963</a>.</p>
+</div>
+<div id="ref-weinstein2015" class="csl-entry">
+<p>Weinstein, Netta, Andrew Balmford, Cody R. DeHaan, Valerie Gladwell, Richard B. Bradbury, and Tatsuya Amano. 2015. “Seeing Community for the Trees: The Links Among Contact with Natural Environments, Community Cohesion, and Crime.” <em>BioScience</em> 65 (12): 1141–53. <a href="https://doi.org/10.1093/biosci/biv151" target="_blank" rel="noopener">https://doi.org/10.1093/biosci/biv151</a>.</p>
+</div>
+<div id="ref-williams2020" class="csl-entry">
+<p>Williams, Andrew James, Kath Maguire, Karyn Morrissey, Tim Taylor, and Katrina Wyatt. 2020. “Social Cohesion, Mental Wellbeing and Health-Related Quality of Life Among a Cohort of Social Housing Residents in Cornwall: A Cross Sectional Study.” <em>BMC Public Health</em> 20 (1). <a href="https://doi.org/10.1186/s12889-020-09078-6" target="_blank" rel="noopener">https://doi.org/10.1186/s12889-020-09078-6</a>.</p>
+</div>
+</div>
+
+      </div>
+
+      
+  <time class="mt-12 mb-8 block text-xs text-gray-500 ltr:text-right rtl:text-left dark:text-gray-400" datetime="2025-01-15T00:00:00.000Z">
+    <span>Last updated on</span>
+    Jan 15, 2025</time>
+
+      <div class="container mx-auto prose prose-slate lg:prose-xl dark:prose-invert mt-5">
+        
+        <div class="max-w-prose print:hidden">
+  
+  
+
+  
+
+<div class="flex justify-center">
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/nurnberg/">Nürnberg</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/gaci/">GACI</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/r/">R</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenness-accessibility/">Greenness Accessibility</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/greenspace/">Greenspace</a>
+  
+  <a class="no-underline bg-primary-100 hover:bg-primary-300 text-primary-800 text-xs font-medium mr-2 px-2.5 py-0.5 lg:px-5 lg:py-2 rounded dark:bg-primary-900 dark:hover:bg-primary-700 dark:text-primary-300" href="/tags/cgei/">CGEI</a>
+  
+</div>
+
+
+  
+<section class="flex flex-row flex-wrap justify-center pt-4 text-xl">
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-greenness-accessibility-index%2F&amp;text=N%C3%BCrnberg&#43;-&#43;3.&#43;Greenness&#43;Accessibility&#43;Index&#43;%28GACI%29"
+    title="X"
+    aria-label="X"
+    id="share-link-x"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-greenness-accessibility-index%2F&amp;t=N%C3%BCrnberg&#43;-&#43;3.&#43;Greenness&#43;Accessibility&#43;Index&#43;%28GACI%29"
+    title="Facebook"
+    aria-label="Facebook"
+    id="share-link-facebook"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+    
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="mailto:?subject=N%C3%BCrnberg%20-%203.%20Greenness%20Accessibility%20Index%20%28GACI%29&amp;body=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-greenness-accessibility-index%2F"
+    title="Email"
+    aria-label="Email"
+    id="share-link-email"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-greenness-accessibility-index%2F&amp;title=N%C3%BCrnberg&#43;-&#43;3.&#43;Greenness&#43;Accessibility&#43;Index&#43;%28GACI%29"
+    title="LinkedIn"
+    aria-label="LinkedIn"
+    id="share-link-linkedin"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+  </a>
+  
+
+  
+  
+  
+  
+  
+  
+  <a
+    target="_blank" rel="noopener"
+    class="m-1 rounded-md bg-neutral-300 p-1.5 text-neutral-700 hover:bg-primary-500 hover:text-neutral-300 dark:bg-neutral-700 dark:text-neutral-300 dark:hover:bg-primary-400 dark:hover:text-neutral-800"
+    href="whatsapp://send?text=N%C3%BCrnberg&#43;-&#43;3.&#43;Greenness&#43;Accessibility&#43;Index&#43;%28GACI%29%20https%3A%2F%2Fgeobrinkmann.com%2Fpost%2Fnuernberg-greenness-accessibility-index%2F"
+    title="WhatsApp"
+    aria-label="WhatsApp"
+    id="share-link-whatsapp"
+  >
+    <svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="m187.58 144.84-32-16a8 8 0 0 0-8 .5l-14.69 9.8a40.55 40.55 0 0 1-16-16l9.8-14.69a8 8 0 0 0 .5-8l-16-32A8 8 0 0 0 104 64a40 40 0 0 0-40 40 88.1 88.1 0 0 0 88 88 40 40 0 0 0 40-40 8 8 0 0 0-4.42-7.16ZM152 176a72.08 72.08 0 0 1-72-72 24 24 0 0 1 19.29-23.54l11.48 23L101 118a8 8 0 0 0-.73 7.51 56.47 56.47 0 0 0 30.15 30.15A8 8 0 0 0 138 155l14.61-9.74 23 11.48A24 24 0 0 1 152 176ZM128 24a104 104 0 0 0-91.82 152.88l-11.35 34.05a16 16 0 0 0 20.24 20.24l34.05-11.35A104 104 0 1 0 128 24Zm0 192a87.87 87.87 0 0 1-44.06-11.81 8 8 0 0 0-6.54-.67L40 216l12.47-37.4a8 8 0 0 0-.66-6.54A88 88 0 1 1 128 216Z"/></svg>
+  </a>
+  
+</section>
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+
+<div class="flex pt-12 pb-4">
+  
+  
+  <img
+    class="mr-4 h-24 w-24 rounded-full"
+    width="96"
+    height="96"
+    alt="Sebastian Brinkmann"
+  src="/author/sebastian-brinkmann/avatar_hu12292808825799653284.jpg"
+  loading="lazy"
+  />
+  
+  <div class="place-self-center">
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      Authors
+    </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      <a href="https://geobrinkmann.com/" class="no-underline">
+      Sebastian Brinkmann
+      </a>
+    </div>
+
+    
+    <div class="text-sm font-bold text-neutral-700 dark:text-neutral-300">
+    Data Scientist
+    </div>
+    
+
+
+    
+
+    <div class="text-2xl sm:text-lg pt-1">
+
+      
+<div class="flex flex-wrap text-neutral-500 dark:text-neutral-300">
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="/#contact"
+      
+      aria-label="At-Symbol"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" d="M16.5 12a4.5 4.5 0 1 1-9 0a4.5 4.5 0 0 1 9 0Zm0 0c0 1.657 1.007 3 2.25 3S21 13.657 21 12a9 9 0 1 0-2.636 6.364M16.5 12V8.25"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://github.com/STBrinkmann"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Github"
+    ><svg style="height: 1em;" fill="currentColor" viewBox="3 3 18 18"><path d="M12 3C7.0275 3 3 7.12937 3 12.2276C3 16.3109 5.57625 19.7597 9.15374 20.9824C9.60374 21.0631 9.77249 20.7863 9.77249 20.5441C9.77249 20.3249 9.76125 19.5982 9.76125 18.8254C7.5 19.2522 6.915 18.2602 6.735 17.7412C6.63375 17.4759 6.19499 16.6569 5.8125 16.4378C5.4975 16.2647 5.0475 15.838 5.80124 15.8264C6.51 15.8149 7.01625 16.4954 7.18499 16.7723C7.99499 18.1679 9.28875 17.7758 9.80625 17.5335C9.885 16.9337 10.1212 16.53 10.38 16.2993C8.3775 16.0687 6.285 15.2728 6.285 11.7432C6.285 10.7397 6.63375 9.9092 7.20749 9.26326C7.1175 9.03257 6.8025 8.08674 7.2975 6.81794C7.2975 6.81794 8.05125 6.57571 9.77249 7.76377C10.4925 7.55615 11.2575 7.45234 12.0225 7.45234C12.7875 7.45234 13.5525 7.55615 14.2725 7.76377C15.9937 6.56418 16.7475 6.81794 16.7475 6.81794C17.2424 8.08674 16.9275 9.03257 16.8375 9.26326C17.4113 9.9092 17.76 10.7281 17.76 11.7432C17.76 15.2843 15.6563 16.0687 13.6537 16.2993C13.98 16.5877 14.2613 17.1414 14.2613 18.0065C14.2613 19.2407 14.25 20.2326 14.25 20.5441C14.25 20.7863 14.4188 21.0746 14.8688 20.9824C16.6554 20.364 18.2079 19.1866 19.3078 17.6162C20.4077 16.0457 20.9995 14.1611 21 12.2276C21 7.12937 16.9725 3 12 3Z"></path></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://www.linkedin.com/in/sebastian-t-brinkmann/"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Brands/Linkedin"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path fill="currentColor" d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></a>
+  
+    
+    
+    
+    
+      
+    
+    <a
+      class="pr-2 transition-transform hover:scale-125 hover:text-primary-700 dark:hover:text-primary-400"
+      style="will-change:transform;"
+      href="https://orcid.org/0000-0001-9835-7347"
+      target="_blank" rel="noopener" rel="me noopener noreferrer"
+      aria-label="Academicons/Orcid"
+    ><svg style="height: 1em;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M336.62 194.538c-7.13-3.328-13.866-5.56-20.253-6.614c-6.365-1.095-16.574-1.612-30.71-1.612h-36.704v152.747h37.634c14.673 0 26.081-1.013 34.224-3.017c8.142-2.004 14.921-4.526 20.356-7.626a69.448 69.448 0 0 0 14.942-11.388c14.488-14.714 21.742-33.273 21.742-55.717c0-22.052-7.44-40.052-22.341-53.982c-5.498-5.166-11.822-9.444-18.89-12.793zM256 8C119.022 8 8 119.042 8 256s111.022 248 248 248s248-111.042 248-248S392.978 8 256 8Zm-82.336 357.513h-29.389V160.148h29.389zM158.95 138.696c-11.14 0-20.213-9.01-20.213-20.212c0-11.118 9.052-20.191 20.213-20.191c11.18 0 20.232 9.052 20.232 20.191a20.194 20.194 0 0 1-20.232 20.212zm241.386 163.597c-5.29 12.545-12.834 23.581-22.65 33.088c-9.982 9.837-21.597 17.194-34.844 22.196c-7.75 3.017-14.839 5.063-21.307 6.117c-6.49 1.013-18.828 1.509-37.076 1.509h-64.956V160.148h69.233c27.962 0 50.034 4.154 66.32 12.545c16.265 8.37 29.181 20.728 38.792 36.972c9.61 16.265 14.425 34.018 14.425 53.196c.023 13.765-2.666 26.908-7.936 39.432z"/></svg></a>
+  
+</div>
+
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+  
+  
+    
+    
+    
+      
+      
+    
+<div class="pt-1 no-prose w-full">
+  <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+  <div class="flex flex-col md:flex-row flex-nowrap justify-between gap-5 pt-2">
+    <div class="">
+      
+    </div>
+    <div class="">
+      
+        <a class="group flex text-right no-underline" href="/post/nuernberg-greenspace-availability-index/">
+          <span class="flex flex-col">
+            <span
+              class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+            >Nürnberg - 2. Greenspace Availability Index (GAVI)</span
+            >
+            <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+              
+                Jan 14, 2025
+              
+            </span>
+          </span>
+          <span
+            class="mt-[-0.3rem] ms-2 text-neutral-700 transition-transform group-hover:-translate-x-[2px] group-hover:text-primary-600 dark:text-neutral dark:group-hover:text-primary-400"
+          ><span class="ltr:inline">&rarr;</span></span>
+        </a>
+      
+    </div>
+  </div>
+</div>
+
+
+
+  
+
+
+  
+
+
+
+</div>
+
+      </div>
+
+    </main>
+  </article>
+</div>
+
+    </div>
+    <div class="page-footer">
+      <footer class="container mx-auto flex flex-col justify-items-center text-sm leading-6 mt-24 mb-4 text-slate-700 dark:text-slate-200">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by text-center">
+    © 2025 geobrinkmann.com. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+</footer>
+
+    </div>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
